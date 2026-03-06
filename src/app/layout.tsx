@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
+import {
+  buildAbsoluteUrl,
+  buildOrganizationSchema,
+  buildPersonSchema,
+  buildWebSiteSchema,
+  resolveOgImage,
+  seoConfig,
+} from "@/lib/seo";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,15 +23,43 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(seoConfig.siteUrl),
   title: {
-    default: "Founder Glenn",
-    template: "%s | Founder Glenn",
+    default: seoConfig.defaultTitle,
+    template: seoConfig.titleTemplate,
   },
-  description: "Systems, ideas, and infrastructure by Founder Glenn.",
+  description: seoConfig.defaultDescription,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Founder Glenn",
-    description: "Systems, ideas, and infrastructure by Founder Glenn.",
-    siteName: "Founder Glenn",
+    type: "website",
+    url: seoConfig.siteUrl,
+    siteName: seoConfig.siteName,
+    title: seoConfig.defaultTitle,
+    description: seoConfig.defaultDescription,
+    images: [
+      {
+        url: resolveOgImage(),
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: seoConfig.defaultTitle,
+    description: seoConfig.defaultDescription,
+    images: [resolveOgImage()],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -44,6 +80,26 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-WXCF8SL7');
           `}
         </Script>
+        <script
+          id="website-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildWebSiteSchema()) }}
+        />
+        <script
+          id="person-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              ...buildPersonSchema(),
+              url: buildAbsoluteUrl("/about"),
+            }),
+          }}
+        />
+        <script
+          id="organization-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildOrganizationSchema()) }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import ScrollyCanvas from "@/components/ScrollyCanvas";
 import Projects from "@/components/Projects";
+
+export const metadata: Metadata = {
+  title: "HOME",
+  description: "Founder Glenn — Author, Physicist, and builder of systems for creators.",
+};
 
 export default function Home() {
   return (

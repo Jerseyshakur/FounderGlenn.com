@@ -2,7 +2,7 @@ import { APPS, PRIMARY_APP_SLUG } from "@/content/apps";
 import type { ReactNode } from "react";
 
 export const metadata = {
-  title: "Nexus | Founder Glenn",
+  title: "Nexus",
   description: "Nexus app page.",
 };
 
@@ -20,14 +20,14 @@ const includedApps = [
     name: "Splits",
     category: "Health & Fitness",
     appStoreUrl: "https://apps.apple.com/",
-    iconSrc: "/things/nexuslogo.PNG",
+    iconSrc: "/things/splits.PNG",
   },
   {
     slug: "session-space",
     name: "Session Space",
     category: "Health & Fitness",
     appStoreUrl: "https://apps.apple.com/",
-    iconSrc: "/things/nexuslogo.PNG",
+    iconSrc: "/things/sessionspace.PNG",
   },
 ];
 

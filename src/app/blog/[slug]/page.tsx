@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
+import {
+  buildAbsoluteUrl,
+  buildArticleSchema,
+  resolveOgImage,
+  seoConfig,
+} from "@/lib/seo";
 
 type BlogPostPageProps = {
   params: {
@@ -19,10 +26,33 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     return {};
   }
 
+  const path = `/blog/${post.slug}`;
+  const ogImage = resolveOgImage(post.coverImage);
+
   return {
-    title: `${post.title} | Founder Glenn`,
+    title: post.title,
     description: post.description,
-  };
+    alternates: {
+      canonical: path,
+    },
+    openGraph: {
+      type: "article",
+      url: buildAbsoluteUrl(path),
+      siteName: seoConfig.siteName,
+      title: post.title,
+      description: post.description,
+      images: [{ url: ogImage }],
+      publishedTime: post.date || undefined,
+      modifiedTime: post.date || undefined,
+      authors: [seoConfig.person.name],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [ogImage],
+    },
+  } satisfies Metadata;
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -32,9 +62,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const articleSchema = buildArticleSchema({
+    urlPath: `/blog/${post.slug}`,
+    headline: post.title,
+    description: post.description,
+    image: post.coverImage,
+    datePublished: post.date || undefined,
+    dateModified: post.date || undefined,
+  });
+
   return (
     <main className="min-h-screen bg-[#121212] px-6 py-16 text-zinc-100">
       <article className="mx-auto max-w-3xl">
+        <script
+          id="article-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+
         <p className="text-sm uppercase tracking-[0.12em] text-zinc-500">
           {new Date(post.date).toLocaleDateString("en-US", {
             year: "numeric",

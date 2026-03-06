@@ -3,7 +3,7 @@ import Image from "next/image";
 import { getAllPostsMeta } from "@/lib/blog";
 
 export const metadata = {
-  title: "Blog | Founder Glenn",
+  title: "Blog",
   description: "Essays, frameworks, and build logs.",
 };
 
