@@ -107,16 +107,6 @@ const ALL_TITLES: Omit<Book, "category">[] = [
     status: "coming_soon",
   },
   {
-    slug: "dr-daniel-darius-vale-food",
-    title: "Dr Daniel Darius Vale: Food",
-    status: "coming_soon",
-  },
-  {
-    slug: "dr-daniel-darius-vale-operation-doomsday",
-    title: "Dr Daniel Darius Vale: Operation Doomsday",
-    status: "coming_soon",
-  },
-  {
     slug: "founder-glenn-by-elias-marlowe",
     title: "Founder Glenn (By Elias Marlowe)",
     status: "coming_soon",
@@ -139,11 +129,6 @@ const ALL_TITLES: Omit<Book, "category">[] = [
   {
     slug: "legacy-talk-the-unsent-letters",
     title: "Legacy Talk: The Unsent Letters",
-    status: "coming_soon",
-  },
-  {
-    slug: "maynard-eaton-program-revised-program-2",
-    title: "Maynard Eaton Program (Revised Program 2)",
     status: "coming_soon",
   },
   {

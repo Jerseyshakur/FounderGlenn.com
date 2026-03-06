@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { seoConfig } from "@/lib/seo";
 
@@ -26,8 +27,15 @@ export default function MediaPage() {
         <section className="grid gap-5 md:grid-cols-2">
           <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
             <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Headshot</p>
-            <div className="mt-4 flex aspect-[4/5] items-center justify-center rounded-xl border border-dashed border-white/20 bg-black/20 px-5 text-center text-sm text-zinc-400">
-              Press-approved headshot placeholder
+            <div className="relative mt-4 aspect-[4/5] overflow-hidden rounded-xl border border-white/10 bg-black/20">
+              <Image
+                src="/things/founderGlennHEADSHOT.jpg"
+                alt="Founder Glenn headshot"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover object-center"
+              />
             </div>
           </div>
 

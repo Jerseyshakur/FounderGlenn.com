@@ -66,31 +66,39 @@ export default function AboutPage() {
           </p>
         </header>
 
-        <section className="grid gap-5 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-            <h2 className="text-xl font-semibold text-white">Bio / Origin</h2>
-            <p className="mt-3 text-zinc-300">
-              The work centers on long-term ownership, disciplined execution, and systems that outlast
-              short-term trends.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-            <h2 className="text-xl font-semibold text-white">What I Build</h2>
-            <p className="mt-3 text-zinc-300">
-              Books, publishing frameworks, product ecosystems, and strategic infrastructure for creators.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-            <h2 className="text-xl font-semibold text-white">Projects</h2>
-            <p className="mt-3 text-zinc-300">
-              Writing systems, GLÈNN, Nexus, kits, comics, and Legacy Talk.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-            <h2 className="text-xl font-semibold text-white">Philosophy / Mission</h2>
-            <p className="mt-3 text-zinc-300">
-              Build infrastructure that helps creators own their output, protect leverage, and compound legacy.
-            </p>
+        <section className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10">
+          <h2 className="text-2xl font-semibold text-white">About Founder Glenn</h2>
+          <div className="mt-5 space-y-6 text-zinc-300">
+            <div>
+              <h3 className="text-sm uppercase tracking-[0.14em] text-zinc-500">Bio</h3>
+              <p className="mt-2">
+                Founder Glenn works at the intersection of publishing, technology, and long-horizon brand
+                systems, with a focus on ownership and enduring value creation.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-sm uppercase tracking-[0.14em] text-zinc-500">What I Build</h3>
+              <p className="mt-2">
+                Books, publishing frameworks, product ecosystems, and strategic infrastructure that support
+                creator independence.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-sm uppercase tracking-[0.14em] text-zinc-500">Projects</h3>
+              <p className="mt-2">
+                Writing systems, GLÈNN, Nexus, kits, comics, and Legacy Talk.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-sm uppercase tracking-[0.14em] text-zinc-500">Mission & Philosophy</h3>
+              <p className="mt-2">
+                Build infrastructure that helps creators own their output, protect leverage, and compound
+                legacy with discipline.
+              </p>
+            </div>
           </div>
         </section>
 
