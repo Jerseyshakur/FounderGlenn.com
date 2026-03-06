@@ -30,6 +30,40 @@ const COMIC_SLUGS = new Set<string>([
   "ultraman-the-outliers",
 ]);
 
+const BOOK_COVER_OVERRIDES: Record<string, string> = {
+  "america-a-nation-built-by-immigrants": "/covers/books/america-a-nation-built-by-immigrants.png",
+  "black-american-history-economic": "/covers/books/black-american-history-economic.png",
+  "dinner-with-jay-z-and-warren-buffett": "/covers/books/dinner-with-jayz-and-warren-buffett.png",
+  "founder-glenn-by-elias-marlowe": "/covers/books/founder-glenn-by-elias-marlowe.png",
+  "how-to-become-a-mogul-while-falling-in-love-founder-edition":
+    "/covers/books/how-to-become-a-mogul-while-falling-in-love-founder-edition.png",
+  "i-just-called-to-say-i-love-you-60-days-of-distance":
+    "/covers/books/i-just-called-to-say-i-love-you-60-days-of-distance.png",
+  "legacy-talk-the-unsent-letters": "/covers/books/legacy-talk-the-unsent-letters.png",
+  "nation-inside-a-nation-the-empire-signs-back": "/covers/books/nation-inside-a-nation-the-empire-signs-back.png",
+  "sacrilegious-faith-is-fashion": "/covers/books/sacrilegious-faith-is-fashion.png",
+  "sign-here-the-blueprint-decoded-founder-edition":
+    "/covers/books/sign-here-the-blueprint-decoded-founder-edition.png",
+  "supreme-dictionary": "/covers/books/supreme-dictionary.png",
+  "the-prince": "/covers/books/the-prince.png",
+  "the-64-laws-of-black-power": "/covers/books/the-64-laws-of-black-power.png",
+  "the-book-of-glenn-legacy-talk-the-unsent-letters":
+    "/covers/books/the-book-of-glenn-legacy-talk-the-unsent-letters.png",
+  "the-book-of-gravity-the-120-lessons": "/covers/books/the-book-of-gravity-the-120-lessons.png",
+  "the-book-of-water-and-aura-mastery": "/covers/books/the-book-of-water-and-aura-mastery.png",
+  "the-capstone-essays": "/covers/books/the-capstone-essays.png",
+  "the-chinese-rule-that-builds-wealth": "/covers/books/the-chinese-rule-that-builds-wealth.png",
+  "the-family-before-the-flag": "/covers/books/the-family-before-the-flag.png",
+  "the-kings-mirage-64-squares-of-sovereign-geometry":
+    "/covers/books/the-kings-mirage-64-squares-of-sovereign-geometry.png",
+  "the-solomon-code": "/covers/books/the-solomon-code.png",
+  "the-unit": "/covers/books/the-unit.png",
+  "unified-cannon-field-theory": "/covers/books/unified-cannon-field-theory.png",
+  "universal-operability-180-the-turnaround-essay":
+    "/covers/books/universal-operability-180-the-turnaround-essay.png",
+  "faith-is-fashion": "/covers/books/faith-is-fashion.png",
+};
+
 const ALL_TITLES: Omit<Book, "category">[] = [
   {
     slug: "the-river-in-the-sea-the-voyage-of-mansa-muhammad",
@@ -246,5 +280,5 @@ const ALL_TITLES: Omit<Book, "category">[] = [
 export const BOOKS: Book[] = ALL_TITLES.map((book) => ({
   ...book,
   category: COMIC_SLUGS.has(book.slug) ? "comics" : "books",
-  coverSrc: book.coverSrc || `/covers/books/${book.slug}.png`,
+  coverSrc: BOOK_COVER_OVERRIDES[book.slug] || book.coverSrc || `/covers/books/${book.slug}.png`,
 }));

@@ -19,6 +19,34 @@ export const KIT_PARENTS: { id: KitParent; title: string }[] = [
   },
 ];
 
+const KIT_COVER_OVERRIDES: Record<string, string> = {
+  "ceo-confessions": "/covers/kits/ceo-confessions.png",
+  "emotional-intelligence": "/covers/kits/emotional-intelligence.png",
+  "leadership-and-love": "/covers/kits/leadership-and-love.png",
+  "legacy-and-longevity": "/covers/kits/legacy-and-longevity.png",
+  "paperwork-and-pillow-talk": "/covers/kits/paperwork-and-pillow-talk.png",
+  "the-fatherhood-framework": "/covers/kits/the-fatherhood-framework.png",
+  "the-heart-ledger": "/covers/kits/the-heart-ledger.png",
+  "the-mogul-mindset-kit": "/covers/kits/the-mogul-mindset-kit.png",
+  "the-pre-trust-toolkit": "/covers/kits/the-pre-trust-toolkit.png",
+  "trust-before-touch": "/covers/kits/trust-before-touch.png",
+  "distribution-exit-kit": "/covers/kits/distribution-exit-kit.png",
+  "universal-red-flags": "/covers/kits/universal-red-flags.png",
+  "the-signback": "/covers/kits/the-signback.png",
+  "fan-funnel-kit": "/covers/kits/fan-funnel-kit.png",
+  "indie-label-legal-kit": "/covers/kits/indie-label-legal-kit.png",
+  "sample-clearance-kit": "/covers/kits/sample-clearance-kit.png",
+  "rollout-kit": "/covers/kits/rollout-kit.png",
+  "label-deal-kit": "/covers/kits/label-deal-kit.png",
+  "how-to-start-an-indie-record-label": "/covers/kits/how-to-start-an-indie-record-label.png",
+  "distribution-protection-kit": "/covers/kits/distribution-protection-kit.png",
+  "artist-management-kit": "/covers/kits/artist-management-kit.png",
+  "artist-legal-glossary": "/covers/kits/artist-legal-glossary.png",
+  "seven-steps-to-get-paid": "/covers/kits/seven-steps-to-get-paid.png",
+  "seven-steps-to-find-every-dollar": "/covers/kits/seven-steps-to-find-every-dollar.png",
+  "seven-steps-to-claim-every-royalty": "/covers/kits/seven-steps-to-claim-every-royalty.png",
+};
+
 const KIT_ITEMS: Omit<KitItem, "coverSrc">[] = [
   { slug: "ceo-confessions", title: "CEO Confessions", type: "kit", parent: "mogul-while-falling-in-love" },
   {
@@ -139,5 +167,5 @@ const KIT_ITEMS: Omit<KitItem, "coverSrc">[] = [
 
 export const KITS: KitItem[] = KIT_ITEMS.map((kit) => ({
   ...kit,
-  coverSrc: `/covers/kits/${kit.slug}.png`,
+  coverSrc: KIT_COVER_OVERRIDES[kit.slug] || `/covers/kits/${kit.slug}.png`,
 }));
