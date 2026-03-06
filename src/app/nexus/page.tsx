@@ -86,6 +86,26 @@ export default function NexusPage() {
           </div>
         </section>
 
+        <section className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 text-center md:p-8">
+          <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Beta Access</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white md:text-3xl">
+            Join the Nexus Beta
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-zinc-300">
+            Nexus is currently available through Apple TestFlight. Join the beta to experience the Nexus
+            physiological engine and help shape the future of recovery intelligence.
+          </p>
+
+          <a
+            href="https://testflight.apple.com/join/j1tpp54U"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center rounded-full border border-white/15 bg-white px-7 py-2.5 text-sm font-semibold tracking-wide text-black transition-colors hover:bg-zinc-200"
+          >
+            Download on TestFlight
+          </a>
+        </section>
+
         <section className="grid grid-cols-2 gap-3 rounded-3xl border border-white/10 bg-white/[0.02] p-4 sm:grid-cols-3 md:grid-cols-6 md:gap-4 md:p-6">
           {stats.map((item) => (
             <div key={item.label} className="rounded-2xl border border-white/10 bg-black/20 p-4">
