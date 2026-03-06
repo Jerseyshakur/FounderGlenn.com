@@ -52,6 +52,12 @@ export default function Projects() {
                     <p className="text-zinc-400 max-w-xl mx-auto text-lg leading-relaxed">
                         Books, blogs, brand, and Nexus — built for creators and legacy.
                     </p>
+                    <Link
+                        href="/about"
+                        className="mt-7 inline-flex rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
+                    >
+                        About Founder Glenn
+                    </Link>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">

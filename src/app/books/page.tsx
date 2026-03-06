@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Writing",
-  description: "Choose a writing collection: Books, Kits, or Comics.",
+  title: "Books",
+  description: "Browse books, kits, and comics by Founder Glenn.",
 };
 
 const categories = [

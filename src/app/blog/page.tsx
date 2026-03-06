@@ -3,8 +3,8 @@ import Image from "next/image";
 import { getAllPostsMeta } from "@/lib/blog";
 
 export const metadata = {
-  title: "Blog",
-  description: "Essays, frameworks, and build logs.",
+  title: "Blogs",
+  description: "Essays, frameworks, and build logs from Founder Glenn.",
 };
 
 export default async function BlogPage() {

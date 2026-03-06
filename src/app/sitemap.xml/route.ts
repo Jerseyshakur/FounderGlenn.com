@@ -1,5 +1,22 @@
 const BASE_URL = "https://founderglenn.com";
-const ROUTES = ["/", "/books", "/articles", "/projects", "/about", "/contact"] as const;
+const ROUTES = [
+  "/",
+  "/about",
+  "/books",
+  "/books/books",
+  "/books/kits",
+  "/books/comics",
+  "/blog",
+  "/blogs",
+  "/glenn",
+  "/nexus",
+  "/music",
+  "/maynard-eaton",
+  "/media",
+  "/contact",
+  "/kits",
+  "/comics",
+] as const;
 
 export async function GET() {
   const lastmod = new Date().toISOString();

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 export const metadata = {
   title: "Nexus",
-  description: "Nexus app page.",
+  description: "Nexus by Founder Glenn: recovery, readiness, and AI-powered coaching systems.",
 };
 
 const primaryApp = APPS.find((app) => app.slug === PRIMARY_APP_SLUG) ?? APPS[0];
@@ -151,6 +151,15 @@ export default function NexusPage() {
             </div>
           </div>
         </Shelf>
+
+        <section className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:p-8">
+          <h2 className="text-xl font-semibold tracking-tight text-white md:text-2xl">More from Founder Glenn</h2>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <a href="/about" className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-200 transition-colors hover:border-white/35 hover:text-white">About</a>
+            <a href="/books" className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-200 transition-colors hover:border-white/35 hover:text-white">Books</a>
+            <a href="/music" className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-200 transition-colors hover:border-white/35 hover:text-white">Music</a>
+          </div>
+        </section>
       </div>
     </main>
   );

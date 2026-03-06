@@ -8,23 +8,28 @@ export const seoConfig = {
   person: {
     name: "Founder Glenn",
     alternateName: "Shakur Raqon Ziyār Glenn",
-    url: "https://founderglenn.com/about",
-    jobTitle: "Founder, Author, Builder",
+    url: "https://founderglenn.com",
+    jobTitle: "Author, Technologist, Systems Builder",
     description:
-      "Founder Glenn is an author, founder, and strategist building books, platforms, and systems around ownership, culture, and infrastructure.",
+      "Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, technologist, and systems builder creating infrastructure for creators.",
     image: "/og-image.jpg",
-    // Replace these placeholder profiles with real identity URLs.
     sameAs: [
       "https://x.com/founderglenn?s=21",
       "https://www.tiktok.com/@founderglenn",
       "https://youtube.com/@founderglenn?si=njoP06j7vR7axNqc",
+    ],
+    knowsAbout: [
+      "Creator infrastructure",
+      "Publishing systems",
+      "Technology strategy",
+      "Product design",
+      "Brand systems",
     ],
   },
   organization: {
     name: "Founder Glenn",
     url: "https://founderglenn.com",
     logo: "/og-image.jpg",
-    // Replace these placeholder profiles with real brand URLs.
     sameAs: [
       "https://x.com/founderglenn?s=21",
       "https://www.tiktok.com/@founderglenn",
@@ -72,6 +77,7 @@ export function buildWebSiteSchema() {
     name: seoConfig.siteName,
     url: seoConfig.siteUrl,
     description: seoConfig.defaultDescription,
+    sameAs: seoConfig.organization.sameAs,
   };
 }
 
@@ -83,6 +89,12 @@ export function buildOrganizationSchema() {
     url: seoConfig.organization.url,
     logo: buildAbsoluteUrl(seoConfig.organization.logo),
     sameAs: seoConfig.organization.sameAs,
+    founder: {
+      "@type": "Person",
+      name: seoConfig.person.name,
+      alternateName: seoConfig.person.alternateName,
+      url: seoConfig.person.url,
+    },
   };
 }
 
@@ -96,6 +108,7 @@ export function buildPersonSchema() {
     image: buildAbsoluteUrl(seoConfig.person.image),
     description: seoConfig.person.description,
     jobTitle: seoConfig.person.jobTitle,
+    knowsAbout: seoConfig.person.knowsAbout,
     sameAs: seoConfig.person.sameAs,
     worksFor: {
       "@type": "Organization",
@@ -115,6 +128,7 @@ export function buildProfilePageSchema(urlPath: string = "/about") {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     url: buildAbsoluteUrl(urlPath),
+    name: `${seoConfig.person.name} | About`,
     mainEntity: buildPersonSchema(),
   };
 }

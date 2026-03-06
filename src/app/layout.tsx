@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
+import SiteNavDrawer from "@/components/SiteNavDrawer";
 import {
   buildAbsoluteUrl,
   buildOrganizationSchema,
@@ -29,9 +30,6 @@ export const metadata: Metadata = {
     template: seoConfig.titleTemplate,
   },
   description: seoConfig.defaultDescription,
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     url: seoConfig.siteUrl,
@@ -91,7 +89,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               ...buildPersonSchema(),
-              url: buildAbsoluteUrl("/about"),
+              url: buildAbsoluteUrl("/"),
             }),
           }}
         />
@@ -112,6 +110,7 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        <SiteNavDrawer />
         {children}
       </body>
     </html>
