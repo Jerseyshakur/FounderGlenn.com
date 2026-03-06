@@ -1,17 +1,39 @@
 export type BookStatus = "live" | "coming_soon";
+export type BookCategory = "books" | "comics" | "kits";
 
 export type Book = {
   slug: string;
   title: string;
+  category: BookCategory;
   coverSrc?: string;
   status?: BookStatus;
   year?: string;
 };
 
-export const BOOKS: Book[] = [
+const COMIC_SLUGS = new Set<string>([
+  "the-river-in-the-sea-the-voyage-of-mansa-muhammad",
+  "black-caesar-the-adventures-of-blackbeard",
+  "dorian-vaughn-vaudeville-villain",
+  "dorian-vaughn-venomous-villain",
+  "dorian-vaughn-vale-take-me-to-your-leader",
+  "dr-daniel-dorian-vale-operation-special-herbs",
+  "dr-daniel-dorian-vale-iron-fingers",
+  "dr-daniel-dorian-vale-madvillainy",
+  "dr-daniel-dorian-vale-operation-vail",
+  "dr-daniel-dorian-vale-rap-sorcery",
+  "dr-daniel-dorian-vale-take-me-to-your-leader-ii",
+  "dr-daniel-dorian-vale-operation-food",
+  "juice",
+  "new-atlantis",
+  "the-advantages-of-crackman",
+  "ultraman",
+  "ultraman-the-outliers",
+]);
+
+const ALL_TITLES: Omit<Book, "category">[] = [
   {
     slug: "the-river-in-the-sea-the-voyage-of-mansa-muhammad",
-    title: "The River in the Sea: The Voyage of Mansa Muhammad",
+    title: "The River and the Sea",
     status: "coming_soon",
   },
   {
@@ -21,7 +43,7 @@ export const BOOKS: Book[] = [
   },
   {
     slug: "black-caesar-the-adventures-of-blackbeard",
-    title: "Black Caesar: The Adventures of Blackbeard",
+    title: "Black Caesar",
     status: "coming_soon",
   },
   {
@@ -46,42 +68,42 @@ export const BOOKS: Book[] = [
   },
   {
     slug: "dorian-vaughn-vale-take-me-to-your-leader",
-    title: "Dorian Vaughn Vale: Take Me to Your Leader",
+    title: "Take Me To Your Leader",
     status: "coming_soon",
   },
   {
     slug: "dr-daniel-dorian-vale-operation-special-herbs",
-    title: "Dr Daniel Dorian Vale: Operation Special Herbs",
+    title: "Dr. Daniel Dorian Vale: Special Operations",
     status: "coming_soon",
   },
   {
     slug: "dr-daniel-dorian-vale-iron-fingers",
-    title: "Dr Daniel Dorian Vale: Iron Fingers",
+    title: "Dr. Daniel Dorian Vale: Iron Fingers",
     status: "coming_soon",
   },
   {
     slug: "dr-daniel-dorian-vale-madvillainy",
-    title: "Dr Daniel Dorian Vale: Madvillainy",
+    title: "Dr. Daniel Dorian Vale: Mad Villainy",
     status: "coming_soon",
   },
   {
     slug: "dr-daniel-dorian-vale-operation-vail",
-    title: "Dr Daniel Dorian Vale: Operation Vail",
+    title: "Dr. Daniel Dorian Vale: Operation Vale",
     status: "coming_soon",
   },
   {
     slug: "dr-daniel-dorian-vale-rap-sorcery",
-    title: "Dr Daniel Dorian Vale: Rap Sorcery",
+    title: "Dr. Daniel Dorian Vale: Rap Sorcery",
     status: "coming_soon",
   },
   {
     slug: "dr-daniel-dorian-vale-take-me-to-your-leader-ii",
-    title: "Dr Daniel Dorian Vale: Take Me To Your Leader II",
+    title: "Take Me To Your Leader 2",
     status: "coming_soon",
   },
   {
     slug: "dr-daniel-dorian-vale-operation-food",
-    title: "Dr Daniel Dorian Vale: Operation Food",
+    title: "Dr. Daniel Dorian Vale: Operation Food",
     status: "coming_soon",
   },
   {
@@ -206,12 +228,17 @@ export const BOOKS: Book[] = [
   },
   {
     slug: "the-advantages-of-crackman",
-    title: "The Advantages of Crackman",
+    title: "The Adventures of Crackman",
     status: "coming_soon",
   },
   {
     slug: "ultraman",
     title: "Ultraman",
+    status: "coming_soon",
+  },
+  {
+    slug: "ultraman-the-outliers",
+    title: "Ultraman: The Outliers",
     status: "coming_soon",
   },
   {
@@ -230,3 +257,8 @@ export const BOOKS: Book[] = [
     status: "coming_soon",
   },
 ];
+
+export const BOOKS: Book[] = ALL_TITLES.map((book) => ({
+  ...book,
+  category: COMIC_SLUGS.has(book.slug) ? "comics" : "books",
+}));
