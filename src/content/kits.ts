@@ -5,6 +5,7 @@ export type KitItem = {
   title: string;
   type: "kit";
   parent: KitParent;
+  coverSrc?: string;
 };
 
 export const KIT_PARENTS: { id: KitParent; title: string }[] = [
@@ -18,7 +19,7 @@ export const KIT_PARENTS: { id: KitParent; title: string }[] = [
   },
 ];
 
-export const KITS: KitItem[] = [
+const KIT_ITEMS: Omit<KitItem, "coverSrc">[] = [
   { slug: "ceo-confessions", title: "CEO Confessions", type: "kit", parent: "mogul-while-falling-in-love" },
   {
     slug: "emotional-intelligence",
@@ -135,3 +136,8 @@ export const KITS: KitItem[] = [
     parent: "sign-here",
   },
 ];
+
+export const KITS: KitItem[] = KIT_ITEMS.map((kit) => ({
+  ...kit,
+  coverSrc: `/covers/kits/${kit.slug}.png`,
+}));

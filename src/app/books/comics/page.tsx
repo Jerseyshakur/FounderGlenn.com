@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BOOKS } from "@/content/books";
+import CoverImage from "@/components/CoverImage";
 
 export const metadata: Metadata = {
   title: "Comics",
@@ -22,15 +23,7 @@ export default function ComicsPage() {
         <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 xl:grid-cols-4">
           {comicsCatalog.map((book) => (
             <Link key={book.slug} href={`/books/${book.slug}`} className="group block">
-              <div className="aspect-[3/4] overflow-hidden rounded-md bg-white/[0.03] ring-1 ring-white/10 transition-colors group-hover:bg-white/[0.06]">
-                {book.coverSrc ? (
-                  <img src={book.coverSrc} alt={book.title} className="h-full w-full object-cover" />
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center px-4 text-center">
-                    <p className="text-sm leading-snug text-zinc-300">{book.title}</p>
-                  </div>
-                )}
-              </div>
+              <CoverImage kind="books" slug={book.slug} title={book.title} src={book.coverSrc} />
               <p className="mt-3 text-sm leading-snug text-zinc-300 transition-colors group-hover:text-white">
                 {book.title}
               </p>

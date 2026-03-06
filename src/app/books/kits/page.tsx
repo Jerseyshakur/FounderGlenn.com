@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { KITS, KIT_PARENTS } from "@/content/kits";
+import CoverImage from "@/components/CoverImage";
 
 export const metadata: Metadata = {
   title: "Kits",
@@ -27,11 +28,7 @@ export default function KitsPage() {
                 <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 xl:grid-cols-4">
                   {kits.map((kit) => (
                     <article key={kit.slug} className="group block">
-                      <div className="aspect-[3/4] overflow-hidden rounded-md bg-white/[0.03] ring-1 ring-white/10 transition-colors group-hover:bg-white/[0.06]">
-                        <div className="flex h-full w-full items-center justify-center px-4 text-center">
-                          <p className="text-sm leading-snug text-zinc-300">{kit.title}</p>
-                        </div>
-                      </div>
+                      <CoverImage kind="kits" slug={kit.slug} title={kit.title} src={kit.coverSrc} />
                       <p className="mt-3 text-sm leading-snug text-zinc-300 transition-colors group-hover:text-white">
                         {kit.title}
                       </p>

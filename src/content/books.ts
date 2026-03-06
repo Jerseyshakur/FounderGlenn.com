@@ -246,4 +246,5 @@ const ALL_TITLES: Omit<Book, "category">[] = [
 export const BOOKS: Book[] = ALL_TITLES.map((book) => ({
   ...book,
   category: COMIC_SLUGS.has(book.slug) ? "comics" : "books",
+  coverSrc: book.coverSrc || `/covers/books/${book.slug}.png`,
 }));
