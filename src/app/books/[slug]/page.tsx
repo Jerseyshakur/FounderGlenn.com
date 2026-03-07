@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BOOKS } from "@/content/books";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+import CoverImage from "@/components/CoverImage";
 import {
   buildAbsoluteUrl,
   buildBookSchema,
@@ -91,6 +92,10 @@ export default function BookPage({ params }: BookPageProps) {
         <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Book</p>
         <h1 className="mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl">{book.title}</h1>
         <p className="mt-6 text-lg text-zinc-400">Coming Soon</p>
+
+        <div className="mt-8 max-w-xs">
+          <CoverImage kind="books" slug={book.slug} title={book.title} src={book.coverSrc} />
+        </div>
 
         <Link
           href="/books/books"

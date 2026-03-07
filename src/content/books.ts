@@ -31,8 +31,10 @@ const COMIC_SLUGS = new Set<string>([
 ]);
 
 const ESSAY_SLUGS = new Set<string>([
+  "america-a-nation-built-by-immigrants",
   "black-american-history-economic",
   "dinner-with-jay-z-and-warren-buffett",
+  "legacy-talk-the-unsent-letters",
   "the-capstone-essays",
   "the-chinese-rule-that-builds-wealth",
   "the-family-before-the-flag",
@@ -57,7 +59,7 @@ const BOOK_COVER_OVERRIDES: Record<string, string> = {
   "america-a-nation-built-by-immigrants": "/covers/books/america-a-nation-built-by-immigrants.png",
   "black-american-history-economic": "/covers/books/black-american-history-economic.png",
   "dinner-with-jay-z-and-warren-buffett": "/covers/books/dinner-with-jayz-and-warren-buffett.png",
-  "founder-glenn-by-elias-marlowe": "/covers/books/founder-glenn-by-elias-marlowe.png",
+  "founder-glenn-by-elias-marlowe": "/covers/books/Founder Glenn Architect of Inevitability (By Elias Marlowe).png",
   "how-to-become-a-mogul-while-falling-in-love-founder-edition":
     "/things/Covers/How to Become a Mogul While Falling in Love.PNG",
   "i-just-called-to-say-i-love-you-60-days-of-distance":
@@ -67,11 +69,11 @@ const BOOK_COVER_OVERRIDES: Record<string, string> = {
   "sacrilegious-faith-is-fashion": "/things/Covers/Sacrilegious Faith Is Fashion.PNG",
   "sign-here-the-blueprint-decoded-founder-edition":
     "/things/Covers/Sign Here The Blueprint Decoded.PNG",
-  "supreme-dictionary": "/covers/books/supreme-dictionary.png",
-  "the-prince": "/covers/books/the-prince.png",
-  "the-64-laws-of-black-power": "/covers/books/the-64-laws-of-black-power.png",
+  "supreme-dictionary": "/covers/books/Supreme Dictionary.PNG",
+  "the-prince": "/covers/books/The Prince.JPG",
+  "the-64-laws-of-black-power": "/things/Glenn.PNG",
   "the-book-of-glenn-legacy-talk-the-unsent-letters":
-    "/covers/books/the-book-of-glenn-legacy-talk-the-unsent-letters.png",
+    "/things/LTcover.PNG",
   "the-book-of-gravity-the-120-lessons": "/things/Covers/The Book of Gravity The 120 Lessons.PNG",
   "the-book-of-water-and-aura-mastery": "/things/Covers/The Book of Water & Aura Mastery.PNG",
   "the-capstone-essays": "/covers/books/the-capstone-essays.png",
@@ -80,7 +82,7 @@ const BOOK_COVER_OVERRIDES: Record<string, string> = {
   "the-kings-mirage-64-squares-of-sovereign-geometry":
     "/things/Covers/The King’s Mirage 64 Squares of Sovereign Geometry.PNG",
   "the-solomon-code": "/covers/books/the-solomon-code.png",
-  "the-unit": "/covers/books/the-unit.png",
+  "the-unit": "/covers/books/The Unit.png",
   "unified-cannon-field-theory": "/covers/books/unified-cannon-field-theory.png",
   "universal-operability-180-the-turnaround-essay":
     "/covers/books/universal-operability-180-the-turnaround-essay.png",
@@ -164,7 +166,7 @@ const ALL_TITLES: Omit<Book, "category">[] = [
   },
   {
     slug: "founder-glenn-by-elias-marlowe",
-    title: "Founder Glenn (By Elias Marlowe)",
+    title: "Founder Glenn: Architect of Inevitability (By Elias Marlowe)",
     status: "coming_soon",
   },
   {
