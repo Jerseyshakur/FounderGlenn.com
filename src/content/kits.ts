@@ -87,7 +87,7 @@ const KIT_ITEMS: Omit<KitItem, "coverSrc">[] = [
     type: "kit",
     parent: "sign-here",
   },
-  { slug: "the-signback", title: "The Signback", type: "kit", parent: "sign-here" },
+  { slug: "the-signback", title: "The Sync Bag", type: "kit", parent: "sign-here" },
   { slug: "fan-funnel-kit", title: "Fan Funnel Kit", type: "kit", parent: "sign-here" },
   {
     slug: "sample-clearance-kit",
