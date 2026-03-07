@@ -31,7 +31,6 @@ const COMIC_SLUGS = new Set<string>([
 ]);
 
 const ESSAY_SLUGS = new Set<string>([
-  "america-a-nation-built-by-immigrants",
   "black-american-history-economic",
   "dinner-with-jay-z-and-warren-buffett",
   "the-capstone-essays",
@@ -43,15 +42,15 @@ const ESSAY_SLUGS = new Set<string>([
 ]);
 
 const ESSAY_COVER_OVERRIDES: Record<string, string> = {
-  "black-american-history-economic": "/covers/essays/black-american-history-economic.png",
-  "dinner-with-jay-z-and-warren-buffett": "/covers/essays/dinner-with-jay-z-and-warren-buffett.png",
-  "the-capstone-essays": "/covers/essays/the-capstone-essays.png",
-  "the-chinese-rule-that-builds-wealth": "/covers/essays/the-chinese-rule-that-builds-wealth.png",
-  "the-family-before-the-flag": "/covers/essays/the-family-before-the-flag.png",
-  "the-solomon-code": "/covers/essays/the-solomon-code.png",
-  "unified-cannon-field-theory": "/covers/essays/unified-cannon-field-theory.png",
+  "black-american-history-economic": "/covers/books/black-american-history-economic.png",
+  "dinner-with-jay-z-and-warren-buffett": "/covers/books/dinner-with-jayz-and-warren-buffett.png",
+  "the-capstone-essays": "/covers/books/the-capstone-essays.png",
+  "the-chinese-rule-that-builds-wealth": "/covers/books/the-chinese-rule-that-builds-wealth.png",
+  "the-family-before-the-flag": "/covers/books/the-family-before-the-flag.png",
+  "the-solomon-code": "/covers/books/the-solomon-code.png",
+  "unified-cannon-field-theory": "/covers/books/unified-cannon-field-theory.png",
   "universal-operability-180-the-turnaround-essay":
-    "/covers/essays/universal-operability-180-the-turnaround-essay.png",
+    "/covers/books/universal-operability-180-the-turnaround-essay.png",
 };
 
 const BOOK_COVER_OVERRIDES: Record<string, string> = {
@@ -60,32 +59,31 @@ const BOOK_COVER_OVERRIDES: Record<string, string> = {
   "dinner-with-jay-z-and-warren-buffett": "/covers/books/dinner-with-jayz-and-warren-buffett.png",
   "founder-glenn-by-elias-marlowe": "/covers/books/founder-glenn-by-elias-marlowe.png",
   "how-to-become-a-mogul-while-falling-in-love-founder-edition":
-    "/covers/How to Become a Mogul While Falling in Love",
+    "/things/covers/How to Become a Mogul While Falling in Love.PNG",
   "i-just-called-to-say-i-love-you-60-days-of-distance":
-    "/covers/I Just Called to Say I Love You 60 Days of Distance",
+    "/things/covers/I Just Called to Say I Love You 60 Days of Distance.PNG",
   "legacy-talk-the-unsent-letters": "/covers/books/legacy-talk-the-unsent-letters.png",
-  "nation-inside-a-nation-the-empire-signs-back": "/covers/Nation Inside a Nation The Empire Signs Back",
-  "sacrilegious-faith-is-fashion": "/covers/Sacrilegious Faith Is Fashion",
+  "nation-inside-a-nation-the-empire-signs-back": "/things/covers/Nation Inside a Nation The Empire Signs Back .PNG",
+  "sacrilegious-faith-is-fashion": "/things/covers/Sacrilegious Faith Is Fashion.PNG",
   "sign-here-the-blueprint-decoded-founder-edition":
-    "/covers/books/sign-here-the-blueprint-decoded-founder-edition.png",
+    "/things/covers/Sign Here The Blueprint Decoded.PNG",
   "supreme-dictionary": "/covers/books/supreme-dictionary.png",
   "the-prince": "/covers/books/the-prince.png",
   "the-64-laws-of-black-power": "/covers/books/the-64-laws-of-black-power.png",
   "the-book-of-glenn-legacy-talk-the-unsent-letters":
     "/covers/books/the-book-of-glenn-legacy-talk-the-unsent-letters.png",
-  "the-book-of-gravity-the-120-lessons": "/covers/The Book of Gravity The 120 Lessons",
-  "the-book-of-water-and-aura-mastery": "/covers/The Book of Water & Aura Mastery",
+  "the-book-of-gravity-the-120-lessons": "/things/covers/The Book of Gravity The 120 Lessons.PNG",
+  "the-book-of-water-and-aura-mastery": "/things/covers/The Book of Water & Aura Mastery.PNG",
   "the-capstone-essays": "/covers/books/the-capstone-essays.png",
   "the-chinese-rule-that-builds-wealth": "/covers/books/the-chinese-rule-that-builds-wealth.png",
   "the-family-before-the-flag": "/covers/books/the-family-before-the-flag.png",
   "the-kings-mirage-64-squares-of-sovereign-geometry":
-    "/covers/The King’s Mirage 64 Squares of Sovereign Geometry",
+    "/things/covers/The King’s Mirage 64 Squares of Sovereign Geometry.PNG",
   "the-solomon-code": "/covers/books/the-solomon-code.png",
   "the-unit": "/covers/books/the-unit.png",
   "unified-cannon-field-theory": "/covers/books/unified-cannon-field-theory.png",
   "universal-operability-180-the-turnaround-essay":
     "/covers/books/universal-operability-180-the-turnaround-essay.png",
-  "faith-is-fashion": "/covers/books/faith-is-fashion.png",
 };
 
 const ALL_TITLES: Omit<Book, "category">[] = [
@@ -292,11 +290,6 @@ const ALL_TITLES: Omit<Book, "category">[] = [
   {
     slug: "universal-operability-180-the-turnaround-essay",
     title: "Universal Operability: 180 The Turnaround Essay",
-    status: "coming_soon",
-  },
-  {
-    slug: "faith-is-fashion",
-    title: "Faith Is Fashion",
     status: "coming_soon",
   },
 ];

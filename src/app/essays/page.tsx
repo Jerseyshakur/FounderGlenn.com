@@ -2,10 +2,28 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CoverImage from "@/components/CoverImage";
 import { BOOKS } from "@/content/books";
+import { buildAbsoluteUrl, resolveOgImage, seoConfig } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Essays",
   description: "Founder Glenn essays on systems, economics, sovereignty, and creator infrastructure.",
+  alternates: {
+    canonical: "/essays",
+  },
+  openGraph: {
+    type: "website",
+    url: buildAbsoluteUrl("/essays"),
+    siteName: seoConfig.siteName,
+    title: "Essays | Founder Glenn",
+    description: "Founder Glenn essays on systems, economics, sovereignty, and creator infrastructure.",
+    images: [{ url: resolveOgImage() }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Essays | Founder Glenn",
+    description: "Founder Glenn essays on systems, economics, sovereignty, and creator infrastructure.",
+    images: [resolveOgImage()],
+  },
 };
 
 const essaysCatalog = BOOKS.filter((book) => book.category === "essays");
