@@ -6,6 +6,8 @@ const ROUTES = [
   "/books/books",
   "/books/kits",
   "/books/comics",
+  "/books/essays",
+  "/essays",
   "/blog",
   "/blogs",
   "/glenn",

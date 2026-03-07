@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BOOKS } from "@/content/books";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import {
   buildAbsoluteUrl,
   buildBookSchema,
@@ -15,12 +15,14 @@ type BookPageProps = {
   };
 };
 
+const booksCatalog = BOOKS.filter((entry) => entry.category !== "essays");
+
 export async function generateStaticParams() {
-  return BOOKS.map((book) => ({ slug: book.slug }));
+  return booksCatalog.map((book) => ({ slug: book.slug }));
 }
 
 export async function generateMetadata({ params }: BookPageProps) {
-  const book = BOOKS.find((entry) => entry.slug === params.slug);
+  const book = booksCatalog.find((entry) => entry.slug === params.slug);
   if (!book) {
     return {};
   }
@@ -54,7 +56,14 @@ export async function generateMetadata({ params }: BookPageProps) {
 }
 
 export default function BookPage({ params }: BookPageProps) {
-  const book = BOOKS.find((entry) => entry.slug === params.slug);
+  const book = booksCatalog.find((entry) => entry.slug === params.slug);
+
+  if (!book) {
+    const essay = BOOKS.find((entry) => entry.slug === params.slug && entry.category === "essays");
+    if (essay) {
+      redirect(`/essays/${essay.slug}`);
+    }
+  }
 
   if (!book) {
     notFound();

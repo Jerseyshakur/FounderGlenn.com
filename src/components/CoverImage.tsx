@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type CoverKind = "books" | "kits";
+type CoverKind = "books" | "kits" | "essays";
 
 type CoverImageProps = {
   kind: CoverKind;
@@ -11,11 +11,21 @@ type CoverImageProps = {
   src?: string;
 };
 
-const FALLBACK_COVER = "/images/placeholder-cover.svg";
+const FALLBACK_COVERS: Record<CoverKind, string> = {
+  books: "/images/placeholder-cover.svg",
+  kits: "/images/placeholder-cover.svg",
+  essays: "/images/placeholder-essay-cover.svg",
+};
 
 function buildCandidates(kind: CoverKind, slug: string, src?: string): string[] {
+  const explicitSourceCandidates = src
+    ? /\.[a-z0-9]+($|\?)/i.test(src)
+      ? [src]
+      : [src, `${src}.png`, `${src}.jpg`, `${src}.jpeg`]
+    : [];
+
   const candidates = [
-    src,
+    ...explicitSourceCandidates,
     `/covers/${kind}/${slug}.png`,
     `/covers/${kind}/${slug}.jpg`,
     `/covers/${kind}/${slug}.jpeg`,
@@ -28,7 +38,7 @@ function buildCandidates(kind: CoverKind, slug: string, src?: string): string[] 
     `/images/${slug}.png`,
     `/images/${slug}.jpg`,
     `/images/${slug}.jpeg`,
-    FALLBACK_COVER,
+    FALLBACK_COVERS[kind],
   ].filter(Boolean) as string[];
 
   return Array.from(new Set(candidates));
@@ -37,7 +47,7 @@ function buildCandidates(kind: CoverKind, slug: string, src?: string): string[] 
 export default function CoverImage({ kind, slug, title, src }: CoverImageProps) {
   const candidates = useMemo(() => buildCandidates(kind, slug, src), [kind, slug, src]);
   const [index, setIndex] = useState(0);
-  const activeSrc = candidates[Math.min(index, candidates.length - 1)] || FALLBACK_COVER;
+  const activeSrc = candidates[Math.min(index, candidates.length - 1)] || FALLBACK_COVERS[kind];
 
   return (
     <div className="cover-container">

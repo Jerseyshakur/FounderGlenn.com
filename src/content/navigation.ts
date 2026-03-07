@@ -11,6 +11,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Nexus", href: "/nexus" },
   { label: "Kits", href: "/kits" },
   { label: "Comics", href: "/comics" },
+  { label: "Essays", href: "/essays" },
   { label: "Music", href: "/music" },
   { label: "Maynard Eaton", href: "/maynard-eaton" },
   { label: "About", href: "/about" },

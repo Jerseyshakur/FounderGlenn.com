@@ -1,5 +1,5 @@
 export type BookStatus = "live" | "coming_soon";
-export type BookCategory = "books" | "comics" | "kits";
+export type BookCategory = "books" | "comics" | "kits" | "essays";
 
 export type Book = {
   slug: string;
@@ -30,18 +30,41 @@ const COMIC_SLUGS = new Set<string>([
   "ultraman-the-outliers",
 ]);
 
+const ESSAY_SLUGS = new Set<string>([
+  "black-american-history-economic",
+  "dinner-with-jay-z-and-warren-buffett",
+  "the-capstone-essays",
+  "the-chinese-rule-that-builds-wealth",
+  "the-family-before-the-flag",
+  "the-solomon-code",
+  "unified-cannon-field-theory",
+  "universal-operability-180-the-turnaround-essay",
+]);
+
+const ESSAY_COVER_OVERRIDES: Record<string, string> = {
+  "black-american-history-economic": "/covers/essays/black-american-history-economic.png",
+  "dinner-with-jay-z-and-warren-buffett": "/covers/essays/dinner-with-jay-z-and-warren-buffett.png",
+  "the-capstone-essays": "/covers/essays/the-capstone-essays.png",
+  "the-chinese-rule-that-builds-wealth": "/covers/essays/the-chinese-rule-that-builds-wealth.png",
+  "the-family-before-the-flag": "/covers/essays/the-family-before-the-flag.png",
+  "the-solomon-code": "/covers/essays/the-solomon-code.png",
+  "unified-cannon-field-theory": "/covers/essays/unified-cannon-field-theory.png",
+  "universal-operability-180-the-turnaround-essay":
+    "/covers/essays/universal-operability-180-the-turnaround-essay.png",
+};
+
 const BOOK_COVER_OVERRIDES: Record<string, string> = {
   "america-a-nation-built-by-immigrants": "/covers/books/america-a-nation-built-by-immigrants.png",
   "black-american-history-economic": "/covers/books/black-american-history-economic.png",
   "dinner-with-jay-z-and-warren-buffett": "/covers/books/dinner-with-jayz-and-warren-buffett.png",
   "founder-glenn-by-elias-marlowe": "/covers/books/founder-glenn-by-elias-marlowe.png",
   "how-to-become-a-mogul-while-falling-in-love-founder-edition":
-    "/covers/books/how-to-become-a-mogul-while-falling-in-love-founder-edition.png",
+    "/covers/How to Become a Mogul While Falling in Love",
   "i-just-called-to-say-i-love-you-60-days-of-distance":
-    "/covers/books/i-just-called-to-say-i-love-you-60-days-of-distance.png",
+    "/covers/I Just Called to Say I Love You 60 Days of Distance",
   "legacy-talk-the-unsent-letters": "/covers/books/legacy-talk-the-unsent-letters.png",
-  "nation-inside-a-nation-the-empire-signs-back": "/covers/books/nation-inside-a-nation-the-empire-signs-back.png",
-  "sacrilegious-faith-is-fashion": "/covers/books/sacrilegious-faith-is-fashion.png",
+  "nation-inside-a-nation-the-empire-signs-back": "/covers/Nation Inside a Nation The Empire Signs Back",
+  "sacrilegious-faith-is-fashion": "/covers/Sacrilegious Faith Is Fashion",
   "sign-here-the-blueprint-decoded-founder-edition":
     "/covers/books/sign-here-the-blueprint-decoded-founder-edition.png",
   "supreme-dictionary": "/covers/books/supreme-dictionary.png",
@@ -49,13 +72,13 @@ const BOOK_COVER_OVERRIDES: Record<string, string> = {
   "the-64-laws-of-black-power": "/covers/books/the-64-laws-of-black-power.png",
   "the-book-of-glenn-legacy-talk-the-unsent-letters":
     "/covers/books/the-book-of-glenn-legacy-talk-the-unsent-letters.png",
-  "the-book-of-gravity-the-120-lessons": "/covers/books/the-book-of-gravity-the-120-lessons.png",
-  "the-book-of-water-and-aura-mastery": "/covers/books/the-book-of-water-and-aura-mastery.png",
+  "the-book-of-gravity-the-120-lessons": "/covers/The Book of Gravity The 120 Lessons",
+  "the-book-of-water-and-aura-mastery": "/covers/The Book of Water & Aura Mastery",
   "the-capstone-essays": "/covers/books/the-capstone-essays.png",
   "the-chinese-rule-that-builds-wealth": "/covers/books/the-chinese-rule-that-builds-wealth.png",
   "the-family-before-the-flag": "/covers/books/the-family-before-the-flag.png",
   "the-kings-mirage-64-squares-of-sovereign-geometry":
-    "/covers/books/the-kings-mirage-64-squares-of-sovereign-geometry.png",
+    "/covers/The King’s Mirage 64 Squares of Sovereign Geometry",
   "the-solomon-code": "/covers/books/the-solomon-code.png",
   "the-unit": "/covers/books/the-unit.png",
   "unified-cannon-field-theory": "/covers/books/unified-cannon-field-theory.png",
@@ -279,6 +302,10 @@ const ALL_TITLES: Omit<Book, "category">[] = [
 
 export const BOOKS: Book[] = ALL_TITLES.map((book) => ({
   ...book,
-  category: COMIC_SLUGS.has(book.slug) ? "comics" : "books",
-  coverSrc: BOOK_COVER_OVERRIDES[book.slug] || book.coverSrc || `/covers/books/${book.slug}.png`,
+  category: COMIC_SLUGS.has(book.slug) ? "comics" : ESSAY_SLUGS.has(book.slug) ? "essays" : "books",
+  coverSrc:
+    ESSAY_COVER_OVERRIDES[book.slug] ||
+    BOOK_COVER_OVERRIDES[book.slug] ||
+    book.coverSrc ||
+    `/covers/books/${book.slug}.png`,
 }));

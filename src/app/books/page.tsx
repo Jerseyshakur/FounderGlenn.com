@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Books",
-  description: "Browse books, kits, and comics by Founder Glenn.",
+  description: "Browse books, kits, comics, and essays by Founder Glenn.",
 };
 
 const categories = [
@@ -22,6 +22,11 @@ const categories = [
     href: "/books/comics",
     description: "Visual narratives and universe drops.",
   },
+  {
+    name: "Essays",
+    href: "/essays",
+    description: "Ideas, frameworks, and strategic essays.",
+  },
 ] as const;
 
 export default function WritingGatewayPage() {
@@ -33,7 +38,7 @@ export default function WritingGatewayPage() {
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl">Choose a Collection</h1>
         </header>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
           {categories.map((category) => (
             <Link
               key={category.name}
