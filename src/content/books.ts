@@ -72,7 +72,7 @@ const BOOK_COVER_OVERRIDES: Record<string, string> = {
     "/things/Covers/Sign Here The Blueprint Decoded.PNG",
   "supreme-dictionary": "/covers/books/Supreme Dictionary.PNG",
   "the-prince": "/covers/books/The Prince.JPG",
-  "the-64-laws-of-black-power": "/things/Glenn.PNG",
+  "the-64-laws-of-black-power": "/covers/64-laws-of-black-power.jpg",
   "the-book-of-glenn-legacy-talk-the-unsent-letters":
     "/covers/book-of-glenn-legacy-talk.jpg",
   "the-book-of-gravity-the-120-lessons": "/things/Covers/The Book of Gravity The 120 Lessons.PNG",
@@ -90,6 +90,8 @@ const BOOK_COVER_OVERRIDES: Record<string, string> = {
 };
 
 const BOOK_COVER_ALT_OVERRIDES: Record<string, string> = {
+  "the-64-laws-of-black-power":
+    "The 64 Laws of Black Power book cover by Founder Glenn featuring sacred geometry and classical Vitruvian-style illustration.",
   "the-book-of-glenn-legacy-talk-the-unsent-letters":
     "The Book of Glenn Legacy Talk cover featuring the Glenn family crest and the motto Maiores Superando Honoramus.",
 };
