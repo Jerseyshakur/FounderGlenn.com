@@ -10,18 +10,16 @@ seoTitle: "Building Nexus While My Body Was Failing Me | Founder Glenn"
 seoDescription: "A founder story about building Nexus, watching recovery and readiness scores collapse during illness, and realizing the engine was accurately reflecting real physiology."
 ---
 
-# Building Nexus While My Body Was Failing Me
-
-When I started building **Nexus**, the numbers almost made me quit.
+When I started building Nexus, the numbers almost made me quit.
 
 Not because they were wrong.  
-Because they were *too honest*.
+Because they were too honest.
 
-While I was coding the first versions of the app, my recovery score dropped to **1**.
+While I was coding the first versions of the app, my recovery score dropped to 1.
 
 Not 50.  
 Not 20.  
-**One.**
+One.
 
 My readiness score sat around **14**.
 
