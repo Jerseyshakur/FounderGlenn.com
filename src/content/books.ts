@@ -31,6 +31,7 @@ const COMIC_SLUGS = new Set<string>([
 ]);
 
 const ESSAY_SLUGS = new Set<string>([
+  "america-a-nation-built-by-immigrants",
   "black-american-history-economic",
   "dinner-with-jay-z-and-warren-buffett",
   "the-capstone-essays",
