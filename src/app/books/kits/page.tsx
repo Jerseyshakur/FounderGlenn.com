@@ -27,12 +27,12 @@ export default function KitsPage() {
                 <h2 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">{parent.title}</h2>
                 <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 xl:grid-cols-4">
                   {kits.map((kit) => (
-                    <article key={kit.slug} className="group block">
+                    <Link key={kit.slug} href={`/kits/${kit.slug}`} className="group block">
                       <CoverImage kind="kits" slug={kit.slug} title={kit.title} src={kit.coverSrc} />
                       <p className="mt-3 text-sm leading-snug text-zinc-300 transition-colors group-hover:text-white">
                         {kit.title}
                       </p>
-                    </article>
+                    </Link>
                   ))}
                 </div>
               </section>
@@ -40,12 +40,6 @@ export default function KitsPage() {
           })}
         </div>
 
-        <Link
-          href="/books"
-          className="mt-10 inline-flex rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
-        >
-          Back to Collections
-        </Link>
       </div>
     </main>
   );
