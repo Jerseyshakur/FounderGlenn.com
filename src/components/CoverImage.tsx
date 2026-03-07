@@ -9,6 +9,7 @@ type CoverImageProps = {
   slug: string;
   title: string;
   src?: string;
+  alt?: string;
 };
 
 const FALLBACK_COVERS: Record<CoverKind, string> = {
@@ -44,7 +45,7 @@ function buildCandidates(kind: CoverKind, slug: string, src?: string): string[] 
   return Array.from(new Set(candidates));
 }
 
-export default function CoverImage({ kind, slug, title, src }: CoverImageProps) {
+export default function CoverImage({ kind, slug, title, src, alt }: CoverImageProps) {
   const candidates = useMemo(() => buildCandidates(kind, slug, src), [kind, slug, src]);
   const [index, setIndex] = useState(0);
   const activeSrc = candidates[Math.min(index, candidates.length - 1)] || FALLBACK_COVERS[kind];
@@ -53,7 +54,7 @@ export default function CoverImage({ kind, slug, title, src }: CoverImageProps) 
     <div className="cover-container">
       <img
         src={activeSrc}
-        alt={title}
+        alt={alt || title}
         className="h-full w-full object-contain"
         loading="lazy"
         onError={() => {

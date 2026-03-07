@@ -57,7 +57,7 @@ export default function BooksPage() {
           <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 xl:grid-cols-4">
             {booksCatalog.map((book) => (
               <Link key={book.slug} id={book.slug} href={`/books/${book.slug}`} className="group block">
-                <CoverImage kind="books" slug={book.slug} title={book.title} src={book.coverSrc} />
+                <CoverImage kind="books" slug={book.slug} title={book.title} src={book.coverSrc} alt={book.coverAlt} />
                 <p className="mt-3 text-sm leading-snug text-zinc-300 transition-colors group-hover:text-white">
                   {book.title}
                 </p>

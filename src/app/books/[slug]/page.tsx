@@ -94,7 +94,7 @@ export default function BookPage({ params }: BookPageProps) {
         <p className="mt-6 text-lg text-zinc-400">Coming Soon</p>
 
         <div className="mt-8 max-w-xs">
-          <CoverImage kind="books" slug={book.slug} title={book.title} src={book.coverSrc} />
+          <CoverImage kind="books" slug={book.slug} title={book.title} src={book.coverSrc} alt={book.coverAlt} />
         </div>
 
         <Link

@@ -6,6 +6,7 @@ export type Book = {
   title: string;
   category: BookCategory;
   coverSrc?: string;
+  coverAlt?: string;
   status?: BookStatus;
   year?: string;
 };
@@ -73,7 +74,7 @@ const BOOK_COVER_OVERRIDES: Record<string, string> = {
   "the-prince": "/covers/books/The Prince.JPG",
   "the-64-laws-of-black-power": "/things/Glenn.PNG",
   "the-book-of-glenn-legacy-talk-the-unsent-letters":
-    "/things/LTcover.PNG",
+    "/covers/book-of-glenn-legacy-talk.jpg",
   "the-book-of-gravity-the-120-lessons": "/things/Covers/The Book of Gravity The 120 Lessons.PNG",
   "the-book-of-water-and-aura-mastery": "/things/Covers/The Book of Water & Aura Mastery.PNG",
   "the-capstone-essays": "/covers/books/the-capstone-essays.png",
@@ -86,6 +87,11 @@ const BOOK_COVER_OVERRIDES: Record<string, string> = {
   "unified-cannon-field-theory": "/covers/books/unified-cannon-field-theory.png",
   "universal-operability-180-the-turnaround-essay":
     "/covers/books/universal-operability-180-the-turnaround-essay.png",
+};
+
+const BOOK_COVER_ALT_OVERRIDES: Record<string, string> = {
+  "the-book-of-glenn-legacy-talk-the-unsent-letters":
+    "The Book of Glenn Legacy Talk cover featuring the Glenn family crest and the motto Maiores Superando Honoramus.",
 };
 
 const ALL_TITLES: Omit<Book, "category">[] = [
@@ -299,6 +305,7 @@ const ALL_TITLES: Omit<Book, "category">[] = [
 export const BOOKS: Book[] = ALL_TITLES.map((book) => ({
   ...book,
   category: COMIC_SLUGS.has(book.slug) ? "comics" : ESSAY_SLUGS.has(book.slug) ? "essays" : "books",
+  coverAlt: BOOK_COVER_ALT_OVERRIDES[book.slug],
   coverSrc:
     ESSAY_COVER_OVERRIDES[book.slug] ||
     BOOK_COVER_OVERRIDES[book.slug] ||
