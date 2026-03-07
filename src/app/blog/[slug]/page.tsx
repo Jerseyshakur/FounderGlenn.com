@@ -28,10 +28,11 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 
   const path = `/blog/${post.slug}`;
   const ogImage = resolveOgImage(post.coverImage);
+  const metadataTitle = post.seoTitle ? { absolute: post.seoTitle } : post.title;
 
   return {
-    title: post.title,
-    description: post.description,
+    title: metadataTitle,
+    description: post.seoDescription ?? post.description,
     alternates: {
       canonical: path,
     },
@@ -39,8 +40,8 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
       type: "article",
       url: buildAbsoluteUrl(path),
       siteName: seoConfig.siteName,
-      title: post.title,
-      description: post.description,
+      title: post.seoTitle ?? post.title,
+      description: post.seoDescription ?? post.description,
       images: [{ url: ogImage }],
       publishedTime: post.date || undefined,
       modifiedTime: post.date || undefined,
@@ -48,8 +49,8 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.description,
+      title: post.seoTitle ?? post.title,
+      description: post.seoDescription ?? post.description,
       images: [ogImage],
     },
   } satisfies Metadata;
