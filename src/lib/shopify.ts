@@ -1,3 +1,5 @@
+import { SHOPIFY_HANDLE_MAP } from "@/content/shopify-handle-map";
+
 export type ShopifyCategory = "books" | "kits" | "essays";
 
 export type ShopifyProductSummary = {
@@ -90,6 +92,10 @@ function normalize(value: string): string {
 
 function normalizeTitle(value: string): string {
   return normalize(value).replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function normalizeKey(value: string): string {
+  return normalize(value).replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
 }
 
 function isUsableProduct(product: ShopifyProductSummary): boolean {
@@ -230,6 +236,23 @@ async function getAllShopifyProducts(): Promise<ShopifyProductSummary[]> {
   return fallback.products.nodes.map(toProductSummary);
 }
 
+async function getShopifyProductsByHandles(handles: string[]): Promise<ShopifyProductSummary[]> {
+  const uniqueHandles = Array.from(new Set(handles.map((handle) => normalize(handle)).filter(Boolean)));
+  if (uniqueHandles.length === 0) return [];
+
+  const results = await Promise.all(
+    uniqueHandles.map(async (handle) => {
+      try {
+        return await getShopifyProductByHandle(handle);
+      } catch {
+        return null;
+      }
+    }),
+  );
+
+  return results.filter((product): product is ShopifyProductSummary => Boolean(product));
+}
+
 export async function getShopifyProductsByCategory(category: ShopifyCategory): Promise<{
   source: "collection" | "inferred" | "none" | "error";
   collectionHandle: string | null;
@@ -328,7 +351,23 @@ export async function hydrateLocalCatalogWithShopify<T extends LocalCatalogItem>
   localItems: T[],
 ): Promise<ShopifyHydrationResult<T>> {
   const categoryResult = await getShopifyProductsByCategory(category);
-  const pool = categoryResult.products;
+  const manualMap = SHOPIFY_HANDLE_MAP[category] ?? {};
+
+  const mappedHandles = localItems
+    .map((item) => {
+      const candidateKeys = [item.slug, normalizeKey(item.slug), normalizeKey(item.title)];
+      for (const key of candidateKeys) {
+        if (key in manualMap) {
+          return manualMap[key];
+        }
+      }
+      return null;
+    })
+    .filter((value): value is string => Boolean(value));
+
+  const mappedProducts = await getShopifyProductsByHandles(mappedHandles);
+  const mappedHandleSet = new Set(mappedProducts.map((product) => normalize(product.handle)));
+  const pool = [...mappedProducts, ...categoryResult.products.filter((product) => !mappedHandleSet.has(normalize(product.handle)))];
 
   const handleMap = new Map(pool.map((product) => [normalize(product.handle), product]));
   const titleCandidates = new Map<string, ShopifyProductSummary[]>();
@@ -341,6 +380,23 @@ export async function hydrateLocalCatalogWithShopify<T extends LocalCatalogItem>
 
   const usedHandles = new Set<string>();
   const hydrated = localItems.map((item) => {
+    const candidateKeys = [item.slug, normalizeKey(item.slug), normalizeKey(item.title)];
+    let mappedHandle: string | null = null;
+    for (const key of candidateKeys) {
+      if (key in manualMap) {
+        mappedHandle = manualMap[key];
+        break;
+      }
+    }
+
+    if (mappedHandle) {
+      const mappedProduct = handleMap.get(normalize(mappedHandle));
+      if (mappedProduct && !usedHandles.has(mappedProduct.handle)) {
+        usedHandles.add(mappedProduct.handle);
+        return { ...item, shopify: mappedProduct, matchMethod: "handle" as const };
+      }
+    }
+
     const byHandle = handleMap.get(normalize(item.slug));
     if (byHandle && !usedHandles.has(byHandle.handle)) {
       usedHandles.add(byHandle.handle);
@@ -365,6 +421,20 @@ export async function hydrateLocalCatalogWithShopify<T extends LocalCatalogItem>
     console.info(
       `[shopify][${category}] source=${categoryResult.source} matched=${hydrated.length - unmatchedLocal.length} localOnly=${unmatchedLocal.length} shopifyUnmatched=${unmatchedShopify.length} rendering=${usedFallback ? "legacy/manual fallback" : "local+shopify"}`,
     );
+    for (const item of hydrated) {
+      const candidateKeys = [item.slug, normalizeKey(item.slug), normalizeKey(item.title)];
+      let mappedHandle: string | null = null;
+      for (const key of candidateKeys) {
+        if (key in manualMap) {
+          mappedHandle = manualMap[key];
+          break;
+        }
+      }
+      const state = item.shopify ? (item.shopify.availableForSale ? "priced/live" : "matched/unavailable") : "local-only/coming-soon";
+      console.info(
+        `[shopify][${category}] slug=${item.slug} mappedHandle=${mappedHandle ?? "none"} matched=${item.shopify ? "yes" : "no"} state=${state}`,
+      );
+    }
     if (unmatchedLocal.length > 0) {
       console.info(`[shopify][${category}] local-only slugs: ${unmatchedLocal.join(", ")}`);
     }
