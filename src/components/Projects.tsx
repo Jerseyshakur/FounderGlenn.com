@@ -28,7 +28,7 @@ const PROJECTS = [
     },
     {
         id: 4,
-        title: "Nexus",
+        title: "Nexus HealthKit",
         category: "Recovery and readiness coaching powered by physiology + AI.",
         link: "/nexus",
         image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2000&auto=format&fit=crop",
@@ -50,7 +50,7 @@ export default function Projects() {
                         The Catalog
                     </h2>
                     <p className="text-zinc-400 max-w-xl mx-auto text-lg leading-relaxed">
-                        Books, blogs, brand, and Nexus — built for creators and legacy.
+                        Books, blogs, brand, and Nexus HealthKit — built for creators and legacy.
                     </p>
                     <Link
                         href="/about"

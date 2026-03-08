@@ -1,16 +1,16 @@
 ---
-title: "Building Nexus While My Body Was Failing Me"
+title: "Building Nexus HealthKit While My Body Was Failing Me"
 date: "2026-03-07"
-description: "While building Nexus, my recovery and readiness scores were so low I thought the engine was broken. It turned out the system was telling the truth before I was ready to hear it."
+description: "While building Nexus HealthKit, my recovery and readiness scores were so low I thought the engine was broken. It turned out the system was telling the truth before I was ready to hear it."
 author: "Founder Glenn"
-category: "Nexus"
+category: "Nexus HealthKit"
 status: "Published"
 featured: true
-seoTitle: "Building Nexus While My Body Was Failing Me | Founder Glenn"
-seoDescription: "A founder story about building Nexus, watching recovery and readiness scores collapse during illness, and realizing the engine was accurately reflecting real physiology."
+seoTitle: "Building Nexus HealthKit While My Body Was Failing Me | Founder Glenn"
+seoDescription: "A founder story about building Nexus HealthKit, watching recovery and readiness scores collapse during illness, and realizing the engine was accurately reflecting real physiology."
 ---
 
-When I started building Nexus, the numbers almost made me quit.
+When I started building Nexus HealthKit, the numbers almost made me quit.
 
 Not because they were wrong.  
 Because they were too honest.
@@ -44,7 +44,7 @@ In other words, the engine wasn’t wrong.
 
 ---
 
-## What Nexus Actually Is
+## What Nexus HealthKit Actually Is
 
 Most health apps do the same thing.
 
@@ -59,15 +59,15 @@ But numbers by themselves don’t mean much.
 
 Seeing a heart rate of 68 doesn’t tell you whether your body is ready to train, recover, or rest.
 
-That’s where Nexus is different.
+That’s where Nexus HealthKit is different.
 
-**Nexus isn’t just a dashboard.**
+**Nexus HealthKit isn’t just a dashboard.**
 
 It’s a **physiological engine**.
 
 Inside the app is a system that analyzes multiple signals from your body and **computes what they actually mean**.
 
-Instead of dumping raw data on you, Nexus translates it into something actionable.
+Instead of dumping raw data on you, Nexus HealthKit translates it into something actionable.
 
 Not just: “Here are your metrics.”
 
@@ -96,19 +96,19 @@ The code didn’t change.
 
 That’s when it clicked.
 
-Nexus wasn’t just producing numbers.
+Nexus HealthKit wasn’t just producing numbers.
 
 It was **mirroring reality**.
 
 ---
 
-## Why I Named It Nexus
+## Why I Named It Nexus HealthKit
 
 The name actually comes from music.
 
 If you’ve ever produced music, you know there’s always that **one plug-in** everybody talks about. The one sound engine that’s everywhere.
 
-For years, that plug-in for me was **Nexus**.
+For years, that plug-in for me was **Nexus HealthKit**.
 
 It was powerful. Everyone used it. But it always felt just slightly out of reach. Too expensive. Too locked behind the gate. Even in the world of piracy, getting it was almost impossible.
 
@@ -120,9 +120,9 @@ When I built this health system, it felt like the same idea.
 
 ---
 
-## What Nexus Is Really About
+## What Nexus HealthKit Is Really About
 
-Nexus isn’t trying to replace doctors.
+Nexus HealthKit isn’t trying to replace doctors.
 
 It’s not trying to turn people into biohackers.
 
@@ -139,13 +139,13 @@ Readiness.
 
 Most people never learn how to read those signals.
 
-Nexus translates them.
+Nexus HealthKit translates them.
 
 ---
 
 ## Building It While Living It
 
-The funny part about building Nexus is that I was also **the first test subject**.
+The funny part about building Nexus HealthKit is that I was also **the first test subject**.
 
 While writing the engine, I was watching my own physiology change. Seeing the numbers improve as my body healed. Seeing the signals shift as my recovery improved.
 

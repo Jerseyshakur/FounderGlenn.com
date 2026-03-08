@@ -2,8 +2,8 @@ import { APPS, PRIMARY_APP_SLUG } from "@/content/apps";
 import type { ReactNode } from "react";
 
 export const metadata = {
-  title: "Nexus",
-  description: "Nexus by Founder Glenn: recovery, readiness, and AI-powered coaching systems.",
+  title: "Nexus HealthKit",
+  description: "Nexus HealthKit by Founder Glenn: recovery, readiness, and AI-powered coaching systems.",
 };
 
 const primaryApp = APPS.find((app) => app.slug === PRIMARY_APP_SLUG) ?? APPS[0];
@@ -67,7 +67,7 @@ export default function NexusPage() {
             />
 
             <div className="flex-1">
-              <p className="text-sm uppercase tracking-[0.14em] text-zinc-500">Nexus</p>
+              <p className="text-sm uppercase tracking-[0.14em] text-zinc-500">Nexus HealthKit</p>
               <h1 className="mt-2 text-4xl font-bold tracking-tight text-white md:text-5xl">{primaryApp.name}</h1>
               <p className="mt-3 max-w-2xl text-zinc-300 md:text-lg">{primaryApp.tagline}</p>
               <p className="mt-3 text-sm text-zinc-500">
@@ -89,10 +89,10 @@ export default function NexusPage() {
         <section className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 text-center md:p-8">
           <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Beta Access</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white md:text-3xl">
-            Join the Nexus Beta
+            Join the Nexus HealthKit Beta
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-zinc-300">
-            Nexus is currently available through Apple TestFlight. Join the beta to experience the Nexus
+            Nexus HealthKit is currently available through Apple TestFlight. Join the beta to experience the Nexus HealthKit
             physiological engine and help shape the future of recovery intelligence.
           </p>
 

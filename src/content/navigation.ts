@@ -8,7 +8,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Books", href: "/books/books" },
   { label: "Blogs", href: "/blogs" },
   { label: "Glenn", href: "/glenn" },
-  { label: "Nexus", href: "/nexus" },
+  { label: "Nexus HealthKit", href: "/nexus" },
   { label: "Kits", href: "/kits" },
   { label: "Comics", href: "/comics" },
   { label: "Essays", href: "/essays" },

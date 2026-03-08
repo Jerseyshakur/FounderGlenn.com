@@ -38,7 +38,7 @@ const hubLinks = [
   ["Books", "/books"],
   ["Blogs", "/blogs"],
   ["GLÈNN", "/glenn"],
-  ["Nexus", "/nexus"],
+  ["Nexus HealthKit", "/nexus"],
   ["Kits", "/kits"],
   ["Comics", "/comics"],
   ["Music", "/music"],
@@ -88,7 +88,7 @@ export default function AboutPage() {
             <div>
               <h3 className="text-sm uppercase tracking-[0.14em] text-zinc-500">Projects</h3>
               <p className="mt-2">
-                Writing systems, GLÈNN, Nexus, kits, comics, and Legacy Talk.
+                Writing systems, GLÈNN, Nexus HealthKit, kits, comics, and Legacy Talk.
               </p>
             </div>
 
