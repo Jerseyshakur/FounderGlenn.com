@@ -24,7 +24,7 @@ export type LocalCatalogItem = {
 
 export type HydratedCatalogItem<T extends LocalCatalogItem> = T & {
   shopify: ShopifyProductSummary | null;
-  matchMethod: "handle" | "title" | null;
+  matchMethod: "handle" | "title" | "title-global" | null;
 };
 
 export type ShopifyHydrationResult<T extends LocalCatalogItem> = {
@@ -354,6 +354,7 @@ export async function hydrateLocalCatalogWithShopify<T extends LocalCatalogItem>
   localItems: T[],
 ): Promise<ShopifyHydrationResult<T>> {
   const categoryResult = await getShopifyProductsByCategory(category);
+  const allProducts = await getAllShopifyProducts();
   const manualMap = SHOPIFY_HANDLE_MAP[category] ?? {};
 
   const mappedHandles = localItems
@@ -379,6 +380,14 @@ export async function hydrateLocalCatalogWithShopify<T extends LocalCatalogItem>
     const existing = titleCandidates.get(key) ?? [];
     existing.push(product);
     titleCandidates.set(key, existing);
+  }
+
+  const globalTitleCandidates = new Map<string, ShopifyProductSummary[]>();
+  for (const product of allProducts.filter(isUsableProduct)) {
+    const key = normalizeTitle(product.title);
+    const existing = globalTitleCandidates.get(key) ?? [];
+    existing.push(product);
+    globalTitleCandidates.set(key, existing);
   }
 
   const usedHandles = new Set<string>();
@@ -411,6 +420,12 @@ export async function hydrateLocalCatalogWithShopify<T extends LocalCatalogItem>
     if (candidates.length === 1 && !usedHandles.has(candidates[0].handle)) {
       usedHandles.add(candidates[0].handle);
       return { ...item, shopify: candidates[0], matchMethod: "title" as const };
+    }
+
+    const globalCandidates = globalTitleCandidates.get(titleKey) ?? [];
+    if (globalCandidates.length === 1 && !usedHandles.has(globalCandidates[0].handle)) {
+      usedHandles.add(globalCandidates[0].handle);
+      return { ...item, shopify: globalCandidates[0], matchMethod: "title-global" as const };
     }
 
     return { ...item, shopify: null, matchMethod: null };
