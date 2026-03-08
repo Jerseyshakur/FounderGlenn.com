@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { BOOKS } from "@/content/books";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ShopifyProductDetail from "@/components/shopify/ShopifyProductDetail";
 import { buildAbsoluteUrl, resolveOgImage, seoConfig } from "@/lib/seo";
-import { getShopifyProductByHandle } from "@/lib/shopify";
+import CoverImage from "@/components/CoverImage";
+import { hydrateLocalCatalogWithShopify } from "@/lib/shopify";
 
 type EssayPageProps = {
   params: {
@@ -19,43 +19,18 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: EssayPageProps) {
-  const shopifyProduct = await getShopifyProductByHandle(params.slug);
-  if (shopifyProduct) {
-    const path = `/essays/${shopifyProduct.handle}`;
-    const title = `${shopifyProduct.title} | Essays`;
-    const description = shopifyProduct.description || `${shopifyProduct.title} by ${seoConfig.person.name}.`;
-    return {
-      title,
-      description,
-      alternates: {
-        canonical: path,
-      },
-      openGraph: {
-        type: "article",
-        url: buildAbsoluteUrl(path),
-        siteName: seoConfig.siteName,
-        title,
-        description,
-        images: [{ url: resolveOgImage() }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title,
-        description,
-        images: [resolveOgImage()],
-      },
-    } satisfies Metadata;
-  }
-
   const essay = essaysCatalog.find((entry) => entry.slug === params.slug);
   if (!essay) {
     return {};
   }
 
+  const hydrated = await hydrateLocalCatalogWithShopify("essays", [essay]);
+  const matched = hydrated.items[0]?.shopify ?? null;
+
   const path = `/essays/${essay.slug}`;
   const title = `${essay.title} | Essays`;
-  const description = `${essay.title} by ${seoConfig.person.name}.`;
-  const ogImage = resolveOgImage(essay.coverSrc);
+  const description = matched?.description || `${essay.title} by ${seoConfig.person.name}.`;
+  const ogImage = resolveOgImage(essay.coverSrc || matched?.featuredImageUrl);
 
   return {
     title,
@@ -81,31 +56,29 @@ export async function generateMetadata({ params }: EssayPageProps) {
 }
 
 export default async function EssayPage({ params }: EssayPageProps) {
-  const shopifyProduct = await getShopifyProductByHandle(params.slug);
-  if (shopifyProduct) {
-    return (
-      <ShopifyProductDetail
-        handle={shopifyProduct.handle}
-        kindLabel="Essay"
-        backHref="/essays"
-        backLabel="Back to Essays"
-      />
-    );
-  }
-
   const essay = essaysCatalog.find((entry) => entry.slug === params.slug);
 
   if (!essay) {
     notFound();
   }
 
+  const hydrated = await hydrateLocalCatalogWithShopify("essays", [essay]);
+  const matched = hydrated.items[0]?.shopify ?? null;
+  const priceText =
+    matched?.priceAmount && matched?.priceCurrencyCode
+      ? new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: matched.priceCurrencyCode,
+        }).format(Number(matched.priceAmount))
+      : null;
+
   const essaySchema = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name: essay.title,
-    description: `${essay.title} by ${seoConfig.person.name}.`,
+    description: matched?.description || `${essay.title} by ${seoConfig.person.name}.`,
     url: buildAbsoluteUrl(`/essays/${essay.slug}`),
-    image: resolveOgImage(essay.coverSrc),
+    image: resolveOgImage(essay.coverSrc || matched?.featuredImageUrl),
     author: {
       "@type": "Person",
       name: seoConfig.person.name,
@@ -127,7 +100,51 @@ export default async function EssayPage({ params }: EssayPageProps) {
         <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Essay</p>
         <h1 className="mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl">{essay.title}</h1>
         <p className="mt-4 text-sm uppercase tracking-[0.12em] text-zinc-500">Founder Glenn</p>
-        <p className="mt-6 text-lg text-zinc-400">Coming Soon</p>
+        <p className="mt-6 text-lg text-zinc-400">{matched?.description || "Coming Soon"}</p>
+
+        <div className="mt-8 max-w-xs">
+          <CoverImage
+            kind="essays"
+            slug={essay.slug}
+            title={essay.title}
+            src={essay.coverSrc || matched?.featuredImageUrl}
+          />
+        </div>
+
+        {matched ? (
+          <div className="mt-8 border-t border-white/10 pt-6">
+            <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Storefront</p>
+            <div className="mt-3 flex items-center justify-between">
+              <p className="text-lg font-semibold text-white">{priceText ?? "Available on Shopify"}</p>
+              <p className="text-xs uppercase tracking-[0.12em] text-zinc-500">
+                {matched.availableForSale ? "In Stock" : "Unavailable"}
+              </p>
+            </div>
+            <shopify-context type="product" handle={matched.handle}>
+              <template>
+                <div className="mt-4">
+                  <shopify-variant-selector />
+                </div>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <button
+                    type="button"
+                    data-shopify-action="add-line"
+                    className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
+                  >
+                    Add to Cart
+                  </button>
+                  <button
+                    type="button"
+                    data-shopify-action="buy-now"
+                    className="rounded-full border border-white/20 bg-white px-5 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </template>
+            </shopify-context>
+          </div>
+        ) : null}
 
         <Link
           href="/essays"

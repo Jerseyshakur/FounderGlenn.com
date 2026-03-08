@@ -6,6 +6,31 @@ export type ShopifyProductSummary = {
   description: string;
   productType: string;
   tags: string[];
+  featuredImageUrl?: string;
+  priceAmount?: string;
+  priceCurrencyCode?: string;
+  variantId?: string;
+  availableForSale?: boolean;
+};
+
+export type LocalCatalogItem = {
+  slug: string;
+  title: string;
+  coverSrc?: string;
+  description?: string;
+};
+
+export type HydratedCatalogItem<T extends LocalCatalogItem> = T & {
+  shopify: ShopifyProductSummary | null;
+  matchMethod: "handle" | "title" | null;
+};
+
+export type ShopifyHydrationResult<T extends LocalCatalogItem> = {
+  source: "collection" | "inferred" | "none" | "error";
+  usedFallback: boolean;
+  items: HydratedCatalogItem<T>[];
+  unmatchedLocal: string[];
+  unmatchedShopify: string[];
 };
 
 type StorefrontResponse<T> = {
@@ -63,6 +88,14 @@ function normalize(value: string): string {
   return value.trim().toLowerCase();
 }
 
+function normalizeTitle(value: string): string {
+  return normalize(value).replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function isUsableProduct(product: ShopifyProductSummary): boolean {
+  return Boolean(product.handle && product.title);
+}
+
 function inferCategory(product: ShopifyProductSummary): ShopifyCategory | null {
   const haystack = [
     product.productType,
@@ -85,6 +118,12 @@ function toProductSummary(node: {
   description: string;
   productType: string;
   tags: string[];
+  featuredImage?: { url: string } | null;
+  selectedOrFirstAvailableVariant?: {
+    id: string;
+    availableForSale: boolean;
+    price?: { amount: string; currencyCode: string } | null;
+  } | null;
 }): ShopifyProductSummary {
   return {
     handle: node.handle,
@@ -92,6 +131,11 @@ function toProductSummary(node: {
     description: node.description ?? "",
     productType: node.productType ?? "",
     tags: node.tags ?? [],
+    featuredImageUrl: node.featuredImage?.url,
+    variantId: node.selectedOrFirstAvailableVariant?.id,
+    availableForSale: node.selectedOrFirstAvailableVariant?.availableForSale,
+    priceAmount: node.selectedOrFirstAvailableVariant?.price?.amount,
+    priceCurrencyCode: node.selectedOrFirstAvailableVariant?.price?.currencyCode,
   };
 }
 
@@ -103,6 +147,12 @@ export async function getShopifyProductByHandle(handle: string): Promise<Shopify
       description: string;
       productType: string;
       tags: string[];
+      featuredImage?: { url: string } | null;
+      selectedOrFirstAvailableVariant?: {
+        id: string;
+        availableForSale: boolean;
+        price?: { amount: string; currencyCode: string } | null;
+      } | null;
     } | null;
   }>(
     `
@@ -113,6 +163,17 @@ export async function getShopifyProductByHandle(handle: string): Promise<Shopify
           description
           productType
           tags
+          featuredImage {
+            url
+          }
+          selectedOrFirstAvailableVariant {
+            id
+            availableForSale
+            price {
+              amount
+              currencyCode
+            }
+          }
         }
       }
     `,
@@ -122,15 +183,63 @@ export async function getShopifyProductByHandle(handle: string): Promise<Shopify
   return data.productByHandle ? toProductSummary(data.productByHandle) : null;
 }
 
+async function getAllShopifyProducts(): Promise<ShopifyProductSummary[]> {
+  const fallback = await storefrontFetch<{
+    products: {
+      nodes: Array<{
+        handle: string;
+        title: string;
+        description: string;
+        productType: string;
+        tags: string[];
+        featuredImage?: { url: string } | null;
+        selectedOrFirstAvailableVariant?: {
+          id: string;
+          availableForSale: boolean;
+          price?: { amount: string; currencyCode: string } | null;
+        } | null;
+      }>;
+    };
+  }>(
+    `
+      query AllProductsFallback {
+        products(first: 200, sortKey: TITLE) {
+          nodes {
+            handle
+            title
+            description
+            productType
+            tags
+            featuredImage {
+              url
+            }
+            selectedOrFirstAvailableVariant {
+              id
+              availableForSale
+              price {
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
+      }
+    `,
+  );
+
+  return fallback.products.nodes.map(toProductSummary);
+}
+
 export async function getShopifyProductsByCategory(category: ShopifyCategory): Promise<{
+  source: "collection" | "inferred" | "none" | "error";
   collectionHandle: string | null;
   products: ShopifyProductSummary[];
 }> {
   const handles = CATEGORY_COLLECTION_CANDIDATES[category];
 
-  // Prefer first-class Shopify collections when present.
-  const collectionChecks = await Promise.all(
-    handles.map(async (handle) => {
+  try {
+    // Try collection-first, then fall back to inferred grouping.
+    for (const handle of handles) {
       const data = await storefrontFetch<{
         collection: {
           handle: string;
@@ -141,6 +250,12 @@ export async function getShopifyProductsByCategory(category: ShopifyCategory): P
               description: string;
               productType: string;
               tags: string[];
+              featuredImage?: { url: string } | null;
+              selectedOrFirstAvailableVariant?: {
+                id: string;
+                availableForSale: boolean;
+                price?: { amount: string; currencyCode: string } | null;
+              } | null;
             }>;
           };
         } | null;
@@ -156,6 +271,17 @@ export async function getShopifyProductsByCategory(category: ShopifyCategory): P
                   description
                   productType
                   tags
+                  featuredImage {
+                    url
+                  }
+                  selectedOrFirstAvailableVariant {
+                    id
+                    availableForSale
+                    price {
+                      amount
+                      currencyCode
+                    }
+                  }
                 }
               }
             }
@@ -164,51 +290,95 @@ export async function getShopifyProductsByCategory(category: ShopifyCategory): P
         { handle },
       );
 
-      return data.collection;
-    }),
-  );
+      const products = (data.collection?.products.nodes ?? []).map(toProductSummary).filter(isUsableProduct);
+      if (products.length > 0) {
+        return {
+          source: "collection",
+          collectionHandle: data.collection?.handle ?? handle,
+          products,
+        };
+      }
+    }
 
-  const matchingCollection = collectionChecks.find((collection) => collection && collection.products.nodes.length > 0);
-  if (matchingCollection) {
+    const inferred = (await getAllShopifyProducts()).filter((product) => inferCategory(product) === category && isUsableProduct(product));
+    if (inferred.length > 0) {
+      return {
+        source: "inferred",
+        collectionHandle: null,
+        products: inferred,
+      };
+    }
+
     return {
-      collectionHandle: matchingCollection.handle,
-      products: matchingCollection.products.nodes.map(toProductSummary),
+      source: "none",
+      collectionHandle: null,
+      products: [],
+    };
+  } catch {
+    return {
+      source: "error",
+      collectionHandle: null,
+      products: [],
     };
   }
+}
 
-  // Fallback for stores without category collections:
-  // infer product grouping from productType/title/description/tags.
-  const fallback = await storefrontFetch<{
-    products: {
-      nodes: Array<{
-        handle: string;
-        title: string;
-        description: string;
-        productType: string;
-        tags: string[];
-      }>;
-    };
-  }>(
-    `
-      query AllProductsFallback {
-        products(first: 200, sortKey: TITLE) {
-          nodes {
-            handle
-            title
-            description
-            productType
-            tags
-          }
-        }
-      }
-    `,
-  );
+export async function hydrateLocalCatalogWithShopify<T extends LocalCatalogItem>(
+  category: ShopifyCategory,
+  localItems: T[],
+): Promise<ShopifyHydrationResult<T>> {
+  const categoryResult = await getShopifyProductsByCategory(category);
+  const pool = categoryResult.products;
 
-  const products = fallback.products.nodes.map(toProductSummary).filter((product) => inferCategory(product) === category);
+  const handleMap = new Map(pool.map((product) => [normalize(product.handle), product]));
+  const titleCandidates = new Map<string, ShopifyProductSummary[]>();
+  for (const product of pool) {
+    const key = normalizeTitle(product.title);
+    const existing = titleCandidates.get(key) ?? [];
+    existing.push(product);
+    titleCandidates.set(key, existing);
+  }
+
+  const usedHandles = new Set<string>();
+  const hydrated = localItems.map((item) => {
+    const byHandle = handleMap.get(normalize(item.slug));
+    if (byHandle && !usedHandles.has(byHandle.handle)) {
+      usedHandles.add(byHandle.handle);
+      return { ...item, shopify: byHandle, matchMethod: "handle" as const };
+    }
+
+    const titleKey = normalizeTitle(item.title);
+    const candidates = titleCandidates.get(titleKey) ?? [];
+    if (candidates.length === 1 && !usedHandles.has(candidates[0].handle)) {
+      usedHandles.add(candidates[0].handle);
+      return { ...item, shopify: candidates[0], matchMethod: "title" as const };
+    }
+
+    return { ...item, shopify: null, matchMethod: null };
+  });
+
+  const unmatchedLocal = hydrated.filter((item) => !item.shopify).map((item) => item.slug);
+  const unmatchedShopify = pool.filter((product) => !usedHandles.has(product.handle)).map((product) => product.handle);
+  const usedFallback = hydrated.every((item) => !item.shopify);
+
+  if (process.env.NODE_ENV !== "production") {
+    console.info(
+      `[shopify][${category}] source=${categoryResult.source} matched=${hydrated.length - unmatchedLocal.length} localOnly=${unmatchedLocal.length} shopifyUnmatched=${unmatchedShopify.length} rendering=${usedFallback ? "legacy/manual fallback" : "local+shopify"}`,
+    );
+    if (unmatchedLocal.length > 0) {
+      console.info(`[shopify][${category}] local-only slugs: ${unmatchedLocal.join(", ")}`);
+    }
+    if (unmatchedShopify.length > 0) {
+      console.info(`[shopify][${category}] unmatched shopify handles: ${unmatchedShopify.join(", ")}`);
+    }
+  }
 
   return {
-    collectionHandle: null,
-    products,
+    source: categoryResult.source,
+    usedFallback,
+    items: hydrated,
+    unmatchedLocal,
+    unmatchedShopify,
   };
 }
 

@@ -31,11 +31,22 @@ export function ShopifyRuntime() {
       // Use delegated handlers so actions inside <template> output
       // (rendered by Shopify components, outside React tree) still work.
       const action = actionNode.dataset.shopifyAction;
+      const explicitVariantId = actionNode.dataset.shopifyVariantId;
       if (action === "add-line") {
         const cart = document.getElementById(CART_ID) as ShopifyCartElement | null;
-        cart?.addLine(event).showModal();
+        if (!cart) return;
+        if (explicitVariantId) {
+          cart.addLine({ variantId: explicitVariantId, quantity: 1 }).showModal();
+          return;
+        }
+        cart.addLine(event).showModal();
       }
       if (action === "buy-now") {
+        if (explicitVariantId) {
+          const cart = document.getElementById(CART_ID) as ShopifyCartElement | null;
+          cart?.addLine({ variantId: explicitVariantId, quantity: 1 }).showModal();
+          return;
+        }
         const store = document.getElementById(STORE_ID) as
           | (HTMLElement & { buyNow: (source: Event) => void })
           | null;
