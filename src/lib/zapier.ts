@@ -7,6 +7,7 @@
  * - kit_purchase_interest
  * - contact_form
  * - waitlist_signup
+ * - purchase_completed
  *
  * Example usage (do not auto-fire; call from form/funnel handlers):
  * await sendZapierEvent("funnel_lead", {
@@ -15,7 +16,7 @@
  * });
  */
 export async function sendZapierEvent(eventName: string, payload: Record<string, unknown>) {
-  const webhook = process.env.NEXT_PUBLIC_ZAPIER_WEBHOOK_URL;
+  const webhook = process.env.ZAPIER_WEBHOOK_URL || process.env.NEXT_PUBLIC_ZAPIER_WEBHOOK_URL;
 
   if (!webhook) {
     return;

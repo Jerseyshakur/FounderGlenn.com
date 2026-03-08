@@ -59,7 +59,7 @@ export default function MediaPage() {
               ["Books", "/books"],
               ["Blogs", "/blogs"],
               ["GLÈNN", "/glenn"],
-              ["Nexus HealthKit", "/nexus"],
+              ["Nexus Health Kit", "/nexus"],
               ["Kits", "/kits"],
               ["Comics", "/comics"],
               ["Music", "/music"],

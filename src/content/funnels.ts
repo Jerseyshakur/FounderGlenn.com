@@ -1,4 +1,7 @@
 import type { FunnelPageConfig } from "@/components/funnel";
+import { APPS } from "@/content/apps";
+
+const nexusApp = APPS.find((app) => app.slug === "nexus");
 
 export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
   legal: {
@@ -118,6 +121,11 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
       title: "Find Every Dollar Your Music Earns",
       subtitle:
         "Artists leave thousands in royalties unclaimed. Most miss revenue from streaming, publishing, YouTube, SoundExchange, the MLC, and PRO systems.",
+      media: {
+        src: "/covers/kits/seven-steps-to-find-every-dollar.jpg",
+        alt: "7 Steps to Find Every Dollar cover",
+        caption: "7 Steps to Find Every Dollar",
+      },
       primaryAction: { type: "link", label: "Get the Royalty Survival Kit", href: "/kits/seven-steps-to-find-every-dollar" },
       secondaryAction: { type: "link", label: "Browse Royalty Resources", href: "/kits" },
       proofPoints: [
@@ -216,10 +224,15 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
   nexus: {
     slug: "nexus",
     hero: {
-      eyebrow: "Nexus HealthKit",
-      title: "Your Body Is Running a System. Nexus Shows You the Code.",
+      eyebrow: "Nexus Health Kit",
+      title: "Your Body Is Running a System. Nexus Health Kit Shows You the Code.",
       subtitle:
-        "Most health apps just show data. Nexus interprets recovery, readiness, and physiological patterns so people can train, work, and recover with precision.",
+        "Most health apps just show data. Nexus Health Kit interprets recovery, readiness, and physiological patterns so people can train, work, and recover with precision.",
+      media: {
+        src: nexusApp?.iconSrc || "/images/placeholder-cover.svg",
+        alt: "Nexus Health Kit app icon",
+        caption: "Nexus Health Kit",
+      },
       primaryAction: { type: "link", label: "Join TestFlight", href: "https://testflight.apple.com/join/j1tpp54U", external: true },
       secondaryAction: { type: "link", label: "View on App Store", href: "https://apps.apple.com/", external: true },
       proofPoints: ["Premium performance intelligence", "Founder-led product evolution", "Health and work readiness focus"],
@@ -237,9 +250,9 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
       ],
     },
     offer: {
-      eyebrow: "Solution: Nexus Engine",
+      eyebrow: "Solution: Nexus Health Kit Engine",
       title: "A physiological engine that translates signal into action",
-      description: "Nexus is built to connect what your body is saying with what your schedule demands.",
+      description: "Nexus Health Kit is built to connect what your body is saying with what your schedule demands.",
       items: [
         {
           title: "Readiness Engine",
@@ -259,13 +272,13 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
       eyebrow: "Founder Story",
       title: "Built while physically run down and still expected to perform",
       body:
-        "Nexus came from a period where output looked strong externally while internal capacity was breaking down. The engine was built to reflect reality early, not after burnout. That founder experience drives every product decision.",
+        "Nexus Health Kit came from a period where output looked strong externally while internal capacity was breaking down. The engine was built to reflect reality early, not after burnout. That founder experience drives every product decision.",
       quote: "The engine reflected what I felt before the dashboards did.",
       quoteAttribution: "Founder Glenn",
     },
     offerStack: {
       eyebrow: "Features",
-      title: "What powers the Nexus experience",
+      title: "What powers the Nexus Health Kit experience",
       subtitle: "A premium stack for health-performance operators.",
       items: [
         { label: "Readiness score architecture", detail: "Train/work intensity guidance" },
@@ -278,7 +291,7 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
       eyebrow: "Pro Positioning",
       title: "Built for people who need reliable signal under load",
       beforeLabel: "Typical Health Apps",
-      afterLabel: "Nexus",
+      afterLabel: "Nexus Health Kit",
       beforePoints: [
         "Static dashboards and disconnected metrics",
         "Generic insights with weak actionability",
@@ -292,8 +305,8 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
     },
     cta: {
       eyebrow: "Premium Access",
-      title: "Start with Nexus now",
-      body: "Join the current release track and experience the Nexus engine directly.",
+      title: "Start with Nexus Health Kit now",
+      body: "Join the current release track and experience the Nexus Health Kit engine directly.",
       primaryAction: { type: "link", label: "Download on TestFlight", href: "https://testflight.apple.com/join/j1tpp54U", external: true },
       secondaryAction: { type: "link", label: "View App Store Listing", href: "https://apps.apple.com/", external: true },
     },

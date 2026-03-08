@@ -120,29 +120,36 @@ export default async function EssayPage({ params }: EssayPageProps) {
                 {matched.availableForSale ? "In Stock" : "Unavailable"}
               </p>
             </div>
-            <shopify-context type="product" handle={matched.handle}>
-              <template>
-                <div className="mt-4">
-                  <shopify-variant-selector />
-                </div>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <button
-                    type="button"
-                    data-shopify-action="add-line"
-                    className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
-                  >
-                    Add to Cart
-                  </button>
-                  <button
-                    type="button"
-                    data-shopify-action="buy-now"
-                    className="rounded-full border border-white/20 bg-white px-5 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
-                  >
-                    Buy Now
-                  </button>
-                </div>
-              </template>
-            </shopify-context>
+            {matched.variantId ? (
+              <div className="mt-5 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  data-shopify-action="add-line"
+                  data-shopify-variant-id={matched.variantId}
+                  data-shopify-product-handle={matched.handle}
+                  data-shopify-product-title={essay.title}
+                  data-shopify-product-category="essays"
+                  data-shopify-price={matched.priceAmount}
+                  data-shopify-currency={matched.priceCurrencyCode}
+                  className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
+                >
+                  Add to Cart
+                </button>
+                <button
+                  type="button"
+                  data-shopify-action="buy-now"
+                  data-shopify-variant-id={matched.variantId}
+                  data-shopify-product-handle={matched.handle}
+                  data-shopify-product-title={essay.title}
+                  data-shopify-product-category="essays"
+                  data-shopify-price={matched.priceAmount}
+                  data-shopify-currency={matched.priceCurrencyCode}
+                  className="rounded-full border border-white/20 bg-white px-5 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
+                >
+                  Buy Now
+                </button>
+              </div>
+            ) : null}
           </div>
         ) : null}
 
