@@ -391,14 +391,14 @@ export async function hydrateLocalCatalogWithShopify<T extends LocalCatalogItem>
 
     if (mappedHandle) {
       const mappedProduct = handleMap.get(normalize(mappedHandle));
-      if (mappedProduct && !usedHandles.has(mappedProduct.handle)) {
+      if (mappedProduct) {
         usedHandles.add(mappedProduct.handle);
         return { ...item, shopify: mappedProduct, matchMethod: "handle" as const };
       }
     }
 
     const byHandle = handleMap.get(normalize(item.slug));
-    if (byHandle && !usedHandles.has(byHandle.handle)) {
+    if (byHandle) {
       usedHandles.add(byHandle.handle);
       return { ...item, shopify: byHandle, matchMethod: "handle" as const };
     }
