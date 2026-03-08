@@ -11,6 +11,7 @@ type Frontmatter = {
   title?: string;
   date?: string;
   description?: string;
+  author?: string;
   seoTitle?: string;
   seoDescription?: string;
   cover?: string;
@@ -24,6 +25,7 @@ export type BlogPostMeta = {
   title: string;
   date: string;
   description: string;
+  author: string;
   seoTitle?: string;
   seoDescription?: string;
   coverImage: string;
@@ -61,6 +63,7 @@ function toMeta(slug: string, data: Frontmatter, content: string): BlogPostMeta 
     title: data.title ?? "Untitled",
     date: data.date ?? "",
     description: data.description ?? "",
+    author: data.author ?? "Founder Glenn",
     seoTitle: data.seoTitle,
     seoDescription: data.seoDescription,
     coverImage: resolveThumbnail(data, content),

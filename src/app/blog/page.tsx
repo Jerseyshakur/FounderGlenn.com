@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import ArticleImage from "@/components/blog/ArticleImage";
 import { getAllPostsMeta } from "@/lib/blog";
 
 export const metadata = {
@@ -9,14 +9,23 @@ export const metadata = {
 
 export default async function BlogPage() {
   const posts = await getAllPostsMeta();
+  const [leadPost, ...otherPosts] = posts;
+
+  const formatDate = (dateValue: string) =>
+    new Date(dateValue).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
 
   return (
-    <main className="min-h-screen bg-[#121212] px-6 py-20 text-zinc-100">
-      <div className="mx-auto max-w-4xl">
-        <header className="mb-14 border-b border-white/10 pb-8">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Blog</h1>
-          <p className="mt-4 max-w-2xl text-zinc-400">
-            Dispatches on systems, creativity, and infrastructure that compounds.
+    <main className="min-h-screen bg-[#121212] px-6 py-16 text-zinc-100 md:py-20">
+      <div className="mx-auto max-w-6xl">
+        <header className="mb-12 border-b border-white/10 pb-8 md:mb-16">
+          <p className="text-sm uppercase tracking-[0.14em] text-zinc-500">Editorial</p>
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-white md:text-6xl">Blog</h1>
+          <p className="mt-5 max-w-2xl text-zinc-300">
+            Founder Glenn essays on systems, health, leverage, and creator infrastructure.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             <Link
@@ -52,46 +61,70 @@ export default async function BlogPage() {
           </div>
         </header>
 
-        <section className="space-y-10">
-          {posts.map((post) => (
-            <article key={post.slug} className="border-b border-white/10 pb-10">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1fr)_220px] md:items-center md:gap-10">
-                <div>
-                  <p className="text-sm uppercase tracking-[0.12em] text-zinc-500">
-                    {new Date(post.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </p>
+        {leadPost ? (
+          <section className="mb-14 border-b border-white/10 pb-12">
+            <article className="grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_minmax(0,0.9fr)] lg:items-center">
+              {leadPost.coverImage ? (
+                <Link href={`/blog/${leadPost.slug}`} className="block overflow-hidden border border-white/10">
+                  <ArticleImage
+                    src={leadPost.coverImage}
+                    alt={leadPost.title}
+                    className="aspect-[16/10] w-full transition-transform duration-500 ease-out hover:scale-[1.01]"
+                  />
+                </Link>
+              ) : null}
+              <div>
+                <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Featured Story</p>
+                <h2 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-white md:text-5xl">
+                  <Link href={`/blog/${leadPost.slug}`} className="hover:text-zinc-200">
+                    {leadPost.title}
+                  </Link>
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-zinc-300">{leadPost.description}</p>
+                <p className="mt-6 text-sm text-zinc-400">
+                  By {leadPost.author} - {formatDate(leadPost.date)}
+                </p>
+                <Link
+                  href={`/blog/${leadPost.slug}`}
+                  className="mt-5 inline-flex items-center text-sm font-semibold tracking-wide text-white transition-colors hover:text-zinc-300"
+                >
+                  Read More
+                </Link>
+              </div>
+            </article>
+          </section>
+        ) : null}
 
-                  <h2 className="mt-3 text-2xl font-semibold text-white md:text-3xl">{post.title}</h2>
-
-                  <p className="mt-3 leading-relaxed text-zinc-400">{post.description}</p>
-
+        <section className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {otherPosts.map((post) => (
+            <article key={post.slug} className="border border-white/10 bg-white/[0.02]">
+              {post.coverImage ? (
+                <Link href={`/blog/${post.slug}`} className="block overflow-hidden border-b border-white/10">
+                  <ArticleImage
+                    src={post.coverImage}
+                    alt={post.title}
+                    className="aspect-[16/10] w-full transition-transform duration-500 ease-out hover:scale-[1.02]"
+                  />
+                </Link>
+              ) : null}
+              <div className="p-6">
+                <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">{formatDate(post.date)}</p>
+                <h3 className="mt-3 text-2xl font-semibold leading-tight text-white">
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="mt-5 inline-flex items-center text-sm font-semibold tracking-wide text-white transition-colors hover:text-zinc-300"
+                    className="transition-colors hover:text-zinc-200"
                   >
-                    Read More
+                    {post.title}
                   </Link>
-                </div>
-
-                {post.coverImage ? (
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group relative block h-[140px] w-full max-w-[220px] overflow-hidden rounded-xl border border-white/10 justify-self-start md:justify-self-end"
-                  >
-                    <Image
-                      src={post.coverImage}
-                      alt={post.title}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 768px) 100vw, 220px"
-                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] group-hover:opacity-95"
-                    />
-                  </Link>
-                ) : null}
+                </h3>
+                <p className="mt-3 leading-relaxed text-zinc-300">{post.description}</p>
+                <p className="mt-5 text-sm text-zinc-400">By {post.author}</p>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="mt-4 inline-flex items-center text-sm font-semibold tracking-wide text-white transition-colors hover:text-zinc-300"
+                >
+                  Read More
+                </Link>
               </div>
             </article>
           ))}
