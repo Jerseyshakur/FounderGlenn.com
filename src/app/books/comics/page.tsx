@@ -54,6 +54,11 @@ export default async function ComicsPage() {
                       type="button"
                       data-shopify-action="add-line"
                       data-shopify-variant-id={book.shopify.variantId}
+                      data-shopify-product-handle={book.shopify.handle}
+                      data-shopify-product-title={book.title}
+                      data-shopify-product-category="comics"
+                      data-shopify-price={book.shopify.priceAmount}
+                      data-shopify-currency={book.shopify.priceCurrencyCode}
                       className="rounded-full border border-white/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-white hover:text-black"
                     >
                       Add

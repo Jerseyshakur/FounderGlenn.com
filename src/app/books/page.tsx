@@ -36,6 +36,41 @@ export default function WritingGatewayPage() {
         <header className="mb-12 border-b border-white/10 pb-8 text-center">
           <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Writing</p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl">Choose a Collection</h1>
+          <p className="mx-auto mt-4 max-w-2xl text-sm text-zinc-400">
+            Looking for direct implementation paths? Start with legal protection, royalty recovery, or Nexus performance.
+          </p>
+          <div className="mt-5 flex flex-wrap justify-center gap-2">
+            <Link
+              href="/legal"
+              data-analytics-cta="1"
+              data-analytics-label="Books Gateway Legal"
+              data-analytics-destination="/legal"
+              data-analytics-context="gateway-routing"
+              className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+            >
+              /legal
+            </Link>
+            <Link
+              href="/royalties"
+              data-analytics-cta="1"
+              data-analytics-label="Books Gateway Royalties"
+              data-analytics-destination="/royalties"
+              data-analytics-context="gateway-routing"
+              className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+            >
+              /royalties
+            </Link>
+            <Link
+              href="/nexus"
+              data-analytics-cta="1"
+              data-analytics-label="Books Gateway Nexus"
+              data-analytics-destination="/nexus"
+              data-analytics-context="gateway-routing"
+              className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+            >
+              /nexus
+            </Link>
+          </div>
         </header>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4">

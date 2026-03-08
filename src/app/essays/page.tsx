@@ -83,6 +83,11 @@ export default async function EssaysPage() {
                       type="button"
                       data-shopify-action="add-line"
                       data-shopify-variant-id={essay.shopify.variantId}
+                      data-shopify-product-handle={essay.shopify.handle}
+                      data-shopify-product-title={essay.title}
+                      data-shopify-product-category="essays"
+                      data-shopify-price={essay.shopify.priceAmount}
+                      data-shopify-currency={essay.shopify.priceCurrencyCode}
                       className="rounded-full border border-white/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-white hover:text-black"
                     >
                       Add

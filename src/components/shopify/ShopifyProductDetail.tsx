@@ -1,3 +1,5 @@
+import ViewItemTracker from "@/components/analytics/ViewItemTracker";
+
 type ShopifyProductDetailProps = {
   handle: string;
   kindLabel: string;
@@ -13,6 +15,7 @@ export default function ShopifyProductDetail({
 }: ShopifyProductDetailProps) {
   return (
     <main className="min-h-screen bg-[#121212] px-6 py-20 text-zinc-100">
+      <ViewItemTracker item={{ item_id: handle, item_category: kindLabel.toLowerCase() }} context="product-detail" />
       <shopify-context type="product" handle={handle}>
         <template>
           <article className="mx-auto max-w-5xl border border-white/10 bg-white/[0.02] p-8 md:p-12">
@@ -48,6 +51,8 @@ export default function ShopifyProductDetail({
                   <button
                     type="button"
                     data-shopify-action="add-line"
+                    data-shopify-product-handle={handle}
+                    data-shopify-product-category={kindLabel.toLowerCase()}
                     shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
                     className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-40"
                   >
@@ -56,6 +61,8 @@ export default function ShopifyProductDetail({
                   <button
                     type="button"
                     data-shopify-action="buy-now"
+                    data-shopify-product-handle={handle}
+                    data-shopify-product-category={kindLabel.toLowerCase()}
                     shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
                     className="rounded-full border border-white/20 bg-white text-sm font-semibold text-black px-5 py-2.5 transition-colors hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-40"
                   >

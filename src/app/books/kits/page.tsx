@@ -60,6 +60,11 @@ export default async function KitsPage() {
                               type="button"
                               data-shopify-action="add-line"
                               data-shopify-variant-id={hydratedKit.shopify.variantId}
+                              data-shopify-product-handle={hydratedKit.shopify.handle}
+                              data-shopify-product-title={kit.title}
+                              data-shopify-product-category="kits"
+                              data-shopify-price={hydratedKit.shopify.priceAmount}
+                              data-shopify-currency={hydratedKit.shopify.priceCurrencyCode}
                               className="rounded-full border border-white/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-white hover:text-black"
                             >
                               Add

@@ -12,6 +12,8 @@ const ROUTES = [
   "/blogs",
   "/glenn",
   "/nexus",
+  "/legal",
+  "/royalties",
   "/music",
   "/maynard-eaton",
   "/media",
@@ -24,7 +26,7 @@ export async function GET() {
   const lastmod = new Date().toISOString();
 
   const urls = ROUTES.map((route) => {
-    const priority = route === "/" ? "1.0" : "0.8";
+    const priority = route === "/" ? "1.0" : route === "/legal" || route === "/royalties" || route === "/nexus" ? "0.9" : "0.8";
     return [
       "  <url>",
       `    <loc>${BASE_URL}${route === "/" ? "" : route}</loc>`,

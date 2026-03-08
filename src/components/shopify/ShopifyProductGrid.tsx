@@ -36,6 +36,11 @@ function ProductCardTemplate({ routeBase }: { routeBase: ShopifyProductGridProps
         <button
           type="button"
           data-shopify-action="add-line"
+          shopify-attr--data-shopify-product-handle="product.handle"
+          shopify-attr--data-shopify-product-title="product.title"
+          shopify-attr--data-shopify-product-category="product.productType"
+          shopify-attr--data-shopify-price="product.selectedOrFirstAvailableVariant.price.amount"
+          shopify-attr--data-shopify-currency="product.selectedOrFirstAvailableVariant.price.currencyCode"
           shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale"
           className="rounded-full border border-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-40"
         >

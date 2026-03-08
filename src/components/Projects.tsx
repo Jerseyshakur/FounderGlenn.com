@@ -52,6 +52,38 @@ export default function Projects() {
                     <p className="text-zinc-400 max-w-xl mx-auto text-lg leading-relaxed">
                         Books, blogs, brand, and Nexus HealthKit — built for creators and legacy.
                     </p>
+                    <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+                        <Link
+                            href="/legal"
+                            data-analytics-cta="1"
+                            data-analytics-label="Homepage Artist Legal"
+                            data-analytics-destination="/legal"
+                            data-analytics-context="homepage-routing"
+                            className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+                        >
+                            Artist Legal
+                        </Link>
+                        <Link
+                            href="/royalties"
+                            data-analytics-cta="1"
+                            data-analytics-label="Homepage Royalty Recovery"
+                            data-analytics-destination="/royalties"
+                            data-analytics-context="homepage-routing"
+                            className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+                        >
+                            Royalty Recovery
+                        </Link>
+                        <Link
+                            href="/nexus"
+                            data-analytics-cta="1"
+                            data-analytics-label="Homepage Nexus"
+                            data-analytics-destination="/nexus"
+                            data-analytics-context="homepage-routing"
+                            className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+                        >
+                            Nexus
+                        </Link>
+                    </div>
                     <Link
                         href="/about"
                         className="mt-7 inline-flex rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"

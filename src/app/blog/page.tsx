@@ -18,6 +18,38 @@ export default async function BlogPage() {
           <p className="mt-4 max-w-2xl text-zinc-400">
             Dispatches on systems, creativity, and infrastructure that compounds.
           </p>
+          <div className="mt-6 flex flex-wrap gap-2">
+            <Link
+              href="/legal"
+              data-analytics-cta="1"
+              data-analytics-label="Blog Header Legal"
+              data-analytics-destination="/legal"
+              data-analytics-context="content-routing"
+              className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+            >
+              Start with Legal
+            </Link>
+            <Link
+              href="/royalties"
+              data-analytics-cta="1"
+              data-analytics-label="Blog Header Royalties"
+              data-analytics-destination="/royalties"
+              data-analytics-context="content-routing"
+              className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+            >
+              Find Missing Royalties
+            </Link>
+            <Link
+              href="/nexus"
+              data-analytics-cta="1"
+              data-analytics-label="Blog Header Nexus"
+              data-analytics-destination="/nexus"
+              data-analytics-context="content-routing"
+              className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+            >
+              Explore Nexus
+            </Link>
+          </div>
         </header>
 
         <section className="space-y-10">
