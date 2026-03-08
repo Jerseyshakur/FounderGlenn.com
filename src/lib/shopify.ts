@@ -59,6 +59,10 @@ const CATEGORY_KEYWORDS: Record<ShopifyCategory, string[]> = {
   comics: ["comic", "comics", "graphic novel", "axiom comics"],
 };
 
+function isStorefrontDebugEnabled(): boolean {
+  return process.env.NODE_ENV !== "production" && process.env.SHOPIFY_STOREFRONT_DEBUG === "1";
+}
+
 async function storefrontFetch<T>(
   query: string,
   variables?: Record<string, unknown>,
@@ -246,8 +250,19 @@ async function getShopifyProductsByHandles(handles: string[]): Promise<ShopifyPr
   const results = await Promise.all(
     uniqueHandles.map(async (handle) => {
       try {
-        return await getShopifyProductByHandle(handle);
+        const product = await getShopifyProductByHandle(handle);
+        if (isStorefrontDebugEnabled()) {
+          console.info(
+            `[shopify-debug] productByHandle handle=${handle} found=${product ? "yes" : "no"} returnedHandle=${product?.handle ?? "none"} returnedTitle=${product?.title ?? "none"} variantId=${product?.variantId ?? "none"}`,
+          );
+        }
+        return product;
       } catch {
+        if (isStorefrontDebugEnabled()) {
+          console.info(
+            `[shopify-debug] productByHandle handle=${handle} found=no returnedHandle=none returnedTitle=none variantId=none`,
+          );
+        }
         return null;
       }
     }),
@@ -399,6 +414,12 @@ export async function hydrateLocalCatalogWithShopify<T extends LocalCatalogItem>
         mappedHandle = manualMap[key];
         break;
       }
+    }
+
+    if (isStorefrontDebugEnabled()) {
+      console.info(
+        `[shopify-debug] slug=${item.slug} mappedHandle=${mappedHandle ?? "none"}`,
+      );
     }
 
     if (mappedHandle) {

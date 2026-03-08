@@ -30,7 +30,7 @@ export const SHOPIFY_HANDLE_MAP: ShopifyHandleMap = {
     "the-pre-trust-toolkit": "the-pre-trust-toolkit",
     "trust-before-touch": "trust-before-touch",
     "universal-red-flags": "universal-red-flags",
-    "the-signback": "the-signback",
+    "the-signback": "the-sync-bag",
     "the-sync-bag": "the-sync-bag",
     "fan-funnel-kit": "fan-funnel-kit",
     "sample-clearance-kit": "sample-clearance-kit",
