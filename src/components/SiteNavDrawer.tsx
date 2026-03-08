@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { NAV_ITEMS } from "@/content/navigation";
+import { ShopifyCartButton } from "@/components/shopify/ShopifyRuntime";
 import { seoConfig } from "@/lib/seo";
 
 function isActive(pathname: string, href: string): boolean {
@@ -71,6 +72,7 @@ export default function SiteNavDrawer() {
           />
         </span>
       </button>
+      <ShopifyCartButton className="fixed right-4 top-4 z-[70] inline-flex h-11 items-center justify-center rounded-full border border-white/15 bg-black/45 px-4 text-xs font-semibold uppercase tracking-[0.08em] text-white backdrop-blur-md transition-colors hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40" />
 
       <div
         className={`fixed inset-0 z-[60] bg-black/40 backdrop-blur-[2px] transition-opacity duration-300 ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
@@ -83,6 +85,10 @@ export default function SiteNavDrawer() {
         aria-hidden={!open}
         className={`fixed left-0 top-0 z-[65] flex h-screen w-[min(90vw,380px)] flex-col border-r border-white/10 bg-[#0f0f0f]/95 px-6 pb-6 pt-20 text-zinc-100 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"}`}
       >
+        <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4">
+          <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Store</p>
+          <ShopifyCartButton className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-white hover:text-black" />
+        </div>
         <nav className="space-y-1" aria-label="Primary">
           {NAV_ITEMS.map((item) => {
             const active = isActive(pathname, item.href);

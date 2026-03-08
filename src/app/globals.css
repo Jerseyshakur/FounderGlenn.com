@@ -29,3 +29,35 @@ body {
   border-radius: 10px;
   overflow: hidden;
 }
+
+shopify-media {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+shopify-media img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+shopify-cart::part(dialog) {
+  background: #0f0f0f;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  color: #f4f4f5;
+}
+
+shopify-cart::part(primary-button) {
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  color: #09090b;
+  font-weight: 600;
+}
+
+shopify-cart::part(secondary-button),
+shopify-cart::part(tertiary-button) {
+  border-radius: 999px;
+}

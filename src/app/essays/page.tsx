@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import CoverImage from "@/components/CoverImage";
-import { BOOKS } from "@/content/books";
+import ShopifyProductGrid from "@/components/shopify/ShopifyProductGrid";
+import { getShopifyProductsByCategory } from "@/lib/shopify";
 import { buildAbsoluteUrl, resolveOgImage, seoConfig } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
 };
 
-const essaysCatalog = BOOKS.filter((book) => book.category === "essays");
+export default async function EssaysPage() {
+  const { products, collectionHandle } = await getShopifyProductsByCategory("essays");
 
-export default function EssaysPage() {
   return (
     <main className="min-h-screen bg-[#121212] px-4 py-10 text-zinc-100 sm:px-6 md:py-14">
       <div className="mx-auto max-w-6xl">
@@ -40,17 +40,12 @@ export default function EssaysPage() {
           </p>
         </header>
 
-        <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 xl:grid-cols-4">
-          {essaysCatalog.map((essay) => (
-            <Link key={essay.slug} href={`/essays/${essay.slug}`} className="group block">
-              <CoverImage kind="essays" slug={essay.slug} title={essay.title} src={essay.coverSrc} />
-              <p className="mt-3 text-sm leading-snug text-zinc-300 transition-colors group-hover:text-white">
-                {essay.title}
-              </p>
-              <p className="mt-1 text-xs uppercase tracking-[0.12em] text-zinc-500">Founder Glenn</p>
-            </Link>
-          ))}
-        </div>
+        <ShopifyProductGrid
+          products={products}
+          collectionHandle={collectionHandle}
+          routeBase="/essays"
+          emptyLabel="No essays available in Shopify yet."
+        />
 
         <Link
           href="/books"

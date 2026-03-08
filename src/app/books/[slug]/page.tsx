@@ -3,12 +3,14 @@ import { BOOKS } from "@/content/books";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import CoverImage from "@/components/CoverImage";
+import ShopifyProductDetail from "@/components/shopify/ShopifyProductDetail";
 import {
   buildAbsoluteUrl,
   buildBookSchema,
   resolveOgImage,
   seoConfig,
 } from "@/lib/seo";
+import { getShopifyProductByHandle } from "@/lib/shopify";
 
 type BookPageProps = {
   params: {
@@ -23,6 +25,36 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: BookPageProps) {
+  const shopifyProduct = await getShopifyProductByHandle(params.slug);
+  if (shopifyProduct) {
+    const path = `/books/${shopifyProduct.handle}`;
+    const title = `${shopifyProduct.title} | Books`;
+    const description =
+      shopifyProduct.description || `${shopifyProduct.title} by ${seoConfig.person.name}.`;
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: path,
+      },
+      openGraph: {
+        type: "website",
+        url: buildAbsoluteUrl(path),
+        siteName: seoConfig.siteName,
+        title,
+        description,
+        images: [{ url: resolveOgImage() }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: [resolveOgImage()],
+      },
+    } satisfies Metadata;
+  }
+
   const book = booksCatalog.find((entry) => entry.slug === params.slug);
   if (!book) {
     return {};
@@ -56,7 +88,19 @@ export async function generateMetadata({ params }: BookPageProps) {
   } satisfies Metadata;
 }
 
-export default function BookPage({ params }: BookPageProps) {
+export default async function BookPage({ params }: BookPageProps) {
+  const shopifyProduct = await getShopifyProductByHandle(params.slug);
+  if (shopifyProduct) {
+    return (
+      <ShopifyProductDetail
+        handle={shopifyProduct.handle}
+        kindLabel="Book"
+        backHref="/books/books"
+        backLabel="Back to Books"
+      />
+    );
+  }
+
   const book = booksCatalog.find((entry) => entry.slug === params.slug);
 
   if (!book) {

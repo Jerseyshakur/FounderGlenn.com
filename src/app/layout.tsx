@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 import SiteNavDrawer from "@/components/SiteNavDrawer";
+import { ShopifyRuntime } from "@/components/shopify/ShopifyRuntime";
 import {
   buildAbsoluteUrl,
   buildOrganizationSchema,
@@ -69,6 +70,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <Script src="https://cdn.shopify.com/storefront/web-components.js" strategy="afterInteractive" />
         <Script id="gtm-script" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -111,6 +113,7 @@ export default function RootLayout({
           />
         </noscript>
         <SiteNavDrawer />
+        <ShopifyRuntime />
         {children}
       </body>
     </html>

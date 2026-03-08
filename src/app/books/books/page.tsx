@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BOOKS } from "@/content/books";
-import CoverImage from "@/components/CoverImage";
+import ShopifyProductGrid from "@/components/shopify/ShopifyProductGrid";
+import { getShopifyProductsByCategory } from "@/lib/shopify";
 
 export const metadata: Metadata = {
   title: "Books",
   description: "Books on systems, creativity, and sovereignty.",
 };
 
-const booksCatalog = BOOKS.filter((book) => book.category === "books");
+export default async function BooksPage() {
+  const { products, collectionHandle } = await getShopifyProductsByCategory("books");
 
-export default function BooksPage() {
   return (
     <main className="min-h-screen bg-[#121212] px-4 py-10 text-zinc-100 sm:px-6 md:py-14">
       <div className="mx-auto max-w-7xl md:flex md:gap-10 lg:gap-14">
@@ -25,13 +25,13 @@ export default function BooksPage() {
 
           <details className="mt-4 border-b border-white/10 pb-4 md:hidden">
             <summary className="cursor-pointer list-none text-sm font-medium text-zinc-200">
-              Browse Titles ({booksCatalog.length})
+              Browse Titles ({products.length})
             </summary>
             <nav className="mt-3 max-h-64 space-y-1 overflow-y-auto pr-2">
-              {booksCatalog.map((book) => (
+              {products.map((book) => (
                 <a
-                  key={book.slug}
-                  href={`#${book.slug}`}
+                  key={book.handle}
+                  href={`#${book.handle}`}
                   className="block rounded px-2 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
                 >
                   {book.title}
@@ -41,10 +41,10 @@ export default function BooksPage() {
           </details>
 
           <nav className="mt-6 hidden max-h-[calc(100vh-16rem)] space-y-1 overflow-y-auto pr-2 md:block">
-            {booksCatalog.map((book) => (
+            {products.map((book) => (
               <a
-                key={book.slug}
-                href={`#${book.slug}`}
+                key={book.handle}
+                href={`#${book.handle}`}
                 className="block rounded px-2 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
               >
                 {book.title}
@@ -54,15 +54,21 @@ export default function BooksPage() {
         </aside>
 
         <section className="mt-8 flex-1 md:mt-0">
-          <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 xl:grid-cols-4">
-            {booksCatalog.map((book) => (
-              <Link key={book.slug} id={book.slug} href={`/books/${book.slug}`} className="group block">
-                <CoverImage kind="books" slug={book.slug} title={book.title} src={book.coverSrc} alt={book.coverAlt} />
-                <p className="mt-3 text-sm leading-snug text-zinc-300 transition-colors group-hover:text-white">
-                  {book.title}
-                </p>
-              </Link>
-            ))}
+          <div id="shopify-books-grid">
+            <ShopifyProductGrid
+              products={products}
+              collectionHandle={collectionHandle}
+              routeBase="/books"
+              emptyLabel="No books available in Shopify yet."
+            />
+          </div>
+          <div className="mt-8">
+            <Link
+              href="/books"
+              className="inline-flex rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
+            >
+              Back to Collections
+            </Link>
           </div>
         </section>
       </div>

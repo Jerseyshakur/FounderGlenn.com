@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { BOOKS } from "@/content/books";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ShopifyProductDetail from "@/components/shopify/ShopifyProductDetail";
 import { buildAbsoluteUrl, resolveOgImage, seoConfig } from "@/lib/seo";
+import { getShopifyProductByHandle } from "@/lib/shopify";
 
 type EssayPageProps = {
   params: {
@@ -17,6 +19,34 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: EssayPageProps) {
+  const shopifyProduct = await getShopifyProductByHandle(params.slug);
+  if (shopifyProduct) {
+    const path = `/essays/${shopifyProduct.handle}`;
+    const title = `${shopifyProduct.title} | Essays`;
+    const description = shopifyProduct.description || `${shopifyProduct.title} by ${seoConfig.person.name}.`;
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: path,
+      },
+      openGraph: {
+        type: "article",
+        url: buildAbsoluteUrl(path),
+        siteName: seoConfig.siteName,
+        title,
+        description,
+        images: [{ url: resolveOgImage() }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: [resolveOgImage()],
+      },
+    } satisfies Metadata;
+  }
+
   const essay = essaysCatalog.find((entry) => entry.slug === params.slug);
   if (!essay) {
     return {};
@@ -50,7 +80,19 @@ export async function generateMetadata({ params }: EssayPageProps) {
   } satisfies Metadata;
 }
 
-export default function EssayPage({ params }: EssayPageProps) {
+export default async function EssayPage({ params }: EssayPageProps) {
+  const shopifyProduct = await getShopifyProductByHandle(params.slug);
+  if (shopifyProduct) {
+    return (
+      <ShopifyProductDetail
+        handle={shopifyProduct.handle}
+        kindLabel="Essay"
+        backHref="/essays"
+        backLabel="Back to Essays"
+      />
+    );
+  }
+
   const essay = essaysCatalog.find((entry) => entry.slug === params.slug);
 
   if (!essay) {

@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CoverImage from "@/components/CoverImage";
+import ShopifyProductDetail from "@/components/shopify/ShopifyProductDetail";
 import { KITS } from "@/content/kits";
 import { buildAbsoluteUrl, resolveOgImage, seoConfig } from "@/lib/seo";
+import { getShopifyProductByHandle } from "@/lib/shopify";
 
 type KitPageProps = {
   params: {
@@ -15,7 +17,33 @@ export async function generateStaticParams() {
   return KITS.map((kit) => ({ slug: kit.slug }));
 }
 
-export function generateMetadata({ params }: KitPageProps) {
+export async function generateMetadata({ params }: KitPageProps) {
+  const shopifyProduct = await getShopifyProductByHandle(params.slug);
+  if (shopifyProduct) {
+    const path = `/kits/${shopifyProduct.handle}`;
+    const title = `${shopifyProduct.title} | Kits`;
+    const description = shopifyProduct.description || `${shopifyProduct.title} toolkit by ${seoConfig.person.name}.`;
+    return {
+      title,
+      description,
+      alternates: { canonical: path },
+      openGraph: {
+        type: "website",
+        url: buildAbsoluteUrl(path),
+        siteName: seoConfig.siteName,
+        title,
+        description,
+        images: [{ url: resolveOgImage() }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: [resolveOgImage()],
+      },
+    } satisfies Metadata;
+  }
+
   const kit = KITS.find((entry) => entry.slug === params.slug);
   if (!kit) {
     return {};
@@ -47,7 +75,19 @@ export function generateMetadata({ params }: KitPageProps) {
   } satisfies Metadata;
 }
 
-export default function KitDetailPage({ params }: KitPageProps) {
+export default async function KitDetailPage({ params }: KitPageProps) {
+  const shopifyProduct = await getShopifyProductByHandle(params.slug);
+  if (shopifyProduct) {
+    return (
+      <ShopifyProductDetail
+        handle={shopifyProduct.handle}
+        kindLabel="Kit"
+        backHref="/kits"
+        backLabel="Back to Kits"
+      />
+    );
+  }
+
   const kit = KITS.find((entry) => entry.slug === params.slug);
   if (!kit) {
     notFound();
