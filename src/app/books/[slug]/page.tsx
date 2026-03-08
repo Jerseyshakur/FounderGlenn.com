@@ -19,6 +19,11 @@ type BookPageProps = {
 
 const booksCatalog = BOOKS.filter((entry) => entry.category !== "essays");
 
+function resolveShopifyCategoryForBook(slug: string): "books" | "comics" {
+  const entry = booksCatalog.find((book) => book.slug === slug);
+  return entry?.category === "comics" ? "comics" : "books";
+}
+
 export async function generateStaticParams() {
   return booksCatalog.map((book) => ({ slug: book.slug }));
 }
@@ -29,7 +34,7 @@ export async function generateMetadata({ params }: BookPageProps) {
     return {};
   }
 
-  const hydrated = await hydrateLocalCatalogWithShopify("books", [book]);
+  const hydrated = await hydrateLocalCatalogWithShopify(resolveShopifyCategoryForBook(book.slug), [book]);
   const matched = hydrated.items[0]?.shopify ?? null;
 
   const path = `/books/${book.slug}`;
@@ -74,7 +79,7 @@ export default async function BookPage({ params }: BookPageProps) {
     notFound();
   }
 
-  const hydrated = await hydrateLocalCatalogWithShopify("books", [book]);
+  const hydrated = await hydrateLocalCatalogWithShopify(resolveShopifyCategoryForBook(book.slug), [book]);
   const matched = hydrated.items[0]?.shopify ?? null;
   const priceText =
     matched?.priceAmount && matched?.priceCurrencyCode
@@ -103,7 +108,9 @@ export default async function BookPage({ params }: BookPageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(bookSchema) }}
         />
 
-        <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Book</p>
+        <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">
+          {book.category === "comics" ? "Comic" : "Book"}
+        </p>
         <h1 className="mt-4 text-4xl font-bold tracking-tight text-white md:text-5xl">{book.title}</h1>
         <p className="mt-6 text-lg text-zinc-400">
           {matched?.description || "Coming Soon"}

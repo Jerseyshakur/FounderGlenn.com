@@ -1,6 +1,6 @@
 import { SHOPIFY_HANDLE_MAP } from "@/content/shopify-handle-map";
 
-export type ShopifyCategory = "books" | "kits" | "essays";
+export type ShopifyCategory = "books" | "kits" | "essays" | "comics";
 
 export type ShopifyProductSummary = {
   handle: string;
@@ -49,12 +49,14 @@ const CATEGORY_COLLECTION_CANDIDATES: Record<ShopifyCategory, string[]> = {
   books: ["books", "book", "books-collection"],
   kits: ["kits", "kit", "kits-collection"],
   essays: ["essays", "essay", "essays-collection"],
+  comics: ["comics", "comic", "comics-collection"],
 };
 
 const CATEGORY_KEYWORDS: Record<ShopifyCategory, string[]> = {
   books: ["book", "books"],
   kits: ["kit", "kits", "toolkit", "playbook"],
   essays: ["essay", "essays"],
+  comics: ["comic", "comics", "graphic novel", "axiom comics"],
 };
 
 async function storefrontFetch<T>(
@@ -114,6 +116,7 @@ function inferCategory(product: ShopifyProductSummary): ShopifyCategory | null {
 
   if (CATEGORY_KEYWORDS.kits.some((keyword) => haystack.includes(keyword))) return "kits";
   if (CATEGORY_KEYWORDS.essays.some((keyword) => haystack.includes(keyword))) return "essays";
+  if (CATEGORY_KEYWORDS.comics.some((keyword) => haystack.includes(keyword))) return "comics";
   if (CATEGORY_KEYWORDS.books.some((keyword) => haystack.includes(keyword))) return "books";
   return null;
 }

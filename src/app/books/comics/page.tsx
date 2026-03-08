@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BOOKS } from "@/content/books";
 import CoverImage from "@/components/CoverImage";
+import { hydrateLocalCatalogWithShopify } from "@/lib/shopify";
 
 export const metadata: Metadata = {
   title: "Comics",
@@ -10,7 +11,9 @@ export const metadata: Metadata = {
 
 const comicsCatalog = BOOKS.filter((book) => book.category === "comics");
 
-export default function ComicsPage() {
+export default async function ComicsPage() {
+  const hydrated = await hydrateLocalCatalogWithShopify("comics", comicsCatalog);
+
   return (
     <main className="min-h-screen bg-[#121212] px-4 py-10 text-zinc-100 sm:px-6 md:py-14">
       <div className="mx-auto max-w-6xl">
@@ -21,14 +24,45 @@ export default function ComicsPage() {
         </header>
 
         <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 xl:grid-cols-4">
-          {comicsCatalog.map((book) => (
-            <Link key={book.slug} href={`/books/${book.slug}`} className="group block">
-              <CoverImage kind="books" slug={book.slug} title={book.title} src={book.coverSrc} />
-              <p className="mt-3 text-sm leading-snug text-zinc-300 transition-colors group-hover:text-white">
-                {book.title}
-              </p>
-            </Link>
-          ))}
+          {hydrated.items.map((book) => {
+            const priceText =
+              book.shopify?.priceAmount && book.shopify?.priceCurrencyCode
+                ? new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: book.shopify.priceCurrencyCode,
+                  }).format(Number(book.shopify.priceAmount))
+                : null;
+
+            return (
+              <article key={book.slug} className="group block">
+                <Link href={`/books/${book.slug}`} className="block">
+                  <CoverImage
+                    kind="books"
+                    slug={book.slug}
+                    title={book.title}
+                    src={book.coverSrc || book.shopify?.featuredImageUrl}
+                  />
+                  <p className="mt-3 text-sm leading-snug text-zinc-300 transition-colors group-hover:text-white">
+                    {book.title}
+                  </p>
+                </Link>
+
+                <div className="mt-3 flex items-center justify-between gap-2">
+                  <p className="text-xs uppercase tracking-[0.1em] text-zinc-500">{priceText ?? "Coming Soon"}</p>
+                  {book.shopify?.variantId ? (
+                    <button
+                      type="button"
+                      data-shopify-action="add-line"
+                      data-shopify-variant-id={book.shopify.variantId}
+                      className="rounded-full border border-white/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-white hover:text-black"
+                    >
+                      Add
+                    </button>
+                  ) : null}
+                </div>
+              </article>
+            );
+          })}
         </div>
 
         <Link
