@@ -8,7 +8,12 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
       title: "Protect Your Music Before Anyone Steals Your Rights",
       subtitle:
         "The music industry runs on paperwork. If you do not understand the paperwork, you do not control the music.",
-      primaryAction: { type: "link", label: "Get the Indie Artist Legal Kit", href: "/kits/artist-legal-glossary" },
+      media: {
+        src: "/indie-artist-legal-kit.png",
+        alt: "Sign Here: The Indie Artist Legal Kit cover",
+        caption: "Sign Here: The Indie Artist Legal Kit",
+      },
+      primaryAction: { type: "link", label: "Get the Indie Artist Legal Kit", href: "/kits/indie-artist-legal-kit" },
       secondaryAction: { type: "link", label: "See Legal Resources", href: "/kits" },
       proofPoints: [
         "Built for independent artists",
@@ -73,7 +78,7 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
       eyebrow: "Start Here",
       title: "Protect your rights before your next signature",
       body: "This is the strongest entry point for artists who want control before momentum.",
-      primaryAction: { type: "link", label: "Get the Indie Artist Legal Kit", href: "/kits/artist-legal-glossary" },
+      primaryAction: { type: "link", label: "Get the Indie Artist Legal Kit", href: "/kits/indie-artist-legal-kit" },
       secondaryAction: { type: "link", label: "Preview the Kit Library", href: "/kits" },
     },
     upsells: {

@@ -25,6 +25,9 @@ const KIT_HANDLES = [
   "seven-steps-to-get-paid",
   "seven-steps-to-find-every-dollar",
   "seven-steps-to-claim-every-royalty",
+  "trust-fund-game",
+  "artist-management-starter-kit",
+  "indie-artist-legal-kit",
 ];
 
 async function queryProductByHandle(handle) {

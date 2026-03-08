@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { SHOPIFY_PUBLIC_STOREFRONT_TOKEN, SHOPIFY_STORE_DOMAIN } from "@/lib/shopify";
 import { trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
+import { sendZapierEvent } from "@/lib/zapier";
 
 const STORE_ID = "fg-shopify-store";
 const CART_ID = "fg-shopify-cart";
@@ -19,6 +20,17 @@ declare global {
 }
 
 export function ShopifyRuntime() {
+  const handleCheckoutIntent = async () => {
+    trackBeginCheckout([], { context: "shopify-cart-checkout" });
+
+    // Strongest reliable site-side commerce signal is begin_checkout.
+    // Completed purchase occurs on Shopify-controlled surfaces (needs Shopify webhook/server callback later).
+    await sendZapierEvent("begin_checkout", {
+      checkoutSource: "shopify-cart",
+      funnelSource: typeof window !== "undefined" ? window.location.pathname : undefined,
+    });
+  };
+
   useEffect(() => {
     const itemFromActionNode = (actionNode: HTMLElement) => {
       const rawPrice = actionNode.dataset.shopifyPrice;
@@ -98,7 +110,9 @@ export function ShopifyRuntime() {
         <button
           slot="checkout-button"
           type="button"
-          onClick={() => trackBeginCheckout([], { context: "shopify-cart-checkout" })}
+          onClick={() => {
+            void handleCheckoutIntent();
+          }}
         >
           Checkout
         </button>

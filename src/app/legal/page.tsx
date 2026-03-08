@@ -4,6 +4,7 @@ import { FunnelPageTemplate } from "@/components/funnel";
 import type { FunnelPageConfig } from "@/components/funnel";
 import ViewItemTracker from "@/components/analytics/ViewItemTracker";
 import { getFunnelConfig } from "@/content/funnels";
+import { KITS } from "@/content/kits";
 import { getShopifyProductByHandle, type ShopifyProductSummary } from "@/lib/shopify";
 
 export const metadata: Metadata = {
@@ -15,18 +16,15 @@ export const metadata: Metadata = {
   },
 };
 
-const LEGAL_PRIMARY_HANDLE_CANDIDATES = ["indie-artist-legal-kit", "artist-legal-glossary", "distribution-protection-kit"];
+const LEGAL_PRIMARY_HANDLE = "indie-artist-legal-kit";
+const LEGAL_PRIMARY_SLUG = "indie-artist-legal-kit";
 
 async function resolveLegalVariant() {
-  for (const handle of LEGAL_PRIMARY_HANDLE_CANDIDATES) {
-    try {
-      const product = await getShopifyProductByHandle(handle);
-      if (product?.variantId) {
-        return product;
-      }
-    } catch {
-      // Fall through to the next candidate.
-    }
+  try {
+    const product = await getShopifyProductByHandle(LEGAL_PRIMARY_HANDLE);
+    if (product?.variantId) return product;
+  } catch {
+    // Keep funnel rendering if Shopify is temporarily unavailable.
   }
   return null;
 }
@@ -36,6 +34,14 @@ function buildLegalConfig(
   product: ShopifyProductSummary | null,
 ): FunnelPageConfig {
   const next = structuredClone(base);
+  const legalKit = KITS.find((kit) => kit.slug === LEGAL_PRIMARY_SLUG) ?? null;
+
+  next.hero.media = {
+    src: legalKit?.coverSrc || "/indie-artist-legal-kit.png",
+    alt: legalKit?.title || "Sign Here: The Indie Artist Legal Kit",
+    caption: legalKit?.title || "Sign Here: The Indie Artist Legal Kit",
+  };
+
   if (!product?.variantId) return next;
 
   next.hero.primaryAction = {

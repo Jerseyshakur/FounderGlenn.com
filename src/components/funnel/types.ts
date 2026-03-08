@@ -27,6 +27,11 @@ export type FunnelHeroData = {
   eyebrow?: string;
   title: string;
   subtitle?: string;
+  media?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  };
   primaryAction?: FunnelAction;
   secondaryAction?: FunnelAction;
   proofPoints?: string[];

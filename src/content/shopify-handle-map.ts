@@ -42,6 +42,9 @@ export const SHOPIFY_HANDLE_MAP: ShopifyHandleMap = {
     "seven-steps-to-get-paid": "seven-steps-to-get-paid",
     "seven-steps-to-find-every-dollar": "seven-steps-to-find-every-dollar",
     "seven-steps-to-claim-every-royalty": "seven-steps-to-claim-every-royalty",
+    "trust-fund-game": "trust-fund-game",
+    "artist-management-starter-kit": "artist-management-starter-kit",
+    "indie-artist-legal-kit": "indie-artist-legal-kit",
   },
   essays: {
     // Add essay mappings here as needed.

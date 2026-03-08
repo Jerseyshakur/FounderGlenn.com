@@ -11,24 +11,34 @@ import type {
   FunnelUpsellData,
 } from "@/components/funnel/types";
 import { FunnelActionButton, FunnelSection, FunnelSectionHeader } from "@/components/funnel/FunnelPrimitives";
+import CoverImage from "@/components/CoverImage";
+import LegalLeadCaptureForm from "@/components/funnel/LegalLeadCaptureForm";
 
 export function FunnelHeroSection({ data }: { data: FunnelHeroData }) {
   return (
     <FunnelSection className="pt-10 md:pt-14">
-      <div className="mx-auto max-w-4xl">
-        <FunnelSectionHeader eyebrow={data.eyebrow} title={data.title} description={data.subtitle} />
-        <div className="mt-7 flex flex-wrap gap-3">
-          {data.primaryAction ? <FunnelActionButton action={data.primaryAction} /> : null}
-          {data.secondaryAction ? <FunnelActionButton action={data.secondaryAction} variant="secondary" /> : null}
+      <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-[1fr_minmax(0,320px)] md:items-start">
+        <div>
+          <FunnelSectionHeader eyebrow={data.eyebrow} title={data.title} description={data.subtitle} />
+          <div className="mt-7 flex flex-wrap gap-3">
+            {data.primaryAction ? <FunnelActionButton action={data.primaryAction} /> : null}
+            {data.secondaryAction ? <FunnelActionButton action={data.secondaryAction} variant="secondary" /> : null}
+          </div>
+          {data.proofPoints?.length ? (
+            <ul className="mt-8 grid gap-2 text-sm text-zinc-300 sm:grid-cols-2">
+              {data.proofPoints.map((point) => (
+                <li key={point} className="rounded-full border border-white/10 bg-black/25 px-4 py-2">
+                  {point}
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
-        {data.proofPoints?.length ? (
-          <ul className="mt-8 grid gap-2 text-sm text-zinc-300 sm:grid-cols-2">
-            {data.proofPoints.map((point) => (
-              <li key={point} className="rounded-full border border-white/10 bg-black/25 px-4 py-2">
-                {point}
-              </li>
-            ))}
-          </ul>
+        {data.media ? (
+          <figure className="mx-auto w-full max-w-[320px]">
+            <CoverImage kind="kits" slug="funnel-hero" title={data.media.alt} src={data.media.src} alt={data.media.alt} />
+            {data.media.caption ? <figcaption className="mt-3 text-center text-xs text-zinc-400">{data.media.caption}</figcaption> : null}
+          </figure>
         ) : null}
       </div>
     </FunnelSection>
@@ -187,29 +197,33 @@ export function FunnelFaqSection({ data }: { data: FunnelFaqData }) {
   );
 }
 
-export function FunnelLeadCaptureSection({ data }: { data: FunnelLeadCaptureData }) {
+export function FunnelLeadCaptureSection({ data, funnelSlug }: { data: FunnelLeadCaptureData; funnelSlug?: string }) {
   return (
     <FunnelSection>
       <FunnelSectionHeader eyebrow={data.eyebrow} title={data.title} description={data.body} />
-      <form
-        method="post"
-        action={data.formActionUrl}
-        className="mt-6 flex flex-col gap-3 sm:flex-row"
-      >
-        <input
-          type="email"
-          name="email"
-          placeholder={data.placeholder ?? "Enter your email"}
-          required
-          className="h-11 flex-1 rounded-full border border-white/15 bg-black/30 px-5 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-white/35 focus:outline-none"
-        />
-        <button
-          type="submit"
-          className="inline-flex h-11 items-center justify-center rounded-full border border-white/20 bg-white px-6 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
+      {funnelSlug === "legal" ? (
+        <LegalLeadCaptureForm ctaLabel={data.ctaLabel} placeholder={data.placeholder} />
+      ) : (
+        <form
+          method="post"
+          action={data.formActionUrl}
+          className="mt-6 flex flex-col gap-3 sm:flex-row"
         >
-          {data.ctaLabel ?? "Get the Guide"}
-        </button>
-      </form>
+          <input
+            type="email"
+            name="email"
+            placeholder={data.placeholder ?? "Enter your email"}
+            required
+            className="h-11 flex-1 rounded-full border border-white/15 bg-black/30 px-5 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-white/35 focus:outline-none"
+          />
+          <button
+            type="submit"
+            className="inline-flex h-11 items-center justify-center rounded-full border border-white/20 bg-white px-6 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
+          >
+            {data.ctaLabel ?? "Get the Guide"}
+          </button>
+        </form>
+      )}
       {data.integrationNote ? <p className="mt-3 text-xs text-zinc-500">{data.integrationNote}</p> : null}
     </FunnelSection>
   );

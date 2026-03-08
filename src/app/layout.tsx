@@ -6,6 +6,7 @@ import SiteNavDrawer from "@/components/SiteNavDrawer";
 import { ShopifyRuntime } from "@/components/shopify/ShopifyRuntime";
 import RouteAnalyticsTracker from "@/components/analytics/RouteAnalyticsTracker";
 import AnalyticsClickTracker from "@/components/analytics/AnalyticsClickTracker";
+import ZapierDevTestTrigger from "@/components/zapier/ZapierDevTestTrigger";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -63,6 +64,7 @@ export default function RootLayout({
         ) : null}
         <RouteAnalyticsTracker />
         <AnalyticsClickTracker />
+        <ZapierDevTestTrigger />
         <SiteNavDrawer />
         <ShopifyRuntime />
         {children}

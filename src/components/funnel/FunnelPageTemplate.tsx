@@ -46,7 +46,7 @@ export default function FunnelPageTemplate({ config }: FunnelPageTemplateProps) 
         {config.cta ? <FunnelCtaSection data={config.cta} /> : null}
         {config.upsells ? <FunnelUpsellSection data={config.upsells} /> : null}
         {config.faq ? <FunnelFaqSection data={config.faq} /> : null}
-        {config.leadCapture ? <FunnelLeadCaptureSection data={config.leadCapture} /> : null}
+        {config.leadCapture ? <FunnelLeadCaptureSection data={config.leadCapture} funnelSlug={config.slug} /> : null}
       </div>
     </main>
   );

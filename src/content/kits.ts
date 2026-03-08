@@ -23,6 +23,9 @@ const KIT_COVER_OVERRIDES: Record<string, string> = {
   "distribution-protection-kit": "/covers/kits/distribution-protection-kit.jpg",
   "artist-legal-glossary": "/covers/kits/artist-legal-glossary.jpeg",
   "seven-steps-to-find-every-dollar": "/covers/kits/seven-steps-to-find-every-dollar.jpg",
+  "trust-fund-game": "/covers/kits/7 steps to protect your money before you die.png",
+  "artist-management-starter-kit": "/covers/kits/the artist management starter kit.png",
+  "indie-artist-legal-kit": "/covers/kits/the indie artits legal kit.png",
 };
 
 const KIT_ITEMS: Omit<KitItem, "coverSrc">[] = [
@@ -125,6 +128,24 @@ const KIT_ITEMS: Omit<KitItem, "coverSrc">[] = [
   {
     slug: "seven-steps-to-claim-every-royalty",
     title: "Seven Steps to Claim Every Royalty",
+    type: "kit",
+    parent: "sign-here",
+  },
+  {
+    slug: "trust-fund-game",
+    title: "Trust Fund Game: 7 Steps to Protect Your Music After You Die",
+    type: "kit",
+    parent: "sign-here",
+  },
+  {
+    slug: "artist-management-starter-kit",
+    title: "The Artist Management Starter Kit",
+    type: "kit",
+    parent: "sign-here",
+  },
+  {
+    slug: "indie-artist-legal-kit",
+    title: "Sign Here: The Indie Artist Legal Kit",
     type: "kit",
     parent: "sign-here",
   },
