@@ -15,81 +15,77 @@ const longBio =
   "Founder Glenn builds books, products, and operating systems designed to help creators own their work, scale their leverage, and build enduring legacies.";
 
 export default function MediaPage() {
+  const projectReferences = [
+    ["Books", "/books"],
+    ["Blogs", "/blogs"],
+    ["GLÈNN", "/glenn"],
+    ["Nexus Health Kit", "/nexus"],
+    ["Kits", "/kits"],
+    ["Comics", "/comics"],
+    ["Music", "/music"],
+  ] as const;
+
   return (
-    <main className="min-h-screen bg-[#121212] px-6 py-20 text-zinc-100">
-      <article className="mx-auto max-w-5xl space-y-8">
-        <header className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10">
-          <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Media / Press</p>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight text-white md:text-5xl">Founder Glenn</h1>
-          <p className="mt-4 max-w-3xl text-zinc-300">{shortBio}</p>
-        </header>
-
-        <section className="grid gap-5 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-            <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Headshot</p>
-            <div className="relative mt-4 aspect-[4/5] overflow-hidden rounded-xl border border-white/10 bg-black/20">
-              <Image
-                src="/things/founderGlennHEADSHOT.jpg"
-                alt="Founder Glenn headshot"
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 40vw"
-                className="object-cover object-center"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-5">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Short Bio</p>
-              <p className="mt-3 text-zinc-300">{shortBio}</p>
-            </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Long Bio</p>
-              <p className="mt-3 text-zinc-300">{longBio}</p>
-            </div>
-          </div>
+    <main className="min-h-screen bg-black px-6 py-20 text-zinc-100">
+      <article className="mx-auto max-w-[900px] py-4 md:py-10">
+        <section className="mx-auto mb-10 w-full max-w-[620px]">
+          <Image
+            src="/things/founderGlennHEADSHOT.jpg"
+            alt="Founder Glenn headshot"
+            width={1240}
+            height={1550}
+            priority
+            className="h-auto w-full rounded-xl shadow-[0_40px_90px_rgba(255,255,255,0.08)]"
+          />
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10">
-          <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Project References</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {[
-              ["Books", "/books"],
-              ["Blogs", "/blogs"],
-              ["GLÈNN", "/glenn"],
-              ["Nexus Health Kit", "/nexus"],
-              ["Kits", "/kits"],
-              ["Comics", "/comics"],
-              ["Music", "/music"],
-            ].map(([label, href]) => (
-              <Link
-                key={href}
-                href={href}
-                className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
-              >
-                {label}
-              </Link>
-            ))}
-          </div>
+        <header className="mb-10 text-center">
+          <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Media / Press</p>
+          <h1 className="mt-3 text-5xl font-bold tracking-tight text-white md:text-6xl">Founder Glenn</h1>
+          <h2 className="mt-4 text-xl font-medium tracking-wide text-zinc-300 md:text-2xl">
+            Shakur Raqon Ziyār Glenn
+          </h2>
+          <p className="mx-auto mt-6 max-w-[720px] text-lg leading-[1.75] text-gray-300">{shortBio}</p>
+        </header>
 
-          <p className="mt-7 text-sm text-zinc-400">
-            For interviews and collaborations, use the contact page or reach out through the official profiles below.
-          </p>
+        <section className="mx-auto max-w-[720px] px-0 md:px-6">
+          <div className="space-y-8 text-lg leading-[1.75] text-gray-300">
+            <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Short Bio</p>
+            <p>{shortBio}</p>
 
-          <div className="mt-4 flex flex-wrap gap-2">
-            {seoConfig.person.sameAs.map((url) => (
-              <a
-                key={url}
-                href={url}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
-              >
-                {url.replace(/^https?:\/\//, "")}
-              </a>
-            ))}
+            <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Long Bio</p>
+            <p>{longBio}</p>
+
+            <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Project References</p>
+            <div className="space-y-2">
+              {projectReferences.map(([label, href]) => (
+                <p key={href}>
+                  <Link href={href} className="text-zinc-200 underline underline-offset-4 hover:text-white">
+                    {label}
+                  </Link>
+                </p>
+              ))}
+            </div>
+
+            <p>
+              For interviews and collaborations, use the contact page or reach out through the official
+              profiles below.
+            </p>
+
+            <div className="space-y-2">
+              {seoConfig.person.sameAs.map((url) => (
+                <p key={url}>
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-zinc-200 underline underline-offset-4 hover:text-white"
+                  >
+                    {url.replace(/^https?:\/\//, "")}
+                  </a>
+                </p>
+              ))}
+            </div>
           </div>
         </section>
       </article>
