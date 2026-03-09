@@ -21,6 +21,7 @@ const geistMono = localFont({
 });
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-WXCF8SL7";
+const GA_MEASUREMENT_ID = "G-8Y2YH8FPG1";
 
 export const metadata: Metadata = {
   title: {
@@ -39,6 +40,19 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script src="https://cdn.shopify.com/storefront/web-components.js" strategy="afterInteractive" />
+        <Script
+          id="ga-script"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         {GTM_ID ? (
           <Script id="gtm-script" strategy="afterInteractive">
             {`
