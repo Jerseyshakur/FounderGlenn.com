@@ -3,8 +3,11 @@ import ArticleImage from "@/components/blog/ArticleImage";
 import { getAllPostsMeta } from "@/lib/blog";
 
 export const metadata = {
-  title: "Blogs",
+  title: "Blog",
   description: "Essays, frameworks, and build logs from Founder Glenn.",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default async function BlogPage() {

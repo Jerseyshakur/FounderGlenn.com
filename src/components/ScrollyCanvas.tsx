@@ -6,6 +6,10 @@ import { useEffect, useRef, useState } from "react";
 const START_FRAME = 23;
 const END_FRAME = 158;
 const TOTAL_FRAMES = END_FRAME - START_FRAME + 1;
+const FRAME_URLS = Array.from(
+    { length: TOTAL_FRAMES },
+    (_, i) => `/sequence/frame_${(START_FRAME + i).toString().padStart(3, "0")}_delay-0.2s.webp`,
+);
 
 function Overlay({ scrollProgress }: { scrollProgress: MotionValue<number> }) {
     // Config values for timing
@@ -134,8 +138,11 @@ function Overlay({ scrollProgress }: { scrollProgress: MotionValue<number> }) {
 export default function ScrollyCanvas() {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [images, setImages] = useState<HTMLImageElement[]>([]);
-    const [imagesLoaded, setImagesLoaded] = useState(false);
+    const imagesRef = useRef<(HTMLImageElement | null)[]>(Array(TOTAL_FRAMES).fill(null));
+    const imagePromisesRef = useRef<(Promise<HTMLImageElement> | null)[]>(Array(TOTAL_FRAMES).fill(null));
+    const [isPrimed, setIsPrimed] = useState(false);
+    const [allFramesLoaded, setAllFramesLoaded] = useState(false);
+    const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
     const [progress, setProgress] = useState(0);
 
     const { scrollYProgress } = useScroll({
@@ -147,39 +154,12 @@ export default function ScrollyCanvas() {
     const currentIndex = useTransform(scrollYProgress, [0, 0.8], [0, TOTAL_FRAMES - 1]);
 
     useEffect(() => {
-        // Preload all frames concurrently
-        const loadImages = async () => {
-            let loadedCount = 0;
+        const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const updateMotionPreference = () => setPrefersReducedMotion(mediaQuery.matches);
+        updateMotionPreference();
 
-            const promises = Array.from({ length: TOTAL_FRAMES }, (_, i) => {
-                return new Promise<HTMLImageElement>((resolve) => {
-                    const img = new Image();
-                    const num = (START_FRAME + i).toString().padStart(3, "0");
-                    img.src = `/sequence/frame_${num}_delay-0.2s.webp`;
-
-                    img.onload = () => {
-                        loadedCount++;
-                        setProgress(Math.round((loadedCount / TOTAL_FRAMES) * 100));
-                        resolve(img);
-                    };
-                    img.onerror = () => {
-                        console.error(`Failed to load ${img.src}`);
-                        resolve(img); // Resolve anyway to keep order
-                    };
-                });
-            });
-
-            const loadedImages = await Promise.all(promises);
-            setImages(loadedImages);
-            setImagesLoaded(true);
-
-            // Draw first frame immediately
-            if (loadedImages.length > 0 && canvasRef.current) {
-                drawFrame(loadedImages[0]);
-            }
-        };
-
-        loadImages();
+        mediaQuery.addEventListener("change", updateMotionPreference);
+        return () => mediaQuery.removeEventListener("change", updateMotionPreference);
     }, []);
 
     const drawFrame = (image: HTMLImageElement) => {
@@ -225,49 +205,192 @@ export default function ScrollyCanvas() {
         ctx.drawImage(image, offsetX, offsetY, renderWidth, renderHeight);
     };
 
+    useEffect(() => {
+        if (prefersReducedMotion) {
+            setIsPrimed(true);
+            return;
+        }
+
+        let cancelled = false;
+        let loadedCount = 0;
+
+        const loadFrameAtIndex = (index: number): Promise<HTMLImageElement> => {
+            const cached = imagesRef.current[index];
+            if (cached) return Promise.resolve(cached);
+
+            const pending = imagePromisesRef.current[index];
+            if (pending) return pending;
+
+            const promise = new Promise<HTMLImageElement>((resolve) => {
+                const img = new Image();
+                img.src = FRAME_URLS[index];
+
+                img.onload = () => {
+                    imagesRef.current[index] = img;
+                    loadedCount += 1;
+                    if (!cancelled) {
+                        setProgress(Math.round((loadedCount / TOTAL_FRAMES) * 100));
+                    }
+                    resolve(img);
+                };
+
+                img.onerror = () => {
+                    // Keep sequence resilient; fall back to nearest loaded frame.
+                    loadedCount += 1;
+                    if (!cancelled) {
+                        setProgress(Math.round((loadedCount / TOTAL_FRAMES) * 100));
+                    }
+                    resolve(img);
+                };
+            });
+
+            imagePromisesRef.current[index] = promise;
+            return promise;
+        };
+
+        const buildInitialFrameIndices = (): number[] => {
+            const isMobileLike =
+                window.innerWidth < 768 || window.matchMedia("(pointer: coarse)").matches;
+            const initialFrameBudget = isMobileLike ? 12 : 20;
+            const step = Math.max(1, Math.floor((TOTAL_FRAMES - 1) / (initialFrameBudget - 1)));
+            const indices = new Set<number>([0]);
+
+            for (let i = step; i < TOTAL_FRAMES; i += step) {
+                indices.add(i);
+                if (indices.size >= initialFrameBudget) break;
+            }
+            indices.add(TOTAL_FRAMES - 1);
+
+            return Array.from(indices).sort((a, b) => a - b);
+        };
+
+        const loadProgressively = async () => {
+            const initialIndices = buildInitialFrameIndices();
+            const remainingIndices = Array.from({ length: TOTAL_FRAMES }, (_, i) => i).filter(
+                (index) => !initialIndices.includes(index),
+            );
+
+            // Make the hero usable as soon as the first frame arrives.
+            await loadFrameAtIndex(0);
+            if (cancelled) return;
+
+            const firstFrame = imagesRef.current[0];
+            if (firstFrame && canvasRef.current) {
+                drawFrame(firstFrame);
+            }
+            setIsPrimed(true);
+
+            // Fill a small initial subset before broad background loading.
+            const initialRemainder = initialIndices.filter((index) => index !== 0);
+            await Promise.all(initialRemainder.map((index) => loadFrameAtIndex(index)));
+            if (cancelled) return;
+
+            // Continue loading all remaining frames in the background.
+            Promise.all(remainingIndices.map((index) => loadFrameAtIndex(index))).then(() => {
+                if (!cancelled) {
+                    setAllFramesLoaded(true);
+                }
+            });
+        };
+
+        loadProgressively();
+
+        return () => {
+            cancelled = true;
+        };
+    }, [prefersReducedMotion]);
+
+    const getNearestLoadedFrame = (target: number): HTMLImageElement | null => {
+        const direct = imagesRef.current[target];
+        if (direct) return direct;
+
+        for (let offset = 1; offset < TOTAL_FRAMES; offset += 1) {
+            const left = target - offset;
+            const right = target + offset;
+            if (left >= 0 && imagesRef.current[left]) return imagesRef.current[left];
+            if (right < TOTAL_FRAMES && imagesRef.current[right]) return imagesRef.current[right];
+        }
+
+        return null;
+    };
+
     useMotionValueEvent(currentIndex, "change", (latest) => {
-        if (!imagesLoaded || images.length === 0) return;
-        // Map the continuous value to a valid array index
-        const frameIndex = Math.min(Math.max(Math.floor(latest), 0), images.length - 1);
-        drawFrame(images[frameIndex]);
+        if (!isPrimed || prefersReducedMotion) return;
+
+        const frameIndex = Math.min(Math.max(Math.floor(latest), 0), TOTAL_FRAMES - 1);
+        const frame = getNearestLoadedFrame(frameIndex);
+        if (frame) drawFrame(frame);
     });
 
     useEffect(() => {
+        if (prefersReducedMotion) return;
+
         const handleResize = () => {
-            if (!imagesLoaded || images.length === 0) return;
-            const frameIndex = Math.min(Math.max(Math.floor(currentIndex.get()), 0), images.length - 1);
-            drawFrame(images[frameIndex]);
+            if (!isPrimed) return;
+            const frameIndex = Math.min(Math.max(Math.floor(currentIndex.get()), 0), TOTAL_FRAMES - 1);
+            const frame = getNearestLoadedFrame(frameIndex);
+            if (frame) drawFrame(frame);
         };
 
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, [imagesLoaded, images, currentIndex]);
+    }, [isPrimed, prefersReducedMotion, currentIndex]);
 
     return (
-        <section ref={containerRef} className="relative w-full h-[500vh] bg-[#121212]">
+        <section ref={containerRef} className={`relative w-full bg-[#121212] ${prefersReducedMotion ? "h-[100svh]" : "h-[500vh]"}`}>
             <div className="sticky top-0 w-full h-[100svh] overflow-hidden bg-[#121212]">
-                <canvas
-                    ref={canvasRef}
-                    style={{ objectPosition: 'center 20%' }}
-                    className="absolute inset-0 w-full h-full object-cover opacity-60"
-                />
-
-                {/* The Text Overlay */}
-                {imagesLoaded && <Overlay scrollProgress={scrollYProgress} />}
-
-                {/* Loader */}
-                {!imagesLoaded && (
-                    <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#121212]">
-                        <div className="w-48 h-1 bg-zinc-800 rounded-full overflow-hidden mb-4">
-                            <div
-                                className="h-full bg-zinc-200 transition-all duration-300 ease-out"
-                                style={{ width: `${progress}%` }}
-                            />
+                {prefersReducedMotion ? (
+                    <>
+                        <img
+                            src={FRAME_URLS[0]}
+                            alt="Founder Glenn hero frame"
+                            className="absolute inset-0 h-full w-full object-cover object-[50%_20%] opacity-60"
+                        />
+                        <div className="absolute inset-0 z-10 pointer-events-none">
+                            <div className="relative w-full h-full max-w-7xl mx-auto px-6 lg:px-12">
+                                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center text-center">
+                                    <h1 className="text-4xl md:text-7xl font-bold tracking-tight text-white mb-4 drop-shadow-md">
+                                        Founder Glenn
+                                    </h1>
+                                    <p className="text-xl md:text-2xl text-zinc-400 font-medium tracking-wide drop-shadow-md">
+                                        Author &bull; Physicist
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <p className="text-zinc-500 text-xs tracking-[0.2em] uppercase font-medium">
-                            Loading Sequence... {progress}%
-                        </p>
-                    </div>
+                    </>
+                ) : (
+                    <>
+                        <canvas
+                            ref={canvasRef}
+                            style={{ objectPosition: "center 20%" }}
+                            className="absolute inset-0 w-full h-full object-cover opacity-60"
+                        />
+
+                        {/* The Text Overlay */}
+                        {isPrimed && <Overlay scrollProgress={scrollYProgress} />}
+
+                        {/* Loader */}
+                        {!isPrimed && (
+                            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#121212]">
+                                <div className="w-48 h-1 bg-zinc-800 rounded-full overflow-hidden mb-4">
+                                    <div
+                                        className="h-full bg-zinc-200 transition-all duration-300 ease-out"
+                                        style={{ width: `${progress}%` }}
+                                    />
+                                </div>
+                                <p className="text-zinc-500 text-xs tracking-[0.2em] uppercase font-medium">
+                                    Loading Sequence... {progress}%
+                                </p>
+                            </div>
+                        )}
+
+                        {!allFramesLoaded && isPrimed ? (
+                            <div className="absolute bottom-6 right-6 text-[10px] uppercase tracking-[0.14em] text-zinc-500">
+                                Refining Frames...
+                            </div>
+                        ) : null}
+                    </>
                 )}
             </div>
         </section>

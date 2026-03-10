@@ -35,6 +35,7 @@ export type AnalyticsEventPayload = {
 declare global {
   interface Window {
     dataLayer?: Array<Record<string, unknown>>;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -79,6 +80,15 @@ export function trackPageView(pathname: string, search: string = ""): void {
     utm_term,
     utm_content,
   });
+
+  // In GA fallback mode (no GTM), send SPA pageviews directly to gtag.
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "page_view", {
+      page_path: `${pathname}${search}`,
+      page_location: window.location.href,
+      page_title: document.title,
+    });
+  }
 }
 
 export function trackViewItem(item: AnalyticsItem, extra: AnalyticsEventPayload = {}): void {

@@ -1,15 +1,16 @@
+import { BOOKS } from "@/content/books";
+import { KITS } from "@/content/kits";
+import { getAllPostSlugs } from "@/lib/blog";
+
 const BASE_URL = "https://founderglenn.com";
 const ROUTES = [
   "/",
   "/about",
+  "/in-memory",
   "/books",
   "/books/books",
-  "/books/kits",
-  "/books/comics",
-  "/books/essays",
   "/essays",
   "/blog",
-  "/blogs",
   "/glenn",
   "/nexus",
   "/legal",
@@ -22,20 +23,40 @@ const ROUTES = [
   "/comics",
 ] as const;
 
-export async function GET() {
-  const lastmod = new Date().toISOString();
+function buildUrlEntry(route: string, lastModified: string) {
+  const priority =
+    route === "/"
+      ? "1.0"
+      : route === "/legal" || route === "/royalties" || route === "/nexus"
+        ? "0.9"
+        : "0.8";
 
-  const urls = ROUTES.map((route) => {
-    const priority = route === "/" ? "1.0" : route === "/legal" || route === "/royalties" || route === "/nexus" ? "0.9" : "0.8";
-    return [
-      "  <url>",
-      `    <loc>${BASE_URL}${route === "/" ? "" : route}</loc>`,
-      `    <lastmod>${lastmod}</lastmod>`,
-      "    <changefreq>weekly</changefreq>",
-      `    <priority>${priority}</priority>`,
-      "  </url>",
-    ].join("\n");
-  }).join("\n");
+  return [
+    "  <url>",
+    `    <loc>${BASE_URL}${route === "/" ? "" : route}</loc>`,
+    `    <lastmod>${lastModified}</lastmod>`,
+    "    <changefreq>weekly</changefreq>",
+    `    <priority>${priority}</priority>`,
+    "  </url>",
+  ].join("\n");
+}
+
+export async function GET() {
+  const lastModified = new Date().toISOString();
+  const blogSlugs = await getAllPostSlugs();
+  const essaySlugs = BOOKS.filter((book) => book.category === "essays").map((book) => book.slug);
+  const kitSlugs = KITS.map((kit) => kit.slug);
+  const bookSlugs = BOOKS.filter((book) => book.category !== "essays").map((book) => book.slug);
+
+  const dynamicRoutes = [
+    ...blogSlugs.map((slug) => `/blog/${slug}`),
+    ...essaySlugs.map((slug) => `/essays/${slug}`),
+    ...kitSlugs.map((slug) => `/kits/${slug}`),
+    ...bookSlugs.map((slug) => `/books/${slug}`),
+  ];
+
+  const canonicalRoutes = Array.from(new Set([...ROUTES, ...dynamicRoutes]));
+  const urls = canonicalRoutes.map((route) => buildUrlEntry(route, lastModified)).join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
 

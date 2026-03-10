@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { NAV_ITEMS } from "@/content/navigation";
 import { ShopifyCartButton } from "@/components/shopify/ShopifyRuntime";
 import { seoConfig } from "@/lib/seo";
@@ -21,10 +21,28 @@ function socialLabel(url: string): string {
   return "Profile";
 }
 
+function getFocusableElements(container: HTMLElement): HTMLElement[] {
+  const selectors = [
+    "a[href]",
+    "button:not([disabled])",
+    "input:not([disabled])",
+    "select:not([disabled])",
+    "textarea:not([disabled])",
+    "[tabindex]:not([tabindex='-1'])",
+  ].join(",");
+
+  return Array.from(container.querySelectorAll<HTMLElement>(selectors)).filter(
+    (node) => !node.hasAttribute("disabled") && node.getAttribute("aria-hidden") !== "true",
+  );
+}
+
 export default function SiteNavDrawer() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const drawerId = useId();
+  const drawerLabelId = useId();
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setOpen(false);
@@ -33,25 +51,59 @@ export default function SiteNavDrawer() {
   useEffect(() => {
     if (!open) return;
 
-    const onEscape = (event: KeyboardEvent) => {
+    const drawerNode = drawerRef.current;
+    if (!drawerNode) return;
+
+    const focusables = getFocusableElements(drawerNode);
+    const initialFocus = focusables[0] ?? drawerNode;
+    initialFocus.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        event.preventDefault();
         setOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const currentFocusables = getFocusableElements(drawerNode);
+      if (currentFocusables.length === 0) {
+        event.preventDefault();
+        drawerNode.focus();
+        return;
+      }
+
+      const first = currentFocusables[0];
+      const last = currentFocusables[currentFocusables.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (event.shiftKey) {
+        if (active === first || !drawerNode.contains(active)) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (active === last || !drawerNode.contains(active)) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onEscape);
+    document.addEventListener("keydown", onKeyDown);
 
     return () => {
       document.body.style.overflow = originalOverflow;
-      window.removeEventListener("keydown", onEscape);
+      document.removeEventListener("keydown", onKeyDown);
+      triggerRef.current?.focus();
     };
   }, [open]);
 
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
         aria-label={open ? "Close menu" : "Open menu"}
         aria-controls={drawerId}
@@ -81,10 +133,18 @@ export default function SiteNavDrawer() {
       />
 
       <aside
+        ref={drawerRef}
         id={drawerId}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={drawerLabelId}
         aria-hidden={!open}
+        tabIndex={-1}
         className={`fixed left-0 top-0 z-[65] flex h-screen w-[min(90vw,380px)] flex-col overflow-hidden border-r border-white/10 bg-[#0f0f0f]/95 px-6 pb-6 pt-20 text-zinc-100 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"}`}
       >
+        <h2 id={drawerLabelId} className="sr-only">
+          Site navigation menu
+        </h2>
         <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4">
           <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Store</p>
           <ShopifyCartButton className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-white hover:text-black" />

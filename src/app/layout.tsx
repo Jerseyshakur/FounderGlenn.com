@@ -40,20 +40,14 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script src="https://cdn.shopify.com/storefront/web-components.js" strategy="afterInteractive" />
-        <Script
-          id="ga-script"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga-init" strategy="afterInteractive">
+        {/* Always ensure dataLayer exists so custom events can queue safely. */}
+        <Script id="analytics-datalayer-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
         {GTM_ID ? (
+          /* GTM is the single traffic controller when present. */
           <Script id="gtm-script" strategy="afterInteractive">
             {`
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -63,6 +57,23 @@ export default function RootLayout({
               })(window,document,'script','dataLayer','${GTM_ID}');
             `}
           </Script>
+        ) : GA_MEASUREMENT_ID ? (
+          /* Fallback: direct GA only when GTM is not configured. */
+          <>
+            <Script
+              id="ga-script"
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = window.gtag || gtag;
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });
+              `}
+            </Script>
+          </>
         ) : null}
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
