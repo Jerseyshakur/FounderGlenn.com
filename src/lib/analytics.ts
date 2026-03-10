@@ -71,6 +71,23 @@ export function trackPageView(pathname: string, search: string = ""): void {
   const utm_term = params.get("utm_term") || undefined;
   const utm_content = params.get("utm_content") || undefined;
 
+  // In GA fallback mode (no GTM), send SPA pageviews via gtag only.
+  // This avoids duplicating page_view through both dataLayer and gtag.
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "page_view", {
+      page_path: `${pathname}${search}`,
+      page_location: window.location.href,
+      page_title: document.title,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_term,
+      utm_content,
+    });
+    return;
+  }
+
+  // GTM path: push page_view once to dataLayer for container-driven routing.
   trackEvent("page_view", {
     path: `${pathname}${search}`,
     route: pathname,
@@ -80,15 +97,6 @@ export function trackPageView(pathname: string, search: string = ""): void {
     utm_term,
     utm_content,
   });
-
-  // In GA fallback mode (no GTM), send SPA pageviews directly to gtag.
-  if (typeof window !== "undefined" && typeof window.gtag === "function") {
-    window.gtag("event", "page_view", {
-      page_path: `${pathname}${search}`,
-      page_location: window.location.href,
-      page_title: document.title,
-    });
-  }
 }
 
 export function trackViewItem(item: AnalyticsItem, extra: AnalyticsEventPayload = {}): void {
