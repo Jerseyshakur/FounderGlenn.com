@@ -83,49 +83,51 @@ export default function SiteNavDrawer() {
       <aside
         id={drawerId}
         aria-hidden={!open}
-        className={`fixed left-0 top-0 z-[65] flex h-screen w-[min(90vw,380px)] flex-col border-r border-white/10 bg-[#0f0f0f]/95 px-6 pb-6 pt-20 text-zinc-100 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed left-0 top-0 z-[65] flex h-screen w-[min(90vw,380px)] flex-col overflow-hidden border-r border-white/10 bg-[#0f0f0f]/95 px-6 pb-6 pt-20 text-zinc-100 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-4">
           <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Store</p>
           <ShopifyCartButton className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-white hover:text-black" />
         </div>
-        <nav className="space-y-1" aria-label="Primary">
-          {NAV_ITEMS.map((item) => {
-            const active = isActive(pathname, item.href);
+        <div className="site-nav-scroll min-h-0 flex-1 overflow-y-auto pr-1">
+          <nav className="space-y-1" aria-label="Primary">
+            {NAV_ITEMS.map((item) => {
+              const active = isActive(pathname, item.href);
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`block rounded-lg px-3 py-2.5 text-sm tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
-                  active
-                    ? "bg-white/[0.08] text-white"
-                    : "text-zinc-300 hover:bg-white/[0.05] hover:text-white"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`block rounded-lg px-3 py-2.5 text-sm tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+                    active
+                      ? "bg-white/[0.08] text-white"
+                      : "text-zinc-300 hover:bg-white/[0.05] hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-        <div className="mt-auto border-t border-white/10 pt-5">
-          <p className="text-sm font-semibold text-white">Founder Glenn</p>
-          <p className="mt-1 text-xs text-zinc-400">Shakur Raqon Ziyār Glenn</p>
-          <p className="mt-3 text-sm text-zinc-300">I build systems for creators.</p>
+          <div className="mt-6 border-t border-white/10 pt-5">
+            <p className="text-sm font-semibold text-white">Founder Glenn</p>
+            <p className="mt-1 text-xs text-zinc-400">Shakur Raqon Ziyār Glenn</p>
+            <p className="mt-3 text-sm text-zinc-300">I build systems for creators.</p>
 
-          <div className="mt-4 flex flex-wrap gap-2">
-            {seoConfig.person.sameAs.map((url) => (
-              <a
-                key={url}
-                href={url}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-zinc-300 transition-colors hover:border-white/30 hover:text-white"
-              >
-                {socialLabel(url)}
-              </a>
-            ))}
+            <div className="mt-4 flex flex-wrap gap-2 pb-1">
+              {seoConfig.person.sameAs.map((url) => (
+                <a
+                  key={url}
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-zinc-300 transition-colors hover:border-white/30 hover:text-white"
+                >
+                  {socialLabel(url)}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </aside>
