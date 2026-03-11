@@ -2,22 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildAbsoluteUrl, resolveOgImage, seoConfig } from "@/lib/seo";
 
-export const NEXUS_BASE_PATH = "/nexushealthcare";
+export const NEXUS_BASE_PATH = "/NexusHealthKit";
 export const NEXUS_SUPPORT_EMAIL = "support@founderglenn.com";
 export const NEXUS_BUSINESS_EMAIL = "business@founderglenn.com";
 
 export const NEXUS_LINKS = [
-  { label: "Nexus HealthKit", href: "/nexushealthcare" },
-  { label: "Features", href: "/nexushealthcare/features" },
-  { label: "Privacy", href: "/nexushealthcare/privacy" },
-  { label: "Terms", href: "/nexushealthcare/terms" },
-  { label: "Support", href: "/nexushealthcare/support" },
-  { label: "FAQ", href: "/nexushealthcare/faq" },
-  { label: "Subscription", href: "/nexushealthcare/subscription" },
-  { label: "Updates", href: "/nexushealthcare/updates" },
-  { label: "Delete Data", href: "/nexushealthcare/delete-data" },
-  { label: "About", href: "/nexushealthcare/about" },
-  { label: "Contact", href: "/nexushealthcare/contact" },
+  { label: "Nexus HealthKit", href: "/NexusHealthKit" },
+  { label: "Features", href: "/NexusHealthKit/features" },
+  { label: "Privacy", href: "/NexusHealthKit/privacy" },
+  { label: "Terms", href: "/NexusHealthKit/terms" },
+  { label: "Support", href: "/NexusHealthKit/support" },
+  { label: "FAQ", href: "/NexusHealthKit/faq" },
+  { label: "Subscription", href: "/NexusHealthKit/subscription" },
+  { label: "Updates", href: "/NexusHealthKit/updates" },
+  { label: "Delete Data", href: "/NexusHealthKit/delete-data" },
+  { label: "About", href: "/NexusHealthKit/about" },
+  { label: "Contact", href: "/NexusHealthKit/contact" },
 ] as const;
 
 type NexusMetadataInput = {

@@ -3,7 +3,7 @@ import { buildNexusMetadata, NexusPageShell } from "../_shared";
 export const metadata = buildNexusMetadata({
   title: "About Nexus HealthKit | Founder Glenn",
   description: "What Nexus HealthKit is, why it exists, and the philosophy behind Founder Glenn’s performance analytics stack.",
-  path: "/nexushealthcare/about",
+  path: "/NexusHealthKit/about",
 });
 
 export default function NexusAboutPage() {

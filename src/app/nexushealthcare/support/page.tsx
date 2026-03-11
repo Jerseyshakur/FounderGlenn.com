@@ -3,7 +3,7 @@ import { buildNexusMetadata, NEXUS_SUPPORT_EMAIL, NexusPageShell } from "../_sha
 export const metadata = buildNexusMetadata({
   title: "Nexus HealthKit Support | Founder Glenn",
   description: "Support center for Nexus HealthKit with troubleshooting, HealthKit permissions, and subscription help.",
-  path: "/nexushealthcare/support",
+  path: "/NexusHealthKit/support",
 });
 
 export default function NexusSupportPage() {

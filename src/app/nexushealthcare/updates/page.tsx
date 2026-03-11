@@ -3,7 +3,7 @@ import { buildNexusMetadata, NexusPageShell } from "../_shared";
 export const metadata = buildNexusMetadata({
   title: "Nexus HealthKit Updates | Founder Glenn",
   description: "Product changelog for Nexus HealthKit releases, feature improvements, and bug fixes.",
-  path: "/nexushealthcare/updates",
+  path: "/NexusHealthKit/updates",
 });
 
 const changelog = [

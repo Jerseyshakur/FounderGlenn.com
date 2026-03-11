@@ -3,7 +3,7 @@ import { buildNexusMetadata, NEXUS_SUPPORT_EMAIL, NexusPageShell } from "../_sha
 export const metadata = buildNexusMetadata({
   title: "Nexus HealthKit Delete Data | Founder Glenn",
   description: "Instructions for requesting Nexus HealthKit account deletion and data removal.",
-  path: "/nexushealthcare/delete-data",
+  path: "/NexusHealthKit/delete-data",
 });
 
 export default function NexusDeleteDataPage() {

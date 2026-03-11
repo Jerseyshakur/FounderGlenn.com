@@ -4,7 +4,7 @@ import { buildNexusMetadata, NexusPageShell } from "../_shared";
 export const metadata = buildNexusMetadata({
   title: "Nexus HealthKit FAQ | Founder Glenn",
   description: "Frequently asked questions about Nexus HealthKit data usage, subscriptions, and account management.",
-  path: "/nexushealthcare/faq",
+  path: "/NexusHealthKit/faq",
 });
 
 export default function NexusFaqPage() {
@@ -46,7 +46,7 @@ export default function NexusFaqPage() {
           <h2 className="text-2xl font-semibold tracking-tight text-white">How do I delete my account?</h2>
           <p className="mt-4 text-zinc-300">
             Use the account and data deletion instructions on the{" "}
-            <Link href="/nexushealthcare/delete-data" className="underline underline-offset-4 hover:text-white">
+            <Link href="/NexusHealthKit/delete-data" className="underline underline-offset-4 hover:text-white">
               Delete Data page
             </Link>
             .

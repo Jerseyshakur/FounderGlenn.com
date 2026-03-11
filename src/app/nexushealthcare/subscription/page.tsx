@@ -3,7 +3,7 @@ import { buildNexusMetadata, NexusPageShell } from "../_shared";
 export const metadata = buildNexusMetadata({
   title: "Nexus HealthKit Subscription | Founder Glenn",
   description: "Subscription details for Nexus HealthKit Free and Pro plans billed through Apple.",
-  path: "/nexushealthcare/subscription",
+  path: "/NexusHealthKit/subscription",
 });
 
 export default function NexusSubscriptionPage() {

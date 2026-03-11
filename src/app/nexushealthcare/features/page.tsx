@@ -3,7 +3,7 @@ import { buildNexusMetadata, NexusPageShell } from "../_shared";
 export const metadata = buildNexusMetadata({
   title: "Nexus HealthKit Features | Founder Glenn",
   description: "Recovery scoring, strain tracking, HRV analysis, sleep insights, training load, and readiness metrics.",
-  path: "/nexushealthcare/features",
+  path: "/NexusHealthKit/features",
 });
 
 export default function NexusFeaturesPage() {

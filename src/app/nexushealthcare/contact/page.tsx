@@ -3,7 +3,7 @@ import { buildNexusMetadata, NEXUS_BUSINESS_EMAIL, NEXUS_SUPPORT_EMAIL, NexusPag
 export const metadata = buildNexusMetadata({
   title: "Nexus HealthKit Contact | Founder Glenn",
   description: "Contact Nexus HealthKit support and business team.",
-  path: "/nexushealthcare/contact",
+  path: "/NexusHealthKit/contact",
 });
 
 export default function NexusContactPage() {

@@ -4,7 +4,7 @@ export const metadata = buildNexusMetadata({
   title: "Nexus HealthKit Privacy Policy | Founder Glenn",
   description:
     "Privacy policy for Nexus HealthKit, including Apple HealthKit disclosures, data usage, and user privacy rights.",
-  path: "/nexushealthcare/privacy",
+  path: "/NexusHealthKit/privacy",
 });
 
 export default function NexusPrivacyPage() {

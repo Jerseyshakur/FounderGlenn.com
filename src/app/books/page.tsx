@@ -61,14 +61,14 @@ export default function WritingGatewayPage() {
               /royalties
             </Link>
             <Link
-              href="/nexushealthcare"
+              href="/NexusHealthKit"
               data-analytics-cta="1"
               data-analytics-label="Books Gateway Nexus"
-              data-analytics-destination="/nexushealthcare"
+              data-analytics-destination="/NexusHealthKit"
               data-analytics-context="gateway-routing"
               className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
             >
-              /nexushealthcare
+              /NexusHealthKit
             </Link>
           </div>
         </header>
