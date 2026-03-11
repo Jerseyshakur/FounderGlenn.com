@@ -12,7 +12,17 @@ const ROUTES = [
   "/essays",
   "/blog",
   "/glenn",
-  "/nexus",
+  "/nexushealthcare",
+  "/nexushealthcare/privacy",
+  "/nexushealthcare/terms",
+  "/nexushealthcare/support",
+  "/nexushealthcare/subscription",
+  "/nexushealthcare/contact",
+  "/nexushealthcare/faq",
+  "/nexushealthcare/delete-data",
+  "/nexushealthcare/about",
+  "/nexushealthcare/features",
+  "/nexushealthcare/updates",
   "/legal",
   "/royalties",
   "/music",
@@ -27,7 +37,7 @@ function buildUrlEntry(route: string, lastModified: string) {
   const priority =
     route === "/"
       ? "1.0"
-      : route === "/legal" || route === "/royalties" || route === "/nexus"
+      : route === "/legal" || route === "/royalties" || route === "/nexushealthcare"
         ? "0.9"
         : "0.8";
 

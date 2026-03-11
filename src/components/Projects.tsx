@@ -30,7 +30,7 @@ const PROJECTS = [
         id: 4,
         title: "Nexus Health Kit",
         category: "Recovery and readiness coaching powered by physiology + AI.",
-        link: "/nexus",
+        link: "/nexushealthcare",
         image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2000&auto=format&fit=crop",
     },
 ];
@@ -74,10 +74,10 @@ export default function Projects() {
                             Royalty Recovery
                         </Link>
                         <Link
-                            href="/nexus"
+                            href="/nexushealthcare"
                             data-analytics-cta="1"
                             data-analytics-label="Homepage Nexus"
-                            data-analytics-destination="/nexus"
+                            data-analytics-destination="/nexushealthcare"
                             data-analytics-context="homepage-routing"
                             className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
                         >

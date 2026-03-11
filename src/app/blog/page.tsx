@@ -52,10 +52,10 @@ export default async function BlogPage() {
               Find Missing Royalties
             </Link>
             <Link
-              href="/nexus"
+              href="/nexushealthcare"
               data-analytics-cta="1"
               data-analytics-label="Blog Header Nexus"
-              data-analytics-destination="/nexus"
+              data-analytics-destination="/nexushealthcare"
               data-analytics-context="content-routing"
               className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
             >
