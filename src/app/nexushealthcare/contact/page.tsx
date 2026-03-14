@@ -1,16 +1,16 @@
 import { buildNexusMetadata, NEXUS_BUSINESS_EMAIL, NEXUS_SUPPORT_EMAIL, NexusPageShell } from "../_shared";
 
 export const metadata = buildNexusMetadata({
-  title: "Nexus HealthKit Contact | Founder Glenn",
-  description: "Contact Nexus HealthKit support and business team.",
-  path: "/NexusHealthKit/contact",
+  title: "Nexus BodyOS Contact | Founder Glenn",
+  description: "Contact Nexus BodyOS support and business team.",
+  path: "/NexusBodyOS/contact",
 });
 
 export default function NexusContactPage() {
   return (
     <NexusPageShell
       title="Contact"
-      description="Support requests and business inquiries for Nexus HealthKit."
+      description="Support requests and business inquiries for Nexus BodyOS."
     >
       <div className="grid gap-6 md:grid-cols-2">
         <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 md:p-9">

@@ -3,15 +3,15 @@ import { APPS } from "@/content/apps";
 import { buildNexusMetadata, NEXUS_LINKS } from "../nexushealthcare/_shared";
 
 export const metadata = buildNexusMetadata({
-  title: "Nexus HealthKit",
+  title: "Nexus BodyOS",
   description:
-    "Nexus HealthKit by Founder Glenn: a premium physiological engine for recovery, readiness, and performance.",
-  path: "/NexusHealthKit",
+    "Nexus BodyOS by Founder Glenn: a premium physiological engine for recovery, readiness, and performance.",
+  path: "/NexusBodyOS",
 });
 
 const nexusApp = APPS.find((app) => app.slug === "nexus");
 
-export default function NexusHealthKitPage() {
+export default function NexusBodyOSPage() {
   return (
     <main className="min-h-screen bg-[#09090b] text-zinc-100">
       <section className="relative overflow-hidden px-6 pb-16 pt-20 md:px-10 md:pt-24">
@@ -20,16 +20,16 @@ export default function NexusHealthKitPage() {
         <div className="pointer-events-none absolute -left-32 bottom-0 h-[18rem] w-[18rem] rounded-full bg-emerald-400/10 blur-3xl" />
 
         <div className="relative mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Nexus HealthKit</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Nexus BodyOS</p>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
             Your Body Is Running a System.
             <span className="block bg-gradient-to-r from-cyan-300 via-violet-300 to-emerald-300 bg-clip-text text-transparent">
-              Nexus HealthKit Shows You the Code.
+              Nexus BodyOS Shows You the Code.
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-300 md:text-lg">
-            Most health apps report numbers. Nexus HealthKit interprets recovery, readiness, stress, sleep, and
-            workload so your next move is clear before performance drops.
+            Most health apps report numbers. Nexus BodyOS interprets recovery, readiness, stress, sleep, and workload
+            so your next move is clear before performance drops.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -51,7 +51,7 @@ export default function NexusHealthKitPage() {
             </a>
           </div>
 
-          <nav aria-label="Nexus HealthKit section navigation" className="mt-7 flex flex-wrap gap-2">
+          <nav aria-label="Nexus BodyOS section navigation" className="mt-7 flex flex-wrap gap-2">
             {NEXUS_LINKS.map((item) => (
               <Link
                 key={item.href}
@@ -87,11 +87,11 @@ export default function NexusHealthKitPage() {
                     <div className="flex items-center gap-3">
                       <img
                         src={nexusApp?.iconSrc || "/images/placeholder-cover.svg"}
-                        alt="Nexus HealthKit app icon"
+                        alt="Nexus BodyOS app icon"
                         className="h-11 w-11 rounded-2xl border border-white/15 object-cover"
                       />
                       <div>
-                        <p className="text-sm font-semibold text-white">Nexus HealthKit</p>
+                        <p className="text-sm font-semibold text-white">Nexus BodyOS</p>
                         <p className="text-xs text-zinc-300">Live daily signal</p>
                       </div>
                     </div>
@@ -142,7 +142,7 @@ export default function NexusHealthKitPage() {
               Built while physically run down and still expected to perform
             </h2>
             <p className="mt-4 text-zinc-300">
-              Nexus HealthKit was built during a period where output looked strong but internal capacity was collapsing.
+              Nexus BodyOS was built during a period where output looked strong but internal capacity was collapsing.
               The engine reflected reality early, before burnout made it obvious.
             </p>
             <p className="mt-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-sm text-zinc-200">

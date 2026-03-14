@@ -2,22 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildAbsoluteUrl, resolveOgImage, seoConfig } from "@/lib/seo";
 
-export const NEXUS_BASE_PATH = "/NexusHealthKit";
+export const NEXUS_BASE_PATH = "/NexusBodyOS";
 export const NEXUS_SUPPORT_EMAIL = "support@founderglenn.com";
 export const NEXUS_BUSINESS_EMAIL = "business@founderglenn.com";
 
 export const NEXUS_LINKS = [
-  { label: "Nexus HealthKit", href: "/NexusHealthKit" },
-  { label: "Features", href: "/NexusHealthKit/features" },
-  { label: "Privacy", href: "/NexusHealthKit/privacy" },
-  { label: "Terms", href: "/NexusHealthKit/terms" },
-  { label: "Support", href: "/NexusHealthKit/support" },
-  { label: "FAQ", href: "/NexusHealthKit/faq" },
-  { label: "Subscription", href: "/NexusHealthKit/subscription" },
-  { label: "Updates", href: "/NexusHealthKit/updates" },
-  { label: "Delete Data", href: "/NexusHealthKit/delete-data" },
-  { label: "About", href: "/NexusHealthKit/about" },
-  { label: "Contact", href: "/NexusHealthKit/contact" },
+  { label: "Nexus BodyOS", href: "/NexusBodyOS" },
+  { label: "Features", href: "/NexusBodyOS/features" },
+  { label: "Privacy", href: "/NexusBodyOS/privacy" },
+  { label: "Terms", href: "/NexusBodyOS/terms" },
+  { label: "Support", href: "/NexusBodyOS/support" },
+  { label: "FAQ", href: "/NexusBodyOS/faq" },
+  { label: "Subscription", href: "/NexusBodyOS/subscription" },
+  { label: "Updates", href: "/NexusBodyOS/updates" },
+  { label: "Delete Data", href: "/NexusBodyOS/delete-data" },
+  { label: "About", href: "/NexusBodyOS/about" },
+  { label: "Contact", href: "/NexusBodyOS/contact" },
 ] as const;
 
 type NexusMetadataInput = {
@@ -65,11 +65,11 @@ export function NexusPageShell({ title, description, children }: NexusPageShellP
         <div className="pointer-events-none absolute -left-32 bottom-0 h-[18rem] w-[18rem] rounded-full bg-emerald-400/10 blur-3xl" />
 
         <div className="relative mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Nexus HealthKit</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Nexus BodyOS</p>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">{title}</h1>
           <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-300 md:text-lg">{description}</p>
 
-          <nav aria-label="Nexus HealthKit section navigation" className="mt-7 flex flex-wrap gap-2">
+          <nav aria-label="Nexus BodyOS section navigation" className="mt-7 flex flex-wrap gap-2">
             {NEXUS_LINKS.map((item) => (
               <Link
                 key={item.href}

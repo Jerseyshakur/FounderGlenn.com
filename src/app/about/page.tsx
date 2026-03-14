@@ -96,7 +96,7 @@ export default function AboutPage() {
             <p>
               Glenn’s work expanded into building systems designed to give creators structural leverage —
               platforms, frameworks, and publishing ecosystems meant to replace guesswork with ownership.
-              Projects like Nexus HealthKit, GLÈNN, and a growing catalog of digital kits, essays, and
+              Projects like Nexus BodyOS, GLÈNN, and a growing catalog of digital kits, essays, and
               comics form the foundation of a broader mission: creating tools that help independent creators
               operate with the strategic clarity of institutions.
             </p>

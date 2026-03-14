@@ -1,9 +1,9 @@
 import { buildNexusMetadata, NexusPageShell } from "../_shared";
 
 export const metadata = buildNexusMetadata({
-  title: "Nexus HealthKit Updates | Founder Glenn",
-  description: "Product changelog for Nexus HealthKit releases, feature improvements, and bug fixes.",
-  path: "/NexusHealthKit/updates",
+  title: "Nexus BodyOS Updates | Founder Glenn",
+  description: "Product changelog for Nexus BodyOS releases, feature improvements, and bug fixes.",
+  path: "/NexusBodyOS/updates",
 });
 
 const changelog = [
@@ -37,7 +37,7 @@ export default function NexusUpdatesPage() {
   return (
     <NexusPageShell
       title="Product Updates"
-      description="Release notes for Nexus HealthKit. Version history, feature improvements, and bug fixes."
+      description="Release notes for Nexus BodyOS. Version history, feature improvements, and bug fixes."
     >
       <div className="space-y-6">
         {changelog.map((entry) => (

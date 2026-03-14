@@ -8,7 +8,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Books", href: "/books/books" },
   { label: "Blogs", href: "/blogs" },
   { label: "Glenn", href: "/glenn" },
-  { label: "Nexus HealthKit", href: "/NexusHealthKit" },
+  { label: "Nexus BodyOS", href: "/NexusBodyOS" },
   { label: "Kits", href: "/kits" },
   { label: "Comics", href: "/comics" },
   { label: "Essays", href: "/essays" },

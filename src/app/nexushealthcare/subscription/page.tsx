@@ -1,16 +1,16 @@
 import { buildNexusMetadata, NexusPageShell } from "../_shared";
 
 export const metadata = buildNexusMetadata({
-  title: "Nexus HealthKit Subscription | Founder Glenn",
-  description: "Subscription details for Nexus HealthKit Free and Pro plans billed through Apple.",
-  path: "/NexusHealthKit/subscription",
+  title: "Nexus BodyOS Subscription | Founder Glenn",
+  description: "Subscription details for Nexus BodyOS Free and Pro plans billed through Apple.",
+  path: "/NexusBodyOS/subscription",
 });
 
 export default function NexusSubscriptionPage() {
   return (
     <NexusPageShell
       title="Subscription"
-      description="Nexus HealthKit offers Free and Pro access with billing handled through Apple."
+      description="Nexus BodyOS offers Free and Pro access with billing handled through Apple."
     >
       <div className="grid gap-6 md:grid-cols-2">
         <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 md:p-9">

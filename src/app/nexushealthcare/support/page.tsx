@@ -1,9 +1,9 @@
 import { buildNexusMetadata, NEXUS_SUPPORT_EMAIL, NexusPageShell } from "../_shared";
 
 export const metadata = buildNexusMetadata({
-  title: "Nexus HealthKit Support | Founder Glenn",
-  description: "Support center for Nexus HealthKit with troubleshooting, HealthKit permissions, and subscription help.",
-  path: "/NexusHealthKit/support",
+  title: "Nexus BodyOS Support | Founder Glenn",
+  description: "Support center for Nexus BodyOS with troubleshooting, HealthKit permissions, and subscription help.",
+  path: "/NexusBodyOS/support",
 });
 
 export default function NexusSupportPage() {
@@ -16,7 +16,7 @@ export default function NexusSupportPage() {
         {[
           {
             title: "Getting Started",
-            body: "Install Nexus HealthKit, grant Apple Health permissions, and complete your onboarding profile to unlock recovery and readiness analytics.",
+            body: "Install Nexus BodyOS, grant Apple Health permissions, and complete your onboarding profile to unlock recovery and readiness analytics.",
           },
           {
             title: "Troubleshooting",
@@ -24,7 +24,7 @@ export default function NexusSupportPage() {
           },
           {
             title: "HealthKit Permissions",
-            body: "Open iPhone Settings > Health > Data Access & Devices > Nexus HealthKit and ensure read access is enabled for required data types.",
+            body: "Open iPhone Settings > Health > Data Access & Devices > Nexus BodyOS and ensure read access is enabled for required data types.",
           },
           {
             title: "Sync Issues",

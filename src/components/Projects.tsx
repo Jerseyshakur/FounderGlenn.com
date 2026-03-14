@@ -28,9 +28,9 @@ const PROJECTS = [
     },
     {
         id: 4,
-        title: "Nexus HealthKit",
+        title: "Nexus BodyOS",
         category: "Recovery and readiness coaching powered by physiology + AI.",
-        link: "/NexusHealthKit",
+        link: "/NexusBodyOS",
         image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2000&auto=format&fit=crop",
     },
 ];
@@ -50,7 +50,7 @@ export default function Projects() {
                         The Catalog
                     </h2>
                     <p className="text-zinc-400 max-w-xl mx-auto text-lg leading-relaxed">
-                        Books, blogs, brand, and Nexus HealthKit — built for creators and legacy.
+                        Books, blogs, brand, and Nexus BodyOS — built for creators and legacy.
                     </p>
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
                         <Link
@@ -74,14 +74,14 @@ export default function Projects() {
                             Royalty Recovery
                         </Link>
                         <Link
-                            href="/NexusHealthKit"
+                            href="/NexusBodyOS"
                             data-analytics-cta="1"
                             data-analytics-label="Homepage Nexus"
-                            data-analytics-destination="/NexusHealthKit"
+                            data-analytics-destination="/NexusBodyOS"
                             data-analytics-context="homepage-routing"
                             className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
                         >
-                            Nexus HealthKit
+                            Nexus BodyOS
                         </Link>
                     </div>
                     <Link

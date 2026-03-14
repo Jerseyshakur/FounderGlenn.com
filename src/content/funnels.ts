@@ -224,14 +224,14 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
   nexus: {
     slug: "nexus",
     hero: {
-      eyebrow: "Nexus HealthKit",
-      title: "Your Body Is Running a System. Nexus HealthKit Shows You the Code.",
+      eyebrow: "Nexus BodyOS",
+      title: "Your Body Is Running a System. Nexus BodyOS Shows You the Code.",
       subtitle:
-        "Most health apps just show data. Nexus HealthKit interprets recovery, readiness, and physiological patterns so people can train, work, and recover with precision.",
+        "Most health apps just show data. Nexus BodyOS interprets recovery, readiness, and physiological patterns so people can train, work, and recover with precision.",
       media: {
         src: nexusApp?.iconSrc || "/images/placeholder-cover.svg",
-        alt: "Nexus HealthKit app icon",
-        caption: "Nexus HealthKit",
+        alt: "Nexus BodyOS app icon",
+        caption: "Nexus BodyOS",
       },
       primaryAction: { type: "link", label: "Join TestFlight", href: "https://testflight.apple.com/join/j1tpp54U", external: true },
       secondaryAction: { type: "link", label: "View on App Store", href: "https://apps.apple.com/", external: true },
@@ -250,9 +250,9 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
       ],
     },
     offer: {
-      eyebrow: "Solution: Nexus HealthKit Engine",
+      eyebrow: "Solution: Nexus BodyOS Engine",
       title: "A physiological engine that translates signal into action",
-      description: "Nexus HealthKit is built to connect what your body is saying with what your schedule demands.",
+      description: "Nexus BodyOS is built to connect what your body is saying with what your schedule demands.",
       items: [
         {
           title: "Readiness Engine",
@@ -272,13 +272,13 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
       eyebrow: "Founder Story",
       title: "Built while physically run down and still expected to perform",
       body:
-        "Nexus HealthKit came from a period where output looked strong externally while internal capacity was breaking down. The engine was built to reflect reality early, not after burnout. That founder experience drives every product decision.",
+        "Nexus BodyOS came from a period where output looked strong externally while internal capacity was breaking down. The engine was built to reflect reality early, not after burnout. That founder experience drives every product decision.",
       quote: "The engine reflected what I felt before the dashboards did.",
       quoteAttribution: "Founder Glenn",
     },
     offerStack: {
       eyebrow: "Features",
-      title: "What powers the Nexus HealthKit experience",
+      title: "What powers the Nexus BodyOS experience",
       subtitle: "A premium stack for health-performance operators.",
       items: [
         { label: "Readiness score architecture", detail: "Train/work intensity guidance" },
@@ -291,7 +291,7 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
       eyebrow: "Pro Positioning",
       title: "Built for people who need reliable signal under load",
       beforeLabel: "Typical Health Apps",
-      afterLabel: "Nexus HealthKit",
+      afterLabel: "Nexus BodyOS",
       beforePoints: [
         "Static dashboards and disconnected metrics",
         "Generic insights with weak actionability",
@@ -305,8 +305,8 @@ export const FUNNEL_CONFIGS: Record<string, FunnelPageConfig> = {
     },
     cta: {
       eyebrow: "Premium Access",
-      title: "Start with Nexus HealthKit now",
-      body: "Join the current release track and experience the Nexus HealthKit engine directly.",
+      title: "Start with Nexus BodyOS now",
+      body: "Join the current release track and experience the Nexus BodyOS engine directly.",
       primaryAction: { type: "link", label: "Download on TestFlight", href: "https://testflight.apple.com/join/j1tpp54U", external: true },
       secondaryAction: { type: "link", label: "View App Store Listing", href: "https://apps.apple.com/", external: true },
     },

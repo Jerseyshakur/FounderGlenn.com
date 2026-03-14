@@ -12,17 +12,17 @@ const ROUTES = [
   "/essays",
   "/blog",
   "/glenn",
-  "/NexusHealthKit",
-  "/NexusHealthKit/privacy",
-  "/NexusHealthKit/terms",
-  "/NexusHealthKit/support",
-  "/NexusHealthKit/subscription",
-  "/NexusHealthKit/contact",
-  "/NexusHealthKit/faq",
-  "/NexusHealthKit/delete-data",
-  "/NexusHealthKit/about",
-  "/NexusHealthKit/features",
-  "/NexusHealthKit/updates",
+  "/NexusBodyOS",
+  "/NexusBodyOS/privacy",
+  "/NexusBodyOS/terms",
+  "/NexusBodyOS/support",
+  "/NexusBodyOS/subscription",
+  "/NexusBodyOS/contact",
+  "/NexusBodyOS/faq",
+  "/NexusBodyOS/delete-data",
+  "/NexusBodyOS/about",
+  "/NexusBodyOS/features",
+  "/NexusBodyOS/updates",
   "/legal",
   "/royalties",
   "/music",
@@ -37,7 +37,7 @@ function buildUrlEntry(route: string, lastModified: string) {
   const priority =
     route === "/"
       ? "1.0"
-      : route === "/legal" || route === "/royalties" || route === "/NexusHealthKit"
+      : route === "/legal" || route === "/royalties" || route === "/NexusBodyOS"
         ? "0.9"
         : "0.8";
 
