@@ -124,7 +124,7 @@ export default function MaynardEatonPage() {
 
           <div className="mt-6 flex flex-wrap gap-2">
             <Link
-              href="/about"
+              href="/founder-glenn"
               className="rounded-full border border-white/15 px-4 py-2 text-sm text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
             >
               About

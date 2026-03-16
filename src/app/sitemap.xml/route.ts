@@ -6,7 +6,7 @@ import { getAllPostSlugs } from "@/lib/blog";
 const BASE_URL = "https://founderglenn.com";
 const ROUTES = [
   "/",
-  "/about",
+  "/founder-glenn",
   "/in-memory",
   "/books",
   "/books/books",

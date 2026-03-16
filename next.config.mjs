@@ -3,13 +3,13 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/founder-glenn",
-        destination: "/about",
+        source: "/about",
+        destination: "/founder-glenn",
         permanent: true,
       },
       {
         source: "/founder-glenn/:path*",
-        destination: "/about",
+        destination: "/founder-glenn",
         permanent: true,
       },
       {
@@ -40,11 +40,6 @@ const nextConfig = {
       {
         source: "/updates",
         destination: "/NexusBodyOS/updates",
-        permanent: true,
-      },
-      {
-        source: "/about",
-        destination: "/NexusBodyOS/about",
         permanent: true,
       },
       {

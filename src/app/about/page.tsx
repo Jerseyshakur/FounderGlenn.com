@@ -8,12 +8,12 @@ import {
   seoConfig,
 } from "@/lib/seo";
 
-const ABOUT_PATH = "/about";
+const ABOUT_PATH = "/founder-glenn";
 
 export const metadata: Metadata = {
-  title: "About Founder Glenn",
+  title: "Founder Glenn (Shakur Raqon Ziyār Glenn) | Author, Entrepreneur, Systems Architect",
   description:
-    "Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, technologist, and systems builder creating infrastructure for creators.",
+    "Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, entrepreneur, and systems architect building infrastructure for creators through media, software, and long-term systems.",
   alternates: {
     canonical: ABOUT_PATH,
   },
@@ -21,16 +21,16 @@ export const metadata: Metadata = {
     type: "profile",
     url: buildAbsoluteUrl(ABOUT_PATH),
     siteName: seoConfig.siteName,
-    title: `${seoConfig.person.name} | About`,
+    title: "Founder Glenn (Shakur Raqon Ziyār Glenn) | Author, Entrepreneur, Systems Architect",
     description:
-      "Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, technologist, and systems builder creating infrastructure for creators.",
+      "Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, entrepreneur, and systems architect building infrastructure for creators through media, software, and long-term systems.",
     images: [{ url: resolveOgImage(seoConfig.person.image) }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${seoConfig.person.name} | About`,
+    title: "Founder Glenn (Shakur Raqon Ziyār Glenn) | Author, Entrepreneur, Systems Architect",
     description:
-      "Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, technologist, and systems builder creating infrastructure for creators.",
+      "Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, entrepreneur, and systems architect building infrastructure for creators through media, software, and long-term systems.",
     images: [resolveOgImage(seoConfig.person.image)],
   },
 };
@@ -71,8 +71,9 @@ export default function AboutPage() {
             Shakur Raqon Ziyār Glenn
           </h2>
           <p className="mx-auto mt-6 max-w-[780px] text-lg leading-[1.8] text-zinc-300">
-            Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, technologist, and systems builder
-            focused on creator infrastructure, publishing systems, and long-horizon intellectual property.
+            Founder Glenn, also known as Shakur Raqon Ziyār Glenn, is an author, entrepreneur, and
+            systems architect focused on building infrastructure for creators across media, software,
+            and long-term systems.
           </p>
         </header>
 
@@ -88,7 +89,7 @@ export default function AboutPage() {
                   <span className="font-semibold text-white">Full name:</span> Shakur Raqon Ziyār Glenn
                 </p>
                 <p>
-                  <span className="font-semibold text-white">Role:</span> Author, Technologist, Systems Builder
+                  <span className="font-semibold text-white">Role:</span> Author, Entrepreneur, Systems Architect
                 </p>
                 <p>
                   <span className="font-semibold text-white">Focus:</span> Creator infrastructure, publishing systems,

@@ -85,7 +85,7 @@ export default function Projects() {
                         </Link>
                     </div>
                     <Link
-                        href="/about"
+                        href="/founder-glenn"
                         className="mt-7 inline-flex rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
                     >
                         About Founder Glenn

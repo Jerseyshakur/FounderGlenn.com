@@ -21,7 +21,7 @@ export default function MusicPage() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/about"
+                href="/founder-glenn"
                 className="inline-flex rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
               >
                 About Founder Glenn

@@ -8,10 +8,10 @@ export const seoConfig = {
   person: {
     name: "Founder Glenn",
     alternateName: "Shakur Raqon Ziyār Glenn",
-    url: "https://founderglenn.com",
-    jobTitle: "Author, Technologist, Systems Builder",
+    url: "https://founderglenn.com/founder-glenn",
+    jobTitle: "Author, Entrepreneur, Systems Architect",
     description:
-      "Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, technologist, and systems builder creating infrastructure for creators.",
+      "Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, entrepreneur, and systems architect building infrastructure for creators through media, software, and long-term systems.",
     image: "/og-image.jpg",
     sameAs: [
       "https://x.com/founderglenn?s=21",
@@ -123,13 +123,36 @@ export function buildPersonSchema() {
   };
 }
 
-export function buildProfilePageSchema(urlPath: string = "/about") {
+export function buildProfilePageSchema(urlPath: string = "/founder-glenn") {
+  const profileUrl = buildAbsoluteUrl(urlPath);
+  const personId = `${seoConfig.siteUrl}/#person`;
+
   return {
     "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    url: buildAbsoluteUrl(urlPath),
-    name: `${seoConfig.person.name} | About`,
-    mainEntity: buildPersonSchema(),
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+        "@id": `${profileUrl}#profilepage`,
+        url: profileUrl,
+        name: `${seoConfig.person.name} (${seoConfig.person.alternateName})`,
+        mainEntity: {
+          "@id": personId,
+        },
+      },
+      {
+        "@type": "Person",
+        "@id": personId,
+        name: seoConfig.person.name,
+        alternateName: seoConfig.person.alternateName,
+        url: profileUrl,
+        identifier: seoConfig.person.name,
+        description: seoConfig.person.description,
+        image: buildAbsoluteUrl(seoConfig.person.image),
+        jobTitle: seoConfig.person.jobTitle,
+        knowsAbout: seoConfig.person.knowsAbout,
+        sameAs: seoConfig.person.sameAs,
+      },
+    ],
   };
 }
 
