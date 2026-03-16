@@ -164,7 +164,7 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
     description: "Codex episode archive: Blood Contracts & Blueprint Sovereignty.",
     publishedAt: "2026-03-16T09:30:00.000Z",
     audioKey:
-      "CODEX/LIVE/S1/founder-glenn-s-the-codex-podcast-episodes/Blood Contracts & Blueprint Sovereignty- How Artists Take Back Their Music Empire-18852151.mp3",
+      "CODEX/LIVE/S1/Blood Contracts & Blueprint Sovereignty- How Artists Take Back Their Music Empire-18852151.mp3",
     mimeType: "audio/mpeg",
     audioBytes: 12165922,
   },
@@ -176,7 +176,7 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
     description: "Codex episode archive: Prophecy vs Paperwork.",
     publishedAt: "2026-03-16T09:40:00.000Z",
     audioKey:
-      "CODEX/LIVE/S1/founder-glenn-s-the-codex-podcast-episodes/Prophecy vs Paperwork- The Real Blueprint for Black Sovereignty-18844822.mp3",
+      "CODEX/LIVE/S1/Prophecy vs Paperwork- The Real Blueprint for Black Sovereignty-18844822.mp3",
     mimeType: "audio/mpeg",
     audioBytes: 31506357,
   },
@@ -188,7 +188,7 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
     description: "Codex episode archive: The Marcus Principle.",
     publishedAt: "2026-03-16T09:50:00.000Z",
     audioKey:
-      "CODEX/LIVE/S1/founder-glenn-s-the-codex-podcast-episodes/The Marcus Principle- Identity vs Institutions-18845736.mp3",
+      "CODEX/LIVE/S1/The Marcus Principle- Identity vs Institutions-18845736.mp3",
     mimeType: "audio/mpeg",
     audioBytes: 36523434,
   },
