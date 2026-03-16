@@ -43,7 +43,7 @@ export const PODCAST_SHOWS: PodcastShow[] = [
     format: "Full production podcast",
     deck: "The flagship show",
     description:
-      "Long-form conversations at the intersection of culture, systems, and creator leverage.",
+      "The Founder Glenn Podcast is the flagship show of the Founder Glenn network, a space for real conversations about culture, creativity, business, philosophy, and the ideas shaping the modern world. Hosted by Founder Glenn, the podcast blends sharp commentary, storytelling, and deep discussion with creators, builders, and thinkers across different industries. Some episodes are interviews, some are debates, and some are unfiltered reflections on the systems behind music, media, technology, and power. At its core, this show is about understanding how things actually work and how to build something meaningful in the process.",
     topics: [
       "Interviews",
       "Founder conversations",
@@ -72,7 +72,8 @@ export const PODCAST_SHOWS: PodcastShow[] = [
     title: "The Foundation",
     format: "Twitter Spaces archive",
     deck: "The live discussion show",
-    description: "Live community discourse converted into an evergreen podcast feed.",
+    description:
+      "The Foundation is a live conversation series from the Founder Glenn network, recorded from Twitter Spaces. Each episode captures real-time discussions with creators, builders, and thinkers about culture, technology, business, and the ideas shaping the future. Unfiltered, unscripted, and collaborative, The Foundation is where ideas are tested in public.",
     topics: [
       "Creator debates",
       "Artist economics",
@@ -104,7 +105,8 @@ export const PODCAST_SHOWS: PodcastShow[] = [
     title: "The Founder Glenn Codex",
     format: "Canon deep dives",
     deck: "The intellectual archive",
-    description: "Solo breakdowns of books, frameworks, essays, and long-form philosophy.",
+    description:
+      "The Founder Glenn Codex is a collection of deep dives into the ideas that shape the Founder Glenn canon. Each episode explores books, essays, frameworks, and philosophical concepts through long-form solo breakdowns, revealing the hidden structures behind culture, power, creativity, and civilization. Part intellectual archive, part builder's notebook, The Codex is where ideas are decoded.",
     topics: [
       "Books",
       "Frameworks",
