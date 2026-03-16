@@ -41,6 +41,7 @@ export default function RootLayout({
   const founderGlennPodcastFeedUrl = buildSiteUrl("/rss/founder-glenn-podcast.xml");
   const foundationFeedUrl = buildSiteUrl("/rss/foundation.xml");
   const codexFeedUrl = buildSiteUrl("/rss/codex.xml");
+  const podcastNetworkFeedUrl = buildSiteUrl("/rss/network.xml");
 
   return (
     <html lang="en">
@@ -54,6 +55,12 @@ export default function RootLayout({
         />
         <link rel="alternate" type="application/rss+xml" title="The Foundation RSS" href={foundationFeedUrl} />
         <link rel="alternate" type="application/rss+xml" title="The Founder Glenn Codex RSS" href={codexFeedUrl} />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Founder Glenn Podcast Network RSS"
+          href={podcastNetworkFeedUrl}
+        />
         <Script src="https://cdn.shopify.com/storefront/web-components.js" strategy="afterInteractive" />
         {/* Always ensure dataLayer exists so custom events can queue safely. */}
         <Script id="analytics-datalayer-init" strategy="afterInteractive">

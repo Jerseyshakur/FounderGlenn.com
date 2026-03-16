@@ -1,6 +1,7 @@
 import { getAllPostsMeta } from "@/lib/blog";
 import { buildSiteUrl, buildAudioUrl } from "@/lib/media";
 import { buildAbsoluteUrl, seoConfig } from "@/lib/seo";
+import { PODCAST_SHOWS } from "@/content/podcasts";
 import type { PodcastEpisode, PodcastShow } from "@/content/podcasts";
 
 const XML_HEADER = `<?xml version="1.0" encoding="UTF-8"?>`;
@@ -128,6 +129,68 @@ export function buildPodcastFeedXml(
     "    <itunes:explicit>false</itunes:explicit>",
     `    <itunes:image href="${escapeXml(showImage)}" />`,
     `    <itunes:category text="${escapeXml(show.category)}" />`,
+    itemsXml,
+    "  </channel>",
+    "</rss>",
+  ].join("\n");
+}
+
+export function buildPodcastNetworkFeedXml(episodes: PodcastEpisode[], feedPath: string): string {
+  const showBySlug = new Map(PODCAST_SHOWS.map((show) => [show.slug, show]));
+  const feedUrl = buildAbsoluteUrl(feedPath);
+  const networkUrl = buildSiteUrl("/podcasts");
+  const networkTitle = "Founder Glenn Podcast Network";
+  const networkDescription =
+    "A single feed for The Founder Glenn Podcast, The Foundation, and The Founder Glenn Codex.";
+  const networkImage = buildSiteUrl("/podcasts/founder-glenn-codex-cover.jpeg");
+  const latestDate = episodes[0]?.publishedAt || new Date().toISOString();
+
+  const itemsXml = episodes
+    .map((episode) => {
+      const show = showBySlug.get(episode.show);
+      const showTitle = show?.title || episode.show;
+      const episodeUrl = buildSiteUrl(`/podcasts/${episode.show}/${episode.slug}`);
+      const episodeImage = buildSiteUrl(episode.imageSrc || show?.imageSrc || "/og-image.jpg");
+      const audioUrl = buildAudioUrl(episode.audioKey);
+
+      return [
+        "    <item>",
+        `      <title>${cdata(`${showTitle} - ${episode.title}`)}</title>`,
+        `      <description>${cdata(episode.description)}</description>`,
+        `      <pubDate>${toRfc2822(episode.publishedAt)}</pubDate>`,
+        `      <enclosure url="${escapeXml(audioUrl)}" length="${episode.audioBytes}" type="${escapeXml(episode.mimeType || inferMimeType(episode.audioKey))}" />`,
+        `      <guid isPermaLink="false">${escapeXml(`network:${episode.show}:${episode.id}`)}</guid>`,
+        `      <link>${escapeXml(episodeUrl)}</link>`,
+        `      <itunes:summary>${cdata(episode.description)}</itunes:summary>`,
+        `      <itunes:explicit>${episode.explicit ? "true" : "false"}</itunes:explicit>`,
+        episode.duration ? `      <itunes:duration>${escapeXml(episode.duration)}</itunes:duration>` : "",
+        `      <itunes:image href="${escapeXml(episodeImage)}" />`,
+        "      <itunes:episodeType>full</itunes:episodeType>",
+        "    </item>",
+      ]
+        .filter(Boolean)
+        .join("\n");
+    })
+    .join("\n");
+
+  return [
+    XML_HEADER,
+    `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">`,
+    "  <channel>",
+    `    <title>${cdata(networkTitle)}</title>`,
+    `    <link>${escapeXml(networkUrl)}</link>`,
+    `    <description>${cdata(networkDescription)}</description>`,
+    "    <language>en-us</language>",
+    `    <lastBuildDate>${toRfc2822(latestDate)}</lastBuildDate>`,
+    "    <podcast:guid>founderglenn:podcast-network</podcast:guid>",
+    "    <podcast:locked>no</podcast:locked>",
+    `    <atom:link href="${escapeXml(feedUrl)}" rel="self" type="application/rss+xml" />`,
+    `    <itunes:author>${cdata(seoConfig.person.name)}</itunes:author>`,
+    `    <itunes:summary>${cdata(networkDescription)}</itunes:summary>`,
+    "    <itunes:type>episodic</itunes:type>",
+    "    <itunes:explicit>false</itunes:explicit>",
+    `    <itunes:image href="${escapeXml(networkImage)}" />`,
+    `    <itunes:category text="${escapeXml("Business")}" />`,
     itemsXml,
     "  </channel>",
     "</rss>",

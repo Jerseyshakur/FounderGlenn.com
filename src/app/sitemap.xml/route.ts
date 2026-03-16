@@ -34,6 +34,7 @@ const ROUTES = [
   "/rss/founder-glenn-podcast.xml",
   "/rss/foundation.xml",
   "/rss/codex.xml",
+  "/rss/network.xml",
   "/contact",
   "/kits",
   "/comics",
