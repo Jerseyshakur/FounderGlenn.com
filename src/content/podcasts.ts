@@ -163,6 +163,19 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
     duration: "00:35:42",
   },
   {
+    id: "codex-000",
+    show: "codex",
+    title: "Decoding Founder Glenn: From Personal Tragedy to Nation Inside",
+    slug: "decoding-founder-glenn-from-personal-tragedy-to-nation-inside",
+    description:
+      "In this episode, Founder Glenn pulls back the curtain on the story behind the philosophy, books, and systems that shaped his rise, from personal loss and internal battles to the construction of an entire intellectual and cultural framework. What begins as a story about tragedy evolves into something much larger: a blueprint for sovereignty, legacy, and structural power. Founder Glenn breaks down the experiences that forged his worldview, how grief became discipline, how isolation became strategy, and how a man searching for meaning began designing institutions meant to outlive him. The conversation explores the ideas behind works like Nation Inside a Nation, the principles of legacy-building, and the belief that true power comes not from noise, but from structure, positioning, and continuity. This episode is not just biography. It is a decoding of the mindset behind the movement. If you have ever wondered how pain turns into purpose, how philosophy becomes infrastructure, or how one man begins thinking in terms of generations instead of moments, this is the episode that explains it. Because the real story is not about surviving tragedy. It is about building something that makes the tragedy mean something.",
+    publishedAt: "2026-03-16T11:10:00.000Z",
+    audioKey: "CODEX/LIVE/S1/Decoding_Founder_Glenn__From_Personal_Tragedy_to_Nation_Inside_.m4a",
+    mimeType: "audio/mp4",
+    audioBytes: 71987572,
+    duration: "00:37:17",
+  },
+  {
     id: "codex-001",
     show: "codex",
     title: "Blood Contracts & Blueprint Sovereignty",
