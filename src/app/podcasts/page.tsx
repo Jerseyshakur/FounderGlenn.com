@@ -72,7 +72,7 @@ const podcastShows: PodcastShow[] = [
       "Creator economy",
     ],
     duration: "45-90 minutes",
-    imageSrc: "/things/Glenn.PNG",
+    imageSrc: "/aboutmefg.png",
     imageAlt: "Founder Glenn podcast cover image",
     links: [
       { label: "Spotify", href: "https://open.spotify.com/" },
@@ -126,7 +126,7 @@ const podcastShows: PodcastShow[] = [
       "Project explanations",
     ],
     duration: "20-40 minutes",
-    imageSrc: "/aboutmefg.png",
+    imageSrc: "/things/Glenn.PNG",
     imageAlt: "Founder Glenn Codex cover image",
     sampleEpisodes: [
       "Episode 1 - The Echopoint Vision",
