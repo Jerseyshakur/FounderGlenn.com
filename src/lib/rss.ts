@@ -154,7 +154,8 @@ export function buildPodcastNetworkFeedXml(episodes: PodcastEpisode[], feedPath:
   const networkTitle = "Founder Glenn Podcast Network";
   const networkDescription =
     "A single feed for The Founder Glenn Podcast, The Foundation, and The Founder Glenn Codex.";
-  const networkImage = buildSiteUrl("/podcasts/founder-glenn-codex-cover-3000.jpg");
+  const codexShow = PODCAST_SHOWS.find((show) => show.slug === "codex");
+  const networkImage = buildSiteUrl(codexShow?.imageSrc || "/aboutmefg.png");
   const latestDate = episodes[0]?.publishedAt || new Date().toISOString();
 
   const itemsXml = episodes
