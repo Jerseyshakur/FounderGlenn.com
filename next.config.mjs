@@ -3,6 +3,16 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/founder-glenn",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/founder-glenn/:path*",
+        destination: "/about",
+        permanent: true,
+      },
+      {
         source: "/terms",
         destination: "/NexusBodyOS/terms",
         permanent: true,
