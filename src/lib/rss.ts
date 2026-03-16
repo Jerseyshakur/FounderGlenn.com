@@ -45,12 +45,13 @@ export async function buildBlogFeedXml(feedPath: string): Promise<string> {
 
   return [
     XML_HEADER,
-    `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">`,
+    `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:podcast="https://podcastindex.org/namespace/1.0">`,
     "  <channel>",
     `    <title>${cdata("Founder Glenn Blog")}</title>`,
     `    <link>${escapeXml(`${siteUrl}/blog`)}</link>`,
     `    <description>${cdata("Essays, frameworks, and build logs from Founder Glenn.")}</description>`,
     "    <language>en-us</language>",
+    "    <podcast:guid>founderglenn:blog</podcast:guid>",
     `    <atom:link href="${escapeXml(feedUrl)}" rel="self" type="application/rss+xml" />`,
     itemsXml,
     "  </channel>",
@@ -97,13 +98,15 @@ export function buildPodcastFeedXml(
 
   return [
     XML_HEADER,
-    `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">`,
+    `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">`,
     "  <channel>",
     `    <title>${cdata(show.title)}</title>`,
     `    <link>${escapeXml(showUrl)}</link>`,
     `    <description>${cdata(show.description)}</description>`,
     `    <language>${escapeXml(show.language)}</language>`,
     `    <lastBuildDate>${toRfc2822(latestDate)}</lastBuildDate>`,
+    `    <podcast:guid>${escapeXml(`founderglenn:${show.slug}`)}</podcast:guid>`,
+    "    <podcast:locked>no</podcast:locked>",
     `    <atom:link href="${escapeXml(feedUrl)}" rel="self" type="application/rss+xml" />`,
     `    <itunes:author>${cdata(seoConfig.person.name)}</itunes:author>`,
     `    <itunes:summary>${cdata(show.description)}</itunes:summary>`,
