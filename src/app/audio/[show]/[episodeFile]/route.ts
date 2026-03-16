@@ -26,12 +26,29 @@ function buildCandidateKeys(audioKey: string): string[] {
   const keys = new Set<string>([audioKey]);
 
   const nestedSegment = "/founder-glenn-s-the-codex-podcast-episodes/";
+  const doubleNestedSegment =
+    "/founder-glenn-s-the-codex-podcast-episodes/founder-glenn-s-the-codex-podcast-episodes/";
   const s1Segment = "/S1/";
   if (audioKey.includes(s1Segment) && !audioKey.includes(nestedSegment)) {
-    keys.add(audioKey.replace(s1Segment, `${s1Segment}founder-glenn-s-the-codex-podcast-episodes/`));
+    const singleNested = audioKey.replace(
+      s1Segment,
+      `${s1Segment}founder-glenn-s-the-codex-podcast-episodes/`,
+    );
+    keys.add(singleNested);
+    keys.add(
+      audioKey.replace(
+        s1Segment,
+        `${s1Segment}founder-glenn-s-the-codex-podcast-episodes/founder-glenn-s-the-codex-podcast-episodes/`,
+      ),
+    );
   }
   if (audioKey.includes(nestedSegment)) {
     keys.add(audioKey.replace(nestedSegment, "/"));
+    keys.add(audioKey.replace(nestedSegment, doubleNestedSegment));
+  }
+  if (audioKey.includes(doubleNestedSegment)) {
+    keys.add(audioKey.replace(doubleNestedSegment, nestedSegment));
+    keys.add(audioKey.replace(doubleNestedSegment, "/"));
   }
 
   return Array.from(keys);
