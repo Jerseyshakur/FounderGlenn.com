@@ -53,7 +53,7 @@ export const PODCAST_SHOWS: PodcastShow[] = [
       "Creator economy",
     ],
     duration: "45-90 minutes",
-    imageSrc: "/aboutmefg.png",
+    imageSrc: "/podcasts/founder-glenn-podcast-cover-3000.jpg",
     imageAlt: "Founder Glenn podcast cover image",
     links: [
       { label: "Spotify", href: "https://open.spotify.com/" },
@@ -79,7 +79,7 @@ export const PODCAST_SHOWS: PodcastShow[] = [
       "Live Q&A",
     ],
     duration: "30-60 minutes",
-    imageSrc: "/podcasts/the-foundation-cover.jpeg",
+    imageSrc: "/podcasts/the-foundation-cover-3000.jpg",
     imageAlt: "The Foundation Twitter Spaces cover image",
     process: [
       "Host live Twitter Spaces",
@@ -111,7 +111,7 @@ export const PODCAST_SHOWS: PodcastShow[] = [
       "Project explanations",
     ],
     duration: "20-40 minutes",
-    imageSrc: "/podcasts/founder-glenn-codex-cover.jpeg",
+    imageSrc: "/podcasts/founder-glenn-codex-cover-3000.jpg",
     imageAlt: "Founder Glenn Codex cover image",
     sampleEpisodes: [
       "Episode 1 - The Echopoint Vision",
