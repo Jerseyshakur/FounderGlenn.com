@@ -8,7 +8,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/founder-glenn/:path*",
+        source: "/founder-glenn/:path+",
         destination: "/founder-glenn",
         permanent: true,
       },
