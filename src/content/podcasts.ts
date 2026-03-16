@@ -207,3 +207,7 @@ export function getEpisodesByShow(showSlug: PodcastShowSlug) {
 export function getPodcastEpisode(showSlug: PodcastShowSlug, episodeSlug: string) {
   return PODCAST_EPISODES.find((episode) => episode.show === showSlug && episode.slug === episodeSlug) || null;
 }
+
+export function getPodcastEpisodeById(showSlug: PodcastShowSlug, episodeId: string) {
+  return PODCAST_EPISODES.find((episode) => episode.show === showSlug && episode.id === episodeId) || null;
+}

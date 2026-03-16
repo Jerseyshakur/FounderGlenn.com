@@ -8,7 +8,7 @@ import {
   getPodcastShowBySlug,
   type PodcastShowSlug,
 } from "@/content/podcasts";
-import { buildAudioUrl, buildSiteUrl } from "@/lib/media";
+import { buildAudioProxyUrl, buildSiteUrl } from "@/lib/media";
 
 type PodcastEpisodePageProps = {
   params: {
@@ -69,7 +69,7 @@ export default function PodcastEpisodePage({ params }: PodcastEpisodePageProps) 
     notFound();
   }
 
-  const audioUrl = buildAudioUrl(episode.audioKey);
+  const audioUrl = buildAudioProxyUrl(episode.show, episode.id, episode.audioKey, episode.mimeType);
 
   return (
     <main className="min-h-screen bg-[#121212] px-6 py-16 text-zinc-100 md:py-20">

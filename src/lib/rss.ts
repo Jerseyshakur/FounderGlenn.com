@@ -1,5 +1,5 @@
 import { getAllPostsMeta } from "@/lib/blog";
-import { buildSiteUrl, buildAudioUrl } from "@/lib/media";
+import { buildSiteUrl, buildAudioProxyUrl } from "@/lib/media";
 import { buildAbsoluteUrl, seoConfig } from "@/lib/seo";
 import { PODCAST_SHOWS } from "@/content/podcasts";
 import type { PodcastEpisode, PodcastShow } from "@/content/podcasts";
@@ -89,7 +89,7 @@ export function buildPodcastFeedXml(
     .map((episode) => {
       const episodeUrl = buildSiteUrl(`/podcasts/${show.slug}/${episode.slug}`);
       const episodeImage = buildSiteUrl(episode.imageSrc || show.imageSrc);
-      const audioUrl = buildAudioUrl(episode.audioKey);
+      const audioUrl = buildAudioProxyUrl(show.slug, episode.id, episode.audioKey, episode.mimeType);
 
       return [
         "    <item>",
@@ -151,7 +151,7 @@ export function buildPodcastNetworkFeedXml(episodes: PodcastEpisode[], feedPath:
       const showTitle = show?.title || episode.show;
       const episodeUrl = buildSiteUrl(`/podcasts/${episode.show}/${episode.slug}`);
       const episodeImage = buildSiteUrl(episode.imageSrc || show?.imageSrc || "/og-image.jpg");
-      const audioUrl = buildAudioUrl(episode.audioKey);
+      const audioUrl = buildAudioProxyUrl(episode.show, episode.id, episode.audioKey, episode.mimeType);
 
       return [
         "    <item>",

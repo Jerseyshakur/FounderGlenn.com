@@ -19,3 +19,24 @@ export function buildAudioUrl(audioKey: string): string {
     .join("/");
   return `${normalizedBase}/${encodedKey}`;
 }
+
+export function inferAudioExtension(audioKey: string, mimeType?: string): string {
+  const lowerKey = audioKey.toLowerCase();
+  const lowerMime = (mimeType || "").toLowerCase();
+
+  if (lowerKey.endsWith(".m4a") || lowerKey.endsWith(".mp4") || lowerMime.includes("audio/mp4")) {
+    return ".m4a";
+  }
+  if (lowerKey.endsWith(".aac") || lowerMime.includes("audio/aac")) {
+    return ".aac";
+  }
+  if (lowerKey.endsWith(".wav") || lowerMime.includes("audio/wav")) {
+    return ".wav";
+  }
+  return ".mp3";
+}
+
+export function buildAudioProxyUrl(showSlug: string, episodeId: string, audioKey: string, mimeType?: string): string {
+  const ext = inferAudioExtension(audioKey, mimeType);
+  return buildSiteUrl(`/audio/${showSlug}/${episodeId}${ext}`);
+}
