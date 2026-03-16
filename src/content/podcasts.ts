@@ -17,6 +17,7 @@ export type PodcastShow = {
   sampleEpisodes?: string[];
   language: string;
   category: string;
+  subcategory?: string;
 };
 
 export type PodcastEpisode = {
@@ -63,6 +64,7 @@ export const PODCAST_SHOWS: PodcastShow[] = [
     ],
     language: "en-us",
     category: "Business",
+    subcategory: "Entrepreneurship",
   },
   {
     slug: "foundation",
@@ -94,6 +96,7 @@ export const PODCAST_SHOWS: PodcastShow[] = [
     ],
     language: "en-us",
     category: "Society & Culture",
+    subcategory: "Philosophy",
   },
   {
     slug: "codex",
@@ -128,6 +131,7 @@ export const PODCAST_SHOWS: PodcastShow[] = [
     ],
     language: "en-us",
     category: "Education",
+    subcategory: "Self-Improvement",
   },
 ];
 
@@ -167,6 +171,7 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
       "CODEX/LIVE/S1/Blood Contracts & Blueprint Sovereignty- How Artists Take Back Their Music Empire-18852151.mp3",
     mimeType: "audio/mpeg",
     audioBytes: 12165922,
+    duration: "00:16:54",
   },
   {
     id: "codex-002",
@@ -179,6 +184,7 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
       "CODEX/LIVE/S1/Prophecy vs Paperwork- The Real Blueprint for Black Sovereignty-18844822.mp3",
     mimeType: "audio/mpeg",
     audioBytes: 31506357,
+    duration: "00:43:45",
   },
   {
     id: "codex-003",
@@ -191,6 +197,7 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
       "CODEX/LIVE/S1/The Marcus Principle- Identity vs Institutions-18845736.mp3",
     mimeType: "audio/mpeg",
     audioBytes: 36523434,
+    duration: "00:50:43",
   },
 ];
 
