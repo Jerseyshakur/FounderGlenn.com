@@ -13,5 +13,9 @@ export function buildAudioUrl(audioKey: string): string {
   const base = process.env.R2_PUBLIC_BASE_URL || DEFAULT_MEDIA_BASE_URL;
   const normalizedBase = base.replace(/\/+$/, "");
   const normalizedKey = audioKey.replace(/^\/+/, "");
-  return `${normalizedBase}/${normalizedKey}`;
+  const encodedKey = normalizedKey
+    .split("/")
+    .map((segment) => encodeURIComponent(segment))
+    .join("/");
+  return `${normalizedBase}/${encodedKey}`;
 }

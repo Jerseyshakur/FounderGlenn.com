@@ -27,6 +27,7 @@ export type PodcastEpisode = {
   description: string;
   publishedAt: string;
   audioKey: string;
+  mimeType?: string;
   audioBytes: number;
   duration?: string;
   imageSrc?: string;
@@ -139,6 +140,7 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
     description: "Foundational conversation on creator leverage, ownership, and long-horizon systems.",
     publishedAt: "2026-03-16T12:00:00.000Z",
     audioKey: "audio/founder-glenn-podcast/episode-001.mp3",
+    mimeType: "audio/mpeg",
     audioBytes: 12345678,
     duration: "00:48:12",
   },
@@ -150,19 +152,45 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
     description: "Live Twitter Spaces replay focused on artist economics and platform strategy.",
     publishedAt: "2026-03-16T12:00:00.000Z",
     audioKey: "audio/foundation/episode-001.mp3",
+    mimeType: "audio/mpeg",
     audioBytes: 9988776,
     duration: "00:35:42",
   },
   {
     id: "codex-001",
     show: "codex",
-    title: "Episode 1 - The Echopoint Vision",
-    slug: "episode-1-the-echopoint-vision",
-    description: "A codex deep dive into the architecture and intent behind the Echopoint vision.",
-    publishedAt: "2026-03-16T12:00:00.000Z",
-    audioKey: "audio/codex/episode-001.mp3",
-    audioBytes: 7766554,
-    duration: "00:28:04",
+    title: "Blood Contracts & Blueprint Sovereignty",
+    slug: "blood-contracts-blueprint-sovereignty",
+    description: "Codex episode archive: Blood Contracts & Blueprint Sovereignty.",
+    publishedAt: "2026-03-16T09:30:00.000Z",
+    audioKey:
+      "CODEX/LIVE/S1/founder-glenn-s-the-codex-podcast-episodes/Blood Contracts & Blueprint Sovereignty- How Artists Take Back Their Music Empire-18852151.mp3",
+    mimeType: "audio/mpeg",
+    audioBytes: 12165922,
+  },
+  {
+    id: "codex-002",
+    show: "codex",
+    title: "Prophecy vs Paperwork",
+    slug: "prophecy-vs-paperwork",
+    description: "Codex episode archive: Prophecy vs Paperwork.",
+    publishedAt: "2026-03-16T09:40:00.000Z",
+    audioKey:
+      "CODEX/LIVE/S1/founder-glenn-s-the-codex-podcast-episodes/Prophecy vs Paperwork- The Real Blueprint for Black Sovereignty-18844822.mp3",
+    mimeType: "audio/mpeg",
+    audioBytes: 31506357,
+  },
+  {
+    id: "codex-003",
+    show: "codex",
+    title: "The Marcus Principle",
+    slug: "the-marcus-principle",
+    description: "Codex episode archive: The Marcus Principle.",
+    publishedAt: "2026-03-16T09:50:00.000Z",
+    audioKey:
+      "CODEX/LIVE/S1/founder-glenn-s-the-codex-podcast-episodes/The Marcus Principle- Identity vs Institutions-18845736.mp3",
+    mimeType: "audio/mpeg",
+    audioBytes: 36523434,
   },
 ];
 

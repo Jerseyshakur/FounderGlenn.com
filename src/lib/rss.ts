@@ -23,6 +23,20 @@ function toRfc2822(dateValue: string): string {
   return Number.isNaN(parsed.getTime()) ? new Date().toUTCString() : parsed.toUTCString();
 }
 
+function inferMimeType(audioKey: string): string {
+  const lower = audioKey.toLowerCase();
+  if (lower.endsWith(".m4a") || lower.endsWith(".mp4")) {
+    return "audio/mp4";
+  }
+  if (lower.endsWith(".aac")) {
+    return "audio/aac";
+  }
+  if (lower.endsWith(".wav")) {
+    return "audio/wav";
+  }
+  return "audio/mpeg";
+}
+
 export async function buildBlogFeedXml(feedPath: string): Promise<string> {
   const posts = await getAllPostsMeta();
   const siteUrl = buildSiteUrl();
@@ -81,7 +95,7 @@ export function buildPodcastFeedXml(
         `      <title>${cdata(episode.title)}</title>`,
         `      <description>${cdata(episode.description)}</description>`,
         `      <pubDate>${toRfc2822(episode.publishedAt)}</pubDate>`,
-        `      <enclosure url="${escapeXml(audioUrl)}" length="${episode.audioBytes}" type="audio/mpeg" />`,
+        `      <enclosure url="${escapeXml(audioUrl)}" length="${episode.audioBytes}" type="${escapeXml(episode.mimeType || inferMimeType(episode.audioKey))}" />`,
         `      <guid isPermaLink="false">${escapeXml(`${show.slug}:${episode.id}`)}</guid>`,
         `      <link>${escapeXml(episodeUrl)}</link>`,
         `      <itunes:summary>${cdata(episode.description)}</itunes:summary>`,
