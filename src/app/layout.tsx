@@ -7,6 +7,7 @@ import { ShopifyRuntime } from "@/components/shopify/ShopifyRuntime";
 import RouteAnalyticsTracker from "@/components/analytics/RouteAnalyticsTracker";
 import AnalyticsClickTracker from "@/components/analytics/AnalyticsClickTracker";
 import ZapierDevTestTrigger from "@/components/zapier/ZapierDevTestTrigger";
+import { buildSiteUrl } from "@/lib/media";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,9 +37,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const blogFeedUrl = buildSiteUrl("/rss/blog.xml");
+  const founderGlennPodcastFeedUrl = buildSiteUrl("/rss/founder-glenn-podcast.xml");
+  const foundationFeedUrl = buildSiteUrl("/rss/foundation.xml");
+  const codexFeedUrl = buildSiteUrl("/rss/codex.xml");
+
   return (
     <html lang="en">
       <head>
+        <link rel="alternate" type="application/rss+xml" title="Founder Glenn Blog RSS" href={blogFeedUrl} />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Founder Glenn Podcast RSS"
+          href={founderGlennPodcastFeedUrl}
+        />
+        <link rel="alternate" type="application/rss+xml" title="The Foundation RSS" href={foundationFeedUrl} />
+        <link rel="alternate" type="application/rss+xml" title="The Founder Glenn Codex RSS" href={codexFeedUrl} />
         <Script src="https://cdn.shopify.com/storefront/web-components.js" strategy="afterInteractive" />
         {/* Always ensure dataLayer exists so custom events can queue safely. */}
         <Script id="analytics-datalayer-init" strategy="afterInteractive">

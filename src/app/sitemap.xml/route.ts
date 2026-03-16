@@ -1,5 +1,6 @@
 import { BOOKS } from "@/content/books";
 import { KITS } from "@/content/kits";
+import { PODCAST_EPISODES } from "@/content/podcasts";
 import { getAllPostSlugs } from "@/lib/blog";
 
 const BASE_URL = "https://founderglenn.com";
@@ -28,6 +29,11 @@ const ROUTES = [
   "/music",
   "/maynard-eaton",
   "/media",
+  "/podcasts",
+  "/rss/blog.xml",
+  "/rss/founder-glenn-podcast.xml",
+  "/rss/foundation.xml",
+  "/rss/codex.xml",
   "/contact",
   "/kits",
   "/comics",
@@ -57,12 +63,16 @@ export async function GET() {
   const essaySlugs = BOOKS.filter((book) => book.category === "essays").map((book) => book.slug);
   const kitSlugs = KITS.map((kit) => kit.slug);
   const bookSlugs = BOOKS.filter((book) => book.category !== "essays").map((book) => book.slug);
+  const podcastEpisodeRoutes = PODCAST_EPISODES.map(
+    (episode) => `/podcasts/${episode.show}/${episode.slug}`,
+  );
 
   const dynamicRoutes = [
     ...blogSlugs.map((slug) => `/blog/${slug}`),
     ...essaySlugs.map((slug) => `/essays/${slug}`),
     ...kitSlugs.map((slug) => `/kits/${slug}`),
     ...bookSlugs.map((slug) => `/books/${slug}`),
+    ...podcastEpisodeRoutes,
   ];
 
   const canonicalRoutes = Array.from(new Set([...ROUTES, ...dynamicRoutes]));

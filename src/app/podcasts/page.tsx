@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { PODCAST_SHOWS } from "@/content/podcasts";
 import {
   buildAbsoluteUrl,
   resolveOgImage,
@@ -7,27 +8,6 @@ import {
 } from "@/lib/seo";
 
 const PODCASTS_PATH = "/podcasts";
-
-type ListeningLink = {
-  label: string;
-  href: string;
-};
-
-type PodcastShow = {
-  id: string;
-  title: string;
-  format: string;
-  deck: string;
-  description: string;
-  topics: string[];
-  duration: string;
-  imageSrc: string;
-  imageAlt: string;
-  spotifyEmbedUrl?: string;
-  links: ListeningLink[];
-  process?: string[];
-  sampleEpisodes?: string[];
-};
 
 export const metadata: Metadata = {
   title: "Podcast Network",
@@ -53,96 +33,6 @@ export const metadata: Metadata = {
     images: [resolveOgImage("/things/Glenn.PNG")],
   },
 };
-
-const podcastShows: PodcastShow[] = [
-  {
-    id: "01",
-    title: "The Founder Glenn Podcast",
-    format: "Full production podcast",
-    deck: "The flagship show",
-    description:
-      "Long-form conversations at the intersection of culture, systems, and creator leverage.",
-    topics: [
-      "Interviews",
-      "Founder conversations",
-      "Philosophy",
-      "Culture",
-      "Business",
-      "Systems thinking",
-      "Creator economy",
-    ],
-    duration: "45-90 minutes",
-    imageSrc: "/aboutmefg.png",
-    imageAlt: "Founder Glenn podcast cover image",
-    links: [
-      { label: "Spotify", href: "https://open.spotify.com/" },
-      { label: "Apple Podcasts", href: "https://podcasts.apple.com/" },
-      { label: "Amazon Music", href: "https://music.amazon.com/podcasts" },
-      { label: "All Apps", href: "https://pod.link/" },
-    ],
-  },
-  {
-    id: "02",
-    title: "The Foundation",
-    format: "Twitter Spaces archive",
-    deck: "The live discussion show",
-    description:
-      "Live community discourse converted into an evergreen podcast feed.",
-    topics: [
-      "Creator debates",
-      "Artist economics",
-      "Tech discussions",
-      "Philosophy threads",
-      "Live Q&A",
-    ],
-    duration: "30-60 minutes",
-    imageSrc: "/things/sessionspace.PNG",
-    imageAlt: "The Foundation Twitter Spaces cover image",
-    process: [
-      "Host live Twitter Spaces",
-      "Download the recording",
-      "Upload the audio as a podcast episode",
-    ],
-    links: [
-      { label: "Spotify", href: "https://open.spotify.com/" },
-      { label: "Apple Podcasts", href: "https://podcasts.apple.com/" },
-      { label: "Amazon Music", href: "https://music.amazon.com/podcasts" },
-      { label: "All Apps", href: "https://pod.link/" },
-    ],
-  },
-  {
-    id: "03",
-    title: "The Founder Glenn Codex",
-    format: "Canon deep dives",
-    deck: "The intellectual archive",
-    description:
-      "Solo breakdowns of your books, frameworks, essays, and long-form philosophy.",
-    topics: [
-      "Books",
-      "Frameworks",
-      "Essays",
-      "Philosophy",
-      "Long-form breakdowns",
-      "Project explanations",
-    ],
-    duration: "20-40 minutes",
-    imageSrc: "/things/Glenn.PNG",
-    imageAlt: "Founder Glenn Codex cover image",
-    sampleEpisodes: [
-      "Episode 1 - The Echopoint Vision",
-      "Episode 2 - Builder Irrelevance",
-      "Episode 3 - The Diaspora Special Zones",
-      "Episode 4 - The Father Dynasty Trust",
-      "Episode 5 - The Creator Sovereignty Model",
-    ],
-    links: [
-      { label: "Spotify", href: "https://open.spotify.com/" },
-      { label: "Apple Podcasts", href: "https://podcasts.apple.com/" },
-      { label: "Amazon Music", href: "https://music.amazon.com/podcasts" },
-      { label: "All Apps", href: "https://pod.link/" },
-    ],
-  },
-];
 
 function SpotifyEmbedPlaceholder({ title }: { title: string }) {
   return (
@@ -205,7 +95,7 @@ export default function PodcastsPage() {
         </section>
 
         <section className="mt-12 grid gap-9">
-          {podcastShows.map((show) => (
+          {PODCAST_SHOWS.map((show, index) => (
             <section
               key={show.title}
               className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.055] to-white/[0.02] shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
@@ -223,7 +113,9 @@ export default function PodcastsPage() {
 
                 <div className="space-y-8 p-6 md:p-9">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Show {show.id}</p>
+                    <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">
+                      Show {String(index + 1).padStart(2, "0")}
+                    </p>
                     <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">{show.format}</p>
                     <h2 className="mt-2 text-[clamp(1.8rem,3.6vw,2.35rem)] font-semibold tracking-tight text-white">
                       {show.title}
