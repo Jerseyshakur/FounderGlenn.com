@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import {
   buildAbsoluteUrl,
   buildProfilePageSchema,
@@ -10,7 +11,7 @@ import {
 const ABOUT_PATH = "/about";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Founder Glenn",
   description:
     "Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, technologist, and systems builder creating infrastructure for creators.",
   alternates: {
@@ -36,6 +37,13 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const profileSchema = buildProfilePageSchema(ABOUT_PATH);
+  const notableProjects = [
+    { label: "Podcast Network", href: "/podcasts" },
+    { label: "Nexus BodyOS", href: "/NexusBodyOS" },
+    { label: "Books", href: "/books" },
+    { label: "Blog", href: "/blog" },
+    { label: "Media", href: "/media" },
+  ] as const;
 
   return (
     <main className="min-h-screen bg-black px-6 py-20 text-zinc-100">
@@ -62,10 +70,74 @@ export default function AboutPage() {
           <h2 className="mt-4 text-xl font-medium tracking-wide text-zinc-300 md:text-2xl">
             Shakur Raqon Ziyār Glenn
           </h2>
+          <p className="mx-auto mt-6 max-w-[780px] text-lg leading-[1.8] text-zinc-300">
+            Founder Glenn (Shakur Raqon Ziyār Glenn) is an author, technologist, and systems builder
+            focused on creator infrastructure, publishing systems, and long-horizon intellectual property.
+          </p>
         </header>
 
         <section className="mx-auto max-w-[720px] px-0 md:px-6">
           <div className="space-y-8 text-lg leading-[1.75] text-gray-300">
+            <section className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Entity Snapshot</p>
+              <div className="mt-4 space-y-3 text-base leading-7 text-zinc-300">
+                <p>
+                  <span className="font-semibold text-white">Known as:</span> Founder Glenn
+                </p>
+                <p>
+                  <span className="font-semibold text-white">Full name:</span> Shakur Raqon Ziyār Glenn
+                </p>
+                <p>
+                  <span className="font-semibold text-white">Role:</span> Author, Technologist, Systems Builder
+                </p>
+                <p>
+                  <span className="font-semibold text-white">Focus:</span> Creator infrastructure, publishing systems,
+                  ownership frameworks, and IP strategy
+                </p>
+                <p>
+                  <span className="font-semibold text-white">Official website:</span>{" "}
+                  <a
+                    href={seoConfig.person.url}
+                    className="underline underline-offset-4 hover:text-white"
+                  >
+                    founderglenn.com
+                  </a>
+                </p>
+              </div>
+            </section>
+
+            <section className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Official Profiles</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {seoConfig.person.sameAs.map((url) => (
+                  <a
+                    key={url}
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full border border-white/20 px-3 py-1.5 text-sm text-zinc-300 transition-colors hover:border-white/35 hover:text-white"
+                  >
+                    {url.replace(/^https?:\/\//, "")}
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <section className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Notable Projects</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {notableProjects.map((project) => (
+                  <Link
+                    key={project.href}
+                    href={project.href}
+                    className="rounded-full border border-white/20 px-3 py-1.5 text-sm text-zinc-300 transition-colors hover:border-white/35 hover:text-white"
+                  >
+                    {project.label}
+                  </Link>
+                ))}
+              </div>
+            </section>
+
             <p>
               Founder Glenn — born Shakur Raqon Ziyār Glenn — did not begin his journey in boardrooms
               or venture studios. His story started the way many creator stories do: in rooms filled

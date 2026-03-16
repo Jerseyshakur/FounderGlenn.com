@@ -78,7 +78,7 @@ export const PODCAST_SHOWS: PodcastShow[] = [
       "Live Q&A",
     ],
     duration: "30-60 minutes",
-    imageSrc: "/things/sessionspace.PNG",
+    imageSrc: "/podcasts/the-foundation-cover.jpeg",
     imageAlt: "The Foundation Twitter Spaces cover image",
     process: [
       "Host live Twitter Spaces",
@@ -110,7 +110,7 @@ export const PODCAST_SHOWS: PodcastShow[] = [
       "Project explanations",
     ],
     duration: "20-40 minutes",
-    imageSrc: "/things/Glenn.PNG",
+    imageSrc: "/podcasts/founder-glenn-codex-cover.jpeg",
     imageAlt: "Founder Glenn Codex cover image",
     sampleEpisodes: [
       "Episode 1 - The Echopoint Vision",
