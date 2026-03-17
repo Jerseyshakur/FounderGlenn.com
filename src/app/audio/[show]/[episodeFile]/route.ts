@@ -71,29 +71,48 @@ function buildCandidateKeys(audioKey: string): string[] {
   return Array.from(keys);
 }
 
-async function isReachable(url: string): Promise<boolean> {
-  try {
-    const head = await fetch(url, { method: "HEAD", redirect: "manual", cache: "no-store" });
-    if (head.status === 200 || head.status === 206) return true;
-  } catch {}
-
-  try {
-    const ranged = await fetch(url, {
-      method: "GET",
-      headers: { Range: "bytes=0-1" },
-      redirect: "manual",
-      cache: "no-store",
-    });
-    return ranged.status === 200 || ranged.status === 206;
-  } catch {
-    return false;
+function passthroughHeaders(source: Headers): Headers {
+  const headers = new Headers();
+  const allowed = [
+    "content-type",
+    "content-length",
+    "accept-ranges",
+    "content-range",
+    "etag",
+    "last-modified",
+    "cache-control",
+  ];
+  for (const key of allowed) {
+    const value = source.get(key);
+    if (value) {
+      headers.set(key, value);
+    }
   }
+  // Keep this edge-cached similarly to feed responses.
+  if (!headers.has("cache-control")) {
+    headers.set("cache-control", "public, s-maxage=1800, stale-while-revalidate=86400");
+  }
+  return headers;
 }
 
-export async function GET(
-  _: Request,
-  context: { params: { show: string; episodeFile: string } },
-) {
+async function resolveAudioResponse(urls: string[], method: "GET" | "HEAD", range?: string | null) {
+  for (const url of urls) {
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: range && method === "GET" ? { Range: range } : undefined,
+        redirect: "follow",
+        cache: "no-store",
+      });
+      if (response.status === 200 || response.status === 206) {
+        return response;
+      }
+    } catch {}
+  }
+  return null;
+}
+
+async function handleAudioRequest(request: Request, context: { params: { show: string; episodeFile: string } }) {
   const { show, episodeFile } = context.params;
   if (!isShowSlug(show)) {
     return new Response("Not found", { status: 404 });
@@ -106,14 +125,29 @@ export async function GET(
   }
 
   const keyCandidates = buildCandidateKeys(episode.audioKey);
+  const urls: string[] = [];
   for (const base of PUBLIC_AUDIO_BASES) {
     for (const key of keyCandidates) {
-      const directUrl = buildDirectAudioUrl(base, key);
-      if (await isReachable(directUrl)) {
-        return Response.redirect(directUrl, 307);
-      }
+      urls.push(buildDirectAudioUrl(base, key));
     }
   }
 
+  const method = request.method === "HEAD" ? "HEAD" : "GET";
+  const upstream = await resolveAudioResponse(urls, method, request.headers.get("range"));
+  if (upstream) {
+    return new Response(method === "HEAD" ? null : upstream.body, {
+      status: upstream.status,
+      headers: passthroughHeaders(upstream.headers),
+    });
+  }
+
   return new Response("Audio unavailable", { status: 404 });
+}
+
+export async function GET(request: Request, context: { params: { show: string; episodeFile: string } }) {
+  return handleAudioRequest(request, context);
+}
+
+export async function HEAD(request: Request, context: { params: { show: string; episodeFile: string } }) {
+  return handleAudioRequest(request, context);
 }

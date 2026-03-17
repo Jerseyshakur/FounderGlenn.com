@@ -8,6 +8,7 @@ import {
 } from "@/lib/seo";
 
 const PODCASTS_PATH = "/podcasts";
+const VISIBLE_SHOW_SLUG = "codex";
 
 export const metadata: Metadata = {
   title: "Podcast Network",
@@ -49,6 +50,8 @@ function SpotifyEmbedPlaceholder({ title }: { title: string }) {
 }
 
 export default function PodcastsPage() {
+  const visibleShows = PODCAST_SHOWS.filter((show) => show.slug === VISIBLE_SHOW_SLUG);
+
   return (
     <main className="min-h-screen bg-[#121212] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),rgba(18,18,18,0)_45%)] px-6 py-16 text-zinc-100 md:py-24">
       <article className="mx-auto max-w-6xl">
@@ -60,42 +63,13 @@ export default function PodcastsPage() {
             Founder Glenn Podcast Network
           </h1>
           <p className="mx-auto mt-7 max-w-[46rem] text-[1.06rem] leading-[1.9] text-zinc-300 md:text-xl md:leading-[1.85]">
-            A collection of conversations, archives, and deep dives from Founder Glenn. From
-            full-length interviews to live Twitter Spaces and canon breakdowns, this is the audio
-            home of the Founder Glenn ecosystem.
+            The Founder Glenn Codex is the only show currently live on the website. Additional
+            network shows remain in the background and will be published here when released.
           </p>
         </header>
 
-        <section className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
-          <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Network Architecture</p>
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
-            <div className="rounded-xl border border-white/10 bg-black/25 p-4">
-              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Show 1</p>
-              <p className="mt-2 text-sm font-semibold text-white">The Founder Glenn Podcast</p>
-              <p className="mt-1 text-sm text-zinc-300">Mainstream conversations and reach.</p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-black/25 p-4">
-              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Show 2</p>
-              <p className="mt-2 text-sm font-semibold text-white">The Foundation</p>
-              <p className="mt-1 text-sm text-zinc-300">Community engagement and live discourse.</p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-black/25 p-4">
-              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Show 3</p>
-              <p className="mt-2 text-sm font-semibold text-white">The Founder Glenn Codex</p>
-              <p className="mt-1 text-sm text-zinc-300">The intellectual archive and canon layer.</p>
-            </div>
-          </div>
-          <pre className="mt-5 overflow-x-auto rounded-xl border border-white/10 bg-black/35 p-4 text-xs leading-6 text-zinc-300">
-{`Founder Glenn Network
-|
-|-- Founder Glenn Podcast
-|-- The Foundation (Spaces archive)
-|-- Founder Glenn Codex`}
-          </pre>
-        </section>
-
         <section className="mt-12 grid gap-9">
-          {PODCAST_SHOWS.map((show, index) => (
+          {visibleShows.map((show, index) => (
             <section
               key={show.title}
               className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.055] to-white/[0.02] shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
