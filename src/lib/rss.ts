@@ -6,7 +6,7 @@ import type { PodcastEpisode, PodcastShow } from "@/content/podcasts";
 
 const XML_HEADER = `<?xml version="1.0" encoding="UTF-8"?>`;
 const PODCAST_OWNER_NAME = process.env.PODCAST_OWNER_NAME || seoConfig.person.name;
-const PODCAST_OWNER_EMAIL = process.env.PODCAST_OWNER_EMAIL || "contact@founderglenn.com";
+const PODCAST_OWNER_EMAIL = process.env.PODCAST_OWNER_EMAIL || "Shakur.Glenn@gmail.com";
 const COPYRIGHT_LINE = `Copyright ${new Date().getUTCFullYear()} Founder Glenn`;
 
 function escapeXml(value: string): string {
