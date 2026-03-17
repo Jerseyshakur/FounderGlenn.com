@@ -24,6 +24,23 @@ function buildDirectAudioUrl(base: string, audioKey: string): string {
 
 function buildCandidateKeys(audioKey: string): string[] {
   const keys = new Set<string>([audioKey]);
+  const normalizedKey = audioKey.replace(/^\/+/, "");
+  const lastSlashIndex = normalizedKey.lastIndexOf("/");
+  const keyDir = lastSlashIndex >= 0 ? normalizedKey.slice(0, lastSlashIndex + 1) : "";
+  const keyFile = lastSlashIndex >= 0 ? normalizedKey.slice(lastSlashIndex + 1) : normalizedKey;
+  const hasExtension = /\.[a-z0-9]{2,5}$/i.test(keyFile);
+
+  // Some R2 uploads were added without consistent extensions in metadata. Probe both forms.
+  if (!hasExtension && keyFile.length > 0) {
+    keys.add(`${keyDir}${keyFile}.mp3`);
+    keys.add(`${keyDir}${keyFile}.m4a`);
+  }
+  if (hasExtension) {
+    const withoutExt = keyFile.replace(/\.[a-z0-9]{2,5}$/i, "");
+    if (withoutExt.length > 0) {
+      keys.add(`${keyDir}${withoutExt}`);
+    }
+  }
 
   const nestedSegment = "/founder-glenn-s-the-codex-podcast-episodes/";
   const doubleNestedSegment =
