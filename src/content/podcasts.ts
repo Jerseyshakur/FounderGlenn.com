@@ -178,12 +178,12 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
   {
     id: "codex-001",
     show: "codex",
-    title: "Blood Contracts & Blueprint Sovereignty",
-    slug: "blood-contracts-blueprint-sovereignty",
-    description: "Codex episode archive: Blood Contracts & Blueprint Sovereignty.",
-    publishedAt: "2026-03-16T09:30:00.000Z",
-    audioKey:
-      "CODEX/LIVE/S1/Blood Contracts & Blueprint Sovereignty- How Artists Take Back Their Music Empire-18852151.mp3",
+    title: "How to Become a Mogul While Falling in Love | Build Your Empire Without Losing Yourself",
+    slug: "how-to-become-a-mogul-while-falling-in-love-build-your-empire-without-losing-yourself",
+    description:
+      "Most people think you have to choose: love or legacy, family or empire, heart or structure. This episode breaks that illusion completely. Inspired by How to Become a Mogul While Falling in Love, Founder Glenn walks through the real blueprint for building wealth, power, and emotional alignment at the same time without sacrificing one for the other. This is not relationship advice. This is infrastructure for love. From trust structures and emotional discipline to partner selection, legacy planning, and the concept of the Pre-Trust Era, this episode reframes relationships as something you do not fall into but something you engineer, protect, and scale. If you have ever asked: How do I build an empire and a family? How do I choose the right partner without losing focus? How do I protect my legacy before love even arrives? This is your starting point. Because love without structure collapses. And structure without love becomes empty. This is the middle path: The Mogul Blueprint. FUNNEL CTA: Read the full book: How to Become a Mogul While Falling in Love. Explore the Codex: FounderGlenn.com. Join the movement: The Codex Podcast Archive.",
+    publishedAt: "2026-03-16T10:50:00.000Z",
+    audioKey: "CODEX/LIVE/S1/Build_Your_Empire,_Find_Your_Love__The_Mogul_Blueprint_for_Lasting_Legacy",
     mimeType: "audio/mpeg",
     audioBytes: 12165922,
     duration: "00:16:54",
