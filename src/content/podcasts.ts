@@ -194,7 +194,7 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
     title: "Prophecy vs Paperwork",
     slug: "prophecy-vs-paperwork",
     description: "Codex episode archive: Prophecy vs Paperwork.",
-    publishedAt: "2026-03-16T09:40:00.000Z",
+    publishedAt: "2026-03-16T10:40:00.000Z",
     audioKey:
       "CODEX/LIVE/S1/Prophecy vs Paperwork- The Real Blueprint for Black Sovereignty-18844822.mp3",
     mimeType: "audio/mpeg",
@@ -207,7 +207,7 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
     title: "The Marcus Principle",
     slug: "the-marcus-principle",
     description: "Codex episode archive: The Marcus Principle.",
-    publishedAt: "2026-03-16T09:50:00.000Z",
+    publishedAt: "2026-03-16T10:30:00.000Z",
     audioKey:
       "CODEX/LIVE/S1/The Marcus Principle- Identity vs Institutions-18845736.mp3",
     mimeType: "audio/mpeg",
