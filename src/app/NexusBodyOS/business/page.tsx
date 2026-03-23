@@ -94,8 +94,9 @@ export default function NexusBodyOSBusinessPage() {
         <div className={`relative ${container}`}>
           <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Nexus BodyOS / Business</p>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
-            <span className="block">Your health data lives in fragments.</span>
-            <span className="mt-3 block bg-gradient-to-r from-cyan-300 via-violet-300 to-emerald-300 bg-clip-text text-transparent md:mt-4">
+            Your health data lives in fragments.
+            <br />
+            <span className="bg-gradient-to-r from-cyan-300 via-violet-300 to-emerald-300 bg-clip-text text-transparent">
               Nexus BodyOS turns it into decisions.
             </span>
           </h1>
@@ -146,9 +147,8 @@ export default function NexusBodyOSBusinessPage() {
             even harder to decide what to do next.
           </p>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-zinc-300">
-            At an organizational level, fragmented health data also limits efficient monitoring, consistency, and
-            decision-making across a connected platform—so both users and the systems around them pay a coordination
-            tax.
+            Fragmented health data also limits efficient monitoring, consistency, and decision-making across a connected
+            platform.
           </p>
 
           <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -252,19 +252,13 @@ export default function NexusBodyOSBusinessPage() {
             </p>
           </article>
 
-          <ul className="grid list-none gap-3 sm:grid-cols-2 sm:gap-4" aria-label="Business impact outcomes">
+          <ul
+            className="list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-zinc-300 marker:text-emerald-400/75"
+            aria-label="Business impact outcomes"
+          >
             {impacts.map((item) => (
-              <li
-                key={item}
-                className="flex gap-3 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-black/20 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:p-5"
-              >
-                <span
-                  className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-xs font-bold text-emerald-300"
-                  aria-hidden="true"
-                >
-                  ✓
-                </span>
-                <span className="text-sm leading-relaxed text-zinc-200">{item}</span>
+              <li key={item} className="pl-1">
+                {item}
               </li>
             ))}
           </ul>
