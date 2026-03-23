@@ -135,9 +135,9 @@ export default function SiteNavDrawer() {
           className="fixed left-[4.25rem] top-4 z-[70] inline-flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-black/45 shadow-[0_0_24px_rgba(56,189,248,0.12)] backdrop-blur-md transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
           aria-label="Nexus BodyOS"
         >
-          {/* App icon — aligned with watch/iOS BodyOS branding; keep in sync with APPS nexus iconSrc. */}
+          {/* Real iOS app icon: public/images/nexus-bodyos-appicon.png (from Nexus HealthKit App AppIcon). */}
           <img
-            src="/images/nexus-bodyos-app-icon.svg"
+            src="/images/nexus-bodyos-appicon.png"
             alt=""
             width={44}
             height={44}

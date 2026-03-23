@@ -25,7 +25,7 @@ export const APPS: AppListing[] = [
     slug: "nexus",
     name: "Nexus BodyOS",
     tagline: "Recovery and readiness coaching powered by physiology + AI.",
-    iconSrc: "/images/nexus-bodyos-app-icon.svg",
+    iconSrc: "/images/nexus-bodyos-appicon.png",
     appStoreUrl: "https://apps.apple.com/",
     rating: 4.8,
     ratingCountText: "361 Ratings",
