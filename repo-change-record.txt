@@ -1,0 +1,2037 @@
+================================================================================
+FOUNDERGLENN.COM — REPO CHANGE RECORD (TXT)
+Generated from local git; clone-point uses reflog c4e8806 when present.
+================================================================================
+
+--------------------------------------------------------------------------------
+SECTION A — CLONE-POINT BASELINE (this working copy)
+--------------------------------------------------------------------------------
+Reflog shows: clone from https://github.com/Jerseyshakur/FounderGlenn.com.git
+at commit c4e8806 (HEAD after clone).
+
+To re-discover clone SHA on another machine:
+  git reflog | grep 'clone:'
+
+CLONE_POINT=c4e8806
+  c4e8806 Update default podcast owner email in RSS metadata.
+  2026-03-17 16:45:30 -0500
+  Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+
+HEAD=e21d9f1dba94c4c50d891e3a24a991bba6714bce
+  e21d9f1 NexusBodyOS business: tighter hero break, slim impact bullets, one-line org sentence
+  2026-03-23 15:18:58 -0500
+  founder glenn <founderglenn@founders-MacBook-Air.local>
+
+--- git diff --stat CLONE..HEAD ---
+ public/images/nexus-bodyos-appicon.png   | Bin 0 -> 407956 bytes
+ src/app/NexusBodyOS/business/page.tsx    | 326 +++++++++++++++++++++++++++++++
+ src/app/NexusBodyOS/page.tsx             |  15 +-
+ src/app/nexushealthcare/_shared.tsx      |  10 +-
+ src/app/sitemap.xml/route.ts             |   1 +
+ src/components/NexusBodyOSAtmosphere.tsx |  17 ++
+ src/components/SiteNavDrawer.tsx         |  22 +++
+ src/content/apps.ts                      |   3 +-
+ 8 files changed, 380 insertions(+), 14 deletions(-)
+
+--- git diff --name-status CLONE..HEAD ---
+A	public/images/nexus-bodyos-appicon.png
+A	src/app/NexusBodyOS/business/page.tsx
+M	src/app/NexusBodyOS/page.tsx
+M	src/app/nexushealthcare/_shared.tsx
+M	src/app/sitemap.xml/route.ts
+A	src/components/NexusBodyOSAtmosphere.tsx
+M	src/components/SiteNavDrawer.tsx
+M	src/content/apps.ts
+
+--- git log --oneline --reverse CLONE..HEAD ---
+a9c90aa Add Nexus BodyOS business page and shared atmosphere background
+8973033 Nexus BodyOS: header app logo on /NexusBodyOS routes
+aec12a0 Use real Nexus BodyOS app icon (nexus-bodyos-appicon.png)
+84418c4 Nexus BodyOS business: hero spacing, CTAs, impact cards, org problem line
+db22ed8 NexusBodyOS: View App Store CTA uses same TestFlight URL as Join
+e21d9f1 NexusBodyOS business: tighter hero break, slim impact bullets, one-line org sentence
+
+--- git log --stat --reverse CLONE..HEAD ---
+commit a9c90aa4524db2ef225b001fbc60eed34f1e4d67
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:01:41 2026 -0500
+
+    Add Nexus BodyOS business page and shared atmosphere background
+    
+    - New route /NexusBodyOS/business with assignment-focused copy
+    - Extract NexusBodyOSAtmosphere for full-page gradient glow on all Nexus pages
+    - Add Business to NEXUS_LINKS and sitemap
+    
+    Made-with: Cursor
+
+ src/app/NexusBodyOS/business/page.tsx    | 321 +++++++++++++++++++++++++++++++
+ src/app/NexusBodyOS/page.tsx             |   9 +-
+ src/app/nexushealthcare/_shared.tsx      |  10 +-
+ src/app/sitemap.xml/route.ts             |   1 +
+ src/components/NexusBodyOSAtmosphere.tsx |  17 ++
+ 5 files changed, 348 insertions(+), 10 deletions(-)
+
+commit 8973033d813ddc2d4cd77ad27b3c9e96bf8ae5b9
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:05:16 2026 -0500
+
+    Nexus BodyOS: header app logo on /NexusBodyOS routes
+    
+    - Add nexus-bodyos-app-icon.svg (gradient peak on dark tile)
+    - Fixed slot after menu button via SiteNavDrawer when path matches NexusBodyOS
+    - Point APPS nexus iconSrc at same asset for mock + listings
+    
+    Made-with: Cursor
+
+ public/images/nexus-bodyos-app-icon.svg | 14 ++++++++++++++
+ src/components/SiteNavDrawer.tsx        | 22 ++++++++++++++++++++++
+ src/content/apps.ts                     |  3 +--
+ 3 files changed, 37 insertions(+), 2 deletions(-)
+
+commit aec12a049702041893a39b399395a57ae691bdb5
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:06:45 2026 -0500
+
+    Use real Nexus BodyOS app icon (nexus-bodyos-appicon.png)
+    
+    Replace placeholder SVG with Icon-1024 from Nexus HealthKit App AppIcon asset.
+    
+    Made-with: Cursor
+
+ public/images/nexus-bodyos-app-icon.svg |  14 --------------
+ public/images/nexus-bodyos-appicon.png  | Bin 0 -> 407956 bytes
+ src/components/SiteNavDrawer.tsx        |   4 ++--
+ src/content/apps.ts                     |   2 +-
+ 4 files changed, 3 insertions(+), 17 deletions(-)
+
+commit 84418c428cfa862a9fd22b0fcc672798f3399858
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:11:37 2026 -0500
+
+    Nexus BodyOS business: hero spacing, CTAs, impact cards, org problem line
+    
+    - Split headline into block lines + margin so fragments./Nexus never runs together
+    - Explore the System → /NexusBodyOS; View Product → #integrations on this page
+    - Business impact as checklist-style cards with ✓ markers; section ids + scroll-mt
+    - Add explicit organizational cost of fragmented data paragraph
+    
+    Made-with: Cursor
+
+ src/app/NexusBodyOS/business/page.tsx | 33 ++++++++++++++++++++++-----------
+ 1 file changed, 22 insertions(+), 11 deletions(-)
+
+commit db22ed87351a14e0628a5e634965c5c5bdc031b4
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:14:17 2026 -0500
+
+    NexusBodyOS: View App Store CTA uses same TestFlight URL as Join
+    
+    Made-with: Cursor
+
+ src/app/NexusBodyOS/page.tsx | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit e21d9f1dba94c4c50d891e3a24a991bba6714bce
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:18:58 2026 -0500
+
+    NexusBodyOS business: tighter hero break, slim impact bullets, one-line org sentence
+    
+    - <br /> between headline clauses to kill fragments./Nexus wrap
+    - Business impact: disc list + emerald markers (no card chrome)
+    - Org problem: single direct sentence
+    
+    Made-with: Cursor
+
+ src/app/NexusBodyOS/business/page.tsx | 28 +++++++++++-----------------
+ 1 file changed, 11 insertions(+), 17 deletions(-)
+
+--------------------------------------------------------------------------------
+SECTION B — REPOSITORY ROOT BASELINE (first commit on current branch)
+--------------------------------------------------------------------------------
+ROOT=29d42fe45daf125d50cda8fd4081357080b2e2fa
+  29d42fe Initial FounderGlenn.com site upload
+  2026-03-05 20:36:20 -0600
+  Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+
+Commits since root (count): 81
+
+--- git diff --stat ROOT..HEAD ---
+ .env.example                                       |   2 +
+ next.config.mjs                                    |  87 +++-
+ public/aboutmefg.png                               | Bin 0 -> 707949 bytes
+ public/covers/64-laws-of-black-power.jpg           | Bin 0 -> 731419 bytes
+ public/covers/book-of-glenn-legacy-talk.jpg        | Bin 0 -> 789168 bytes
+ ...chitect of Inevitability (By Elias Marlowe).png | Bin 0 -> 2142568 bytes
+ public/covers/books/Supreme Dictionary.PNG         | Bin 0 -> 216997 bytes
+ ...of Black Power \342\200\224 Founder Glenn.jpeg" | Bin 0 -> 731419 bytes
+ ...k of Glenn Legacy Talk  The Unsent Letters.jpeg | Bin 0 -> 789168 bytes
+ public/covers/books/The Prince.JPG                 | Bin 0 -> 232372 bytes
+ public/covers/books/The Unit.png                   | Bin 0 -> 3866948 bytes
+ ... steps to protect your money before you die.png | Bin 0 -> 1763629 bytes
+ public/covers/kits/artist-legal-glossary.jpeg      | Bin 0 -> 316204 bytes
+ public/covers/kits/ceo-confessions.png             | Bin 0 -> 2016643 bytes
+ public/covers/kits/distribution-protection-kit.jpg | Bin 0 -> 973882 bytes
+ public/covers/kits/emotional-intelligence.png      | Bin 0 -> 2145392 bytes
+ public/covers/kits/fan-funnel-kit.png              | Bin 0 -> 2416586 bytes
+ .../kits/how-to-start-an-indie-record-label.png    | Bin 0 -> 2687342 bytes
+ public/covers/kits/label-deal-kit.png              | Bin 0 -> 2283158 bytes
+ public/covers/kits/leadership-and-love.png         | Bin 0 -> 2280713 bytes
+ public/covers/kits/legacy-and-longevity.png        | Bin 0 -> 2771591 bytes
+ public/covers/kits/paperwork-and-pillow-talk.png   | Bin 0 -> 2561913 bytes
+ public/covers/kits/rollout-kit.png                 | Bin 0 -> 1803601 bytes
+ public/covers/kits/sample-clearance-kit.png        | Bin 0 -> 2400157 bytes
+ .../kits/seven-steps-to-claim-every-royalty.png    | Bin 0 -> 2669336 bytes
+ .../kits/seven-steps-to-find-every-dollar.jpg      | Bin 0 -> 1109779 bytes
+ public/covers/kits/seven-steps-to-get-paid.png     | Bin 0 -> 2431380 bytes
+ .../kits/the artist management starter kit.png     | Bin 0 -> 2913442 bytes
+ public/covers/kits/the indie artits legal kit.png  | Bin 0 -> 2927353 bytes
+ public/covers/kits/the-fatherhood-framework.png    | Bin 0 -> 2087852 bytes
+ public/covers/kits/the-heart-ledger.png            | Bin 0 -> 2072933 bytes
+ public/covers/kits/the-mogul-mindset-kit.png       | Bin 0 -> 1863376 bytes
+ public/covers/kits/the-pre-trust-toolkit.png       | Bin 0 -> 2570745 bytes
+ public/covers/kits/the-signback.png                | Bin 0 -> 3394366 bytes
+ public/covers/kits/trust-before-touch.png          | Bin 0 -> 2149051 bytes
+ public/covers/kits/universal-red-flags.png         | Bin 0 -> 1621816 bytes
+ public/images/nexus-bodyos-appicon.png             | Bin 0 -> 407956 bytes
+ public/images/placeholder-cover.svg                |   5 +
+ public/images/placeholder-essay-cover.svg          |   6 +
+ public/og-image.jpg                                | Bin 0 -> 707949 bytes
+ .../podcasts/founder-glenn-codex-cover-3000-v2.jpg | Bin 0 -> 500353 bytes
+ public/podcasts/founder-glenn-codex-cover-3000.jpg | Bin 0 -> 399325 bytes
+ public/podcasts/founder-glenn-codex-cover.jpeg     | Bin 0 -> 218205 bytes
+ .../podcasts/founder-glenn-podcast-cover-3000.jpg  | Bin 0 -> 179765 bytes
+ public/podcasts/the-foundation-cover-3000.jpg      | Bin 0 -> 309220 bytes
+ public/podcasts/the-foundation-cover.jpeg          | Bin 0 -> 198264 bytes
+ public/robots.txt                                  |   4 +
+ public/serena.jpeg                                 | Bin 0 -> 279956 bytes
+ ...How to Become a Mogul While Falling in Love.PNG | Bin 0 -> 3114568 bytes
+ ...alled to Say I Love You 60 Days of Distance.PNG | Bin 0 -> 1453426 bytes
+ ...tion Inside a Nation The Empire Signs Back .PNG | Bin 0 -> 2815753 bytes
+ .../Covers/Sacrilegious Faith Is Fashion.PNG       | Bin 0 -> 2902221 bytes
+ .../Covers/Sign Here The Blueprint Decoded.PNG     | Bin 0 -> 3768968 bytes
+ .../Covers/The Book of Gravity The 120 Lessons.PNG | Bin 0 -> 2941783 bytes
+ .../Covers/The Book of Water & Aura Mastery.PNG    | Bin 0 -> 2894892 bytes
+ ...1s Mirage 64 Squares of Sovereign Geometry.PNG" | Bin 0 -> 2556835 bytes
+ public/things/LTcover.PNG                          | Bin 0 -> 646368 bytes
+ public/things/founderGlennHEADSHOT.jpg             | Bin 0 -> 298606 bytes
+ public/things/maynard-eaton-program.pdf            | Bin 0 -> 32660490 bytes
+ public/things/sessionspace.PNG                     | Bin 0 -> 105351 bytes
+ public/things/splits.PNG                           | Bin 0 -> 192501 bytes
+ scripts/verify-shopify-kits.mjs                    | 102 +++++
+ src/app/NexusBodyOS/about/page.tsx                 |   2 +
+ src/app/NexusBodyOS/business/page.tsx              | 326 ++++++++++++++
+ src/app/NexusBodyOS/contact/page.tsx               |   2 +
+ src/app/NexusBodyOS/delete-data/page.tsx           |   2 +
+ src/app/NexusBodyOS/faq/page.tsx                   |   2 +
+ src/app/NexusBodyOS/features/page.tsx              |   2 +
+ src/app/NexusBodyOS/page.tsx                       | 175 ++++++++
+ src/app/NexusBodyOS/privacy/page.tsx               |   2 +
+ src/app/NexusBodyOS/subscription/page.tsx          |   2 +
+ src/app/NexusBodyOS/support/page.tsx               |   2 +
+ src/app/NexusBodyOS/terms/page.tsx                 |   2 +
+ src/app/NexusBodyOS/updates/page.tsx               |   2 +
+ src/app/about/page.tsx                             | 194 ++++++++
+ src/app/api/shopify/webhooks/orders-paid/route.ts  | 100 +++++
+ src/app/audio/[show]/[episodeFile]/route.ts        | 153 +++++++
+ src/app/blog/[slug]/page.tsx                       | 109 +++--
+ src/app/blog/page.tsx                              | 154 +++++--
+ src/app/blogs/page.tsx                             |   5 +
+ src/app/books/[slug]/page.tsx                      | 152 ++++++-
+ src/app/books/books/page.tsx                       | 129 ++++++
+ src/app/books/comics/page.tsx                      |  82 ++++
+ src/app/books/essays/page.tsx                      |   1 +
+ src/app/books/kits/page.tsx                        |  94 ++++
+ src/app/books/page.tsx                             | 148 ++++---
+ src/app/comics/page.tsx                            |   1 +
+ src/app/contact/page.tsx                           |  46 ++
+ src/app/essays/[slug]/page.tsx                     | 165 +++++++
+ src/app/essays/page.tsx                            | 111 +++++
+ src/app/founder-glenn/page.tsx                     |   2 +
+ src/app/glenn/page.tsx                             |  25 +-
+ src/app/globals.css                                | 129 ++++++
+ src/app/in-memory/page.tsx                         | 183 ++++++++
+ src/app/kits/[slug]/page.tsx                       | 122 +++++
+ src/app/kits/page.tsx                              |   1 +
+ src/app/layout.tsx                                 |  96 +++-
+ src/app/legal/page.tsx                             | 106 +++++
+ src/app/maynard-eaton/page.tsx                     | 143 ++++++
+ src/app/media/page.tsx                             |  94 ++++
+ src/app/music/page.tsx                             |  45 ++
+ src/app/nexus/page.tsx                             | 158 +------
+ src/app/nexushealthcare/_shared.tsx                |  91 ++++
+ src/app/nexushealthcare/about/page.tsx             |  42 ++
+ src/app/nexushealthcare/contact/page.tsx           |  73 +++
+ src/app/nexushealthcare/delete-data/page.tsx       |  36 ++
+ src/app/nexushealthcare/faq/page.tsx               |  58 +++
+ src/app/nexushealthcare/features/page.tsx          |  36 ++
+ src/app/nexushealthcare/page.tsx                   |   5 +
+ src/app/nexushealthcare/privacy/page.tsx           |  62 +++
+ src/app/nexushealthcare/subscription/page.tsx      |  51 +++
+ src/app/nexushealthcare/support/page.tsx           |  87 ++++
+ src/app/nexushealthcare/terms/page.tsx             |  59 +++
+ src/app/nexushealthcare/updates/page.tsx           |  71 +++
+ src/app/page.tsx                                   |   6 +
+ src/app/podcasts/[show]/[episode]/page.tsx         | 105 +++++
+ src/app/podcasts/page.tsx                          | 182 ++++++++
+ src/app/royalties/page.tsx                         | 143 ++++++
+ src/app/rss/blog.xml/route.ts                      |   8 +
+ src/app/rss/codex.xml/route.ts                     |  16 +
+ src/app/rss/foundation.xml/route.ts                |  16 +
+ src/app/rss/founder-glenn-podcast.xml/route.ts     |  16 +
+ src/app/rss/network.xml/route.ts                   |  13 +
+ src/app/sitemap.xml/route.ts                       |  90 ++++
+ src/components/CoverImage.tsx                      |  66 +++
+ src/components/NexusBodyOSAtmosphere.tsx           |  17 +
+ src/components/Projects.tsx                        |  44 +-
+ src/components/ScrollyCanvas.tsx                   | 251 ++++++++---
+ src/components/SiteNavDrawer.tsx                   | 218 +++++++++
+ src/components/analytics/AnalyticsClickTracker.tsx |  31 ++
+ src/components/analytics/FunnelProgressTracker.tsx |  39 ++
+ src/components/analytics/RouteAnalyticsTracker.tsx |  16 +
+ src/components/analytics/ViewItemTracker.tsx       |  17 +
+ src/components/blog/ArticleBody.tsx                |  11 +
+ src/components/blog/ArticleHeader.tsx              |  39 ++
+ src/components/blog/ArticleHero.tsx                |  25 ++
+ src/components/blog/ArticleImage.tsx               |  32 ++
+ src/components/blog/ArticleSection.tsx             |  13 +
+ src/components/funnel/FunnelPageTemplate.tsx       |  53 +++
+ src/components/funnel/FunnelPrimitives.tsx         | 103 +++++
+ src/components/funnel/FunnelSections.tsx           | 230 ++++++++++
+ src/components/funnel/LegalLeadCaptureForm.tsx     |  59 +++
+ src/components/funnel/index.ts                     |   3 +
+ src/components/funnel/types.ts                     | 143 ++++++
+ src/components/shopify/ShopifyProductDetail.tsx    |  95 ++++
+ src/components/shopify/ShopifyProductGrid.tsx      | 113 +++++
+ src/components/shopify/ShopifyRuntime.tsx          | 136 ++++++
+ src/components/zapier/ZapierDevTestTrigger.tsx     |  22 +
+ src/content/apps.ts                                |   5 +-
+ .../building-nexus-while-my-body-was-failing-me.md | 160 +++++++
+ src/content/books.ts                               | 150 +++++--
+ src/content/funnels.ts                             | 318 +++++++++++++
+ src/content/kits.ts                                | 157 +++++++
+ src/content/navigation.ts                          |  22 +
+ src/content/podcasts.ts                            | 235 ++++++++++
+ src/content/shopify-handle-map.ts                  |  73 +++
+ src/lib/analytics.ts                               | 148 +++++++
+ src/lib/blog.ts                                    |   9 +
+ src/lib/media.ts                                   |  42 ++
+ src/lib/rss.ts                                     | 228 ++++++++++
+ src/lib/seo.ts                                     | 209 +++++++++
+ src/lib/shopify.ts                                 | 493 +++++++++++++++++++++
+ src/lib/zapier.ts                                  |  46 ++
+ src/types/shopify-web-components.d.ts              |  42 ++
+ things/Covers/10 steps to protect your bag.PNG     | Bin 0 -> 973882 bytes
+ things/Covers/Fan Funnel Kit.PNG                   | Bin 0 -> 2416586 bytes
+ ...How to Become a Mogul While Falling in Love.PNG | Bin 0 -> 3114568 bytes
+ ...alled to Say I Love You 60 Days of Distance.PNG | Bin 0 -> 1453426 bytes
+ ...tion Inside a Nation The Empire Signs Back .PNG | Bin 0 -> 2815753 bytes
+ things/Covers/Rollout Kit.PNG                      | Bin 0 -> 1803601 bytes
+ things/Covers/Sacrilegious Faith Is Fashion.PNG    | Bin 0 -> 2902221 bytes
+ things/Covers/Sample Clearance Kit.PNG             | Bin 0 -> 2400157 bytes
+ .../Covers/Seven Steps to Claim Every Royalty.PNG  | Bin 0 -> 982808 bytes
+ things/Covers/Seven Steps to Find Every Dollar.PNG | Bin 0 -> 2986307 bytes
+ things/Covers/Seven Steps to Get Paid.PNG          | Bin 0 -> 2781172 bytes
+ things/Covers/Sign Here The Blueprint Decoded.PNG  | Bin 0 -> 3768968 bytes
+ .../Covers/The Book of Gravity The 120 Lessons.PNG | Bin 0 -> 2941783 bytes
+ things/Covers/The Book of Water & Aura Mastery.PNG | Bin 0 -> 2894892 bytes
+ ...1s Mirage 64 Squares of Sovereign Geometry.PNG" | Bin 0 -> 2556835 bytes
+ things/Covers/Universal Red Flags.PNG              | Bin 0 -> 1621816 bytes
+ things/Covers/fortifcation .PNG                    | Bin 0 -> 599664 bytes
+ things/Covers/the recored deal decoder.PNG         | Bin 0 -> 2283158 bytes
+ things/Covers/the reocrd lable stater kit.PNG      | Bin 0 -> 962582 bytes
+ things/Covers/the sync bag.PNG                     | Bin 0 -> 3098587 bytes
+ ...n Revised Program 2 - Maynard Eaton Program.pdf | Bin 0 -> 32660490 bytes
+ things/founderGlennHEADSHOT.jpg                    | Bin 0 -> 298606 bytes
+ things/sessionspace.PNG                            | Bin 0 -> 105351 bytes
+ things/splits.PNG                                  | Bin 0 -> 192501 bytes
+ 188 files changed, 8432 insertions(+), 422 deletions(-)
+
+--- git diff --name-status ROOT..HEAD ---
+A	.env.example
+M	next.config.mjs
+A	public/aboutmefg.png
+A	public/covers/64-laws-of-black-power.jpg
+A	public/covers/book-of-glenn-legacy-talk.jpg
+A	public/covers/books/Founder Glenn Architect of Inevitability (By Elias Marlowe).png
+A	public/covers/books/Supreme Dictionary.PNG
+A	"public/covers/books/The 64 Laws of Black Power \342\200\224 Founder Glenn.jpeg"
+A	public/covers/books/The Book of Glenn Legacy Talk  The Unsent Letters.jpeg
+A	public/covers/books/The Prince.JPG
+A	public/covers/books/The Unit.png
+A	public/covers/kits/7 steps to protect your money before you die.png
+A	public/covers/kits/artist-legal-glossary.jpeg
+A	public/covers/kits/ceo-confessions.png
+A	public/covers/kits/distribution-protection-kit.jpg
+A	public/covers/kits/emotional-intelligence.png
+A	public/covers/kits/fan-funnel-kit.png
+A	public/covers/kits/how-to-start-an-indie-record-label.png
+A	public/covers/kits/label-deal-kit.png
+A	public/covers/kits/leadership-and-love.png
+A	public/covers/kits/legacy-and-longevity.png
+A	public/covers/kits/paperwork-and-pillow-talk.png
+A	public/covers/kits/rollout-kit.png
+A	public/covers/kits/sample-clearance-kit.png
+A	public/covers/kits/seven-steps-to-claim-every-royalty.png
+A	public/covers/kits/seven-steps-to-find-every-dollar.jpg
+A	public/covers/kits/seven-steps-to-get-paid.png
+A	public/covers/kits/the artist management starter kit.png
+A	public/covers/kits/the indie artits legal kit.png
+A	public/covers/kits/the-fatherhood-framework.png
+A	public/covers/kits/the-heart-ledger.png
+A	public/covers/kits/the-mogul-mindset-kit.png
+A	public/covers/kits/the-pre-trust-toolkit.png
+A	public/covers/kits/the-signback.png
+A	public/covers/kits/trust-before-touch.png
+A	public/covers/kits/universal-red-flags.png
+A	public/images/nexus-bodyos-appicon.png
+A	public/images/placeholder-cover.svg
+A	public/images/placeholder-essay-cover.svg
+A	public/og-image.jpg
+A	public/podcasts/founder-glenn-codex-cover-3000-v2.jpg
+A	public/podcasts/founder-glenn-codex-cover-3000.jpg
+A	public/podcasts/founder-glenn-codex-cover.jpeg
+A	public/podcasts/founder-glenn-podcast-cover-3000.jpg
+A	public/podcasts/the-foundation-cover-3000.jpg
+A	public/podcasts/the-foundation-cover.jpeg
+A	public/robots.txt
+A	public/serena.jpeg
+A	public/things/Covers/How to Become a Mogul While Falling in Love.PNG
+A	public/things/Covers/I Just Called to Say I Love You 60 Days of Distance.PNG
+A	public/things/Covers/Nation Inside a Nation The Empire Signs Back .PNG
+A	public/things/Covers/Sacrilegious Faith Is Fashion.PNG
+A	public/things/Covers/Sign Here The Blueprint Decoded.PNG
+A	public/things/Covers/The Book of Gravity The 120 Lessons.PNG
+A	public/things/Covers/The Book of Water & Aura Mastery.PNG
+A	"public/things/Covers/The King\342\200\231s Mirage 64 Squares of Sovereign Geometry.PNG"
+A	public/things/LTcover.PNG
+A	public/things/founderGlennHEADSHOT.jpg
+A	public/things/maynard-eaton-program.pdf
+A	public/things/sessionspace.PNG
+A	public/things/splits.PNG
+A	scripts/verify-shopify-kits.mjs
+A	src/app/NexusBodyOS/about/page.tsx
+A	src/app/NexusBodyOS/business/page.tsx
+A	src/app/NexusBodyOS/contact/page.tsx
+A	src/app/NexusBodyOS/delete-data/page.tsx
+A	src/app/NexusBodyOS/faq/page.tsx
+A	src/app/NexusBodyOS/features/page.tsx
+A	src/app/NexusBodyOS/page.tsx
+A	src/app/NexusBodyOS/privacy/page.tsx
+A	src/app/NexusBodyOS/subscription/page.tsx
+A	src/app/NexusBodyOS/support/page.tsx
+A	src/app/NexusBodyOS/terms/page.tsx
+A	src/app/NexusBodyOS/updates/page.tsx
+A	src/app/about/page.tsx
+A	src/app/api/shopify/webhooks/orders-paid/route.ts
+A	src/app/audio/[show]/[episodeFile]/route.ts
+M	src/app/blog/[slug]/page.tsx
+M	src/app/blog/page.tsx
+A	src/app/blogs/page.tsx
+M	src/app/books/[slug]/page.tsx
+A	src/app/books/books/page.tsx
+A	src/app/books/comics/page.tsx
+A	src/app/books/essays/page.tsx
+A	src/app/books/kits/page.tsx
+M	src/app/books/page.tsx
+A	src/app/comics/page.tsx
+A	src/app/contact/page.tsx
+A	src/app/essays/[slug]/page.tsx
+A	src/app/essays/page.tsx
+A	src/app/founder-glenn/page.tsx
+M	src/app/glenn/page.tsx
+M	src/app/globals.css
+A	src/app/in-memory/page.tsx
+A	src/app/kits/[slug]/page.tsx
+A	src/app/kits/page.tsx
+M	src/app/layout.tsx
+A	src/app/legal/page.tsx
+A	src/app/maynard-eaton/page.tsx
+A	src/app/media/page.tsx
+A	src/app/music/page.tsx
+M	src/app/nexus/page.tsx
+A	src/app/nexushealthcare/_shared.tsx
+A	src/app/nexushealthcare/about/page.tsx
+A	src/app/nexushealthcare/contact/page.tsx
+A	src/app/nexushealthcare/delete-data/page.tsx
+A	src/app/nexushealthcare/faq/page.tsx
+A	src/app/nexushealthcare/features/page.tsx
+A	src/app/nexushealthcare/page.tsx
+A	src/app/nexushealthcare/privacy/page.tsx
+A	src/app/nexushealthcare/subscription/page.tsx
+A	src/app/nexushealthcare/support/page.tsx
+A	src/app/nexushealthcare/terms/page.tsx
+A	src/app/nexushealthcare/updates/page.tsx
+M	src/app/page.tsx
+A	src/app/podcasts/[show]/[episode]/page.tsx
+A	src/app/podcasts/page.tsx
+A	src/app/royalties/page.tsx
+A	src/app/rss/blog.xml/route.ts
+A	src/app/rss/codex.xml/route.ts
+A	src/app/rss/foundation.xml/route.ts
+A	src/app/rss/founder-glenn-podcast.xml/route.ts
+A	src/app/rss/network.xml/route.ts
+A	src/app/sitemap.xml/route.ts
+A	src/components/CoverImage.tsx
+A	src/components/NexusBodyOSAtmosphere.tsx
+M	src/components/Projects.tsx
+M	src/components/ScrollyCanvas.tsx
+A	src/components/SiteNavDrawer.tsx
+A	src/components/analytics/AnalyticsClickTracker.tsx
+A	src/components/analytics/FunnelProgressTracker.tsx
+A	src/components/analytics/RouteAnalyticsTracker.tsx
+A	src/components/analytics/ViewItemTracker.tsx
+A	src/components/blog/ArticleBody.tsx
+A	src/components/blog/ArticleHeader.tsx
+A	src/components/blog/ArticleHero.tsx
+A	src/components/blog/ArticleImage.tsx
+A	src/components/blog/ArticleSection.tsx
+A	src/components/funnel/FunnelPageTemplate.tsx
+A	src/components/funnel/FunnelPrimitives.tsx
+A	src/components/funnel/FunnelSections.tsx
+A	src/components/funnel/LegalLeadCaptureForm.tsx
+A	src/components/funnel/index.ts
+A	src/components/funnel/types.ts
+A	src/components/shopify/ShopifyProductDetail.tsx
+A	src/components/shopify/ShopifyProductGrid.tsx
+A	src/components/shopify/ShopifyRuntime.tsx
+A	src/components/zapier/ZapierDevTestTrigger.tsx
+M	src/content/apps.ts
+A	src/content/blog/building-nexus-while-my-body-was-failing-me.md
+M	src/content/books.ts
+A	src/content/funnels.ts
+A	src/content/kits.ts
+A	src/content/navigation.ts
+A	src/content/podcasts.ts
+A	src/content/shopify-handle-map.ts
+A	src/lib/analytics.ts
+M	src/lib/blog.ts
+A	src/lib/media.ts
+A	src/lib/rss.ts
+A	src/lib/seo.ts
+A	src/lib/shopify.ts
+A	src/lib/zapier.ts
+A	src/types/shopify-web-components.d.ts
+A	things/Covers/10 steps to protect your bag.PNG
+A	things/Covers/Fan Funnel Kit.PNG
+A	things/Covers/How to Become a Mogul While Falling in Love.PNG
+A	things/Covers/I Just Called to Say I Love You 60 Days of Distance.PNG
+A	things/Covers/Nation Inside a Nation The Empire Signs Back .PNG
+A	things/Covers/Rollout Kit.PNG
+A	things/Covers/Sacrilegious Faith Is Fashion.PNG
+A	things/Covers/Sample Clearance Kit.PNG
+A	things/Covers/Seven Steps to Claim Every Royalty.PNG
+A	things/Covers/Seven Steps to Find Every Dollar.PNG
+A	things/Covers/Seven Steps to Get Paid.PNG
+A	things/Covers/Sign Here The Blueprint Decoded.PNG
+A	things/Covers/The Book of Gravity The 120 Lessons.PNG
+A	things/Covers/The Book of Water & Aura Mastery.PNG
+A	"things/Covers/The King\342\200\231s Mirage 64 Squares of Sovereign Geometry.PNG"
+A	things/Covers/Universal Red Flags.PNG
+A	things/Covers/fortifcation .PNG
+A	things/Covers/the recored deal decoder.PNG
+A	things/Covers/the reocrd lable stater kit.PNG
+A	things/Covers/the sync bag.PNG
+A	things/Maynard Eaton Revised Program 2 - Maynard Eaton Program.pdf
+A	things/founderGlennHEADSHOT.jpg
+A	things/sessionspace.PNG
+A	things/splits.PNG
+
+--- git log --oneline --reverse ROOT..HEAD ---
+31fb3c2 update analytics and GTM setup
+1bf4b29 update site metadata to Founder Glenn
+fc8532c add sitemap and robots
+0296efa update analytics and GTM setup
+14a8aac metadata cleanup, books category gate, nexus icons update
+317e0a8 moved 17 titles from books catalog to comics section
+c0e2d21 organized kits by IP (Mogul While Falling in Love + Sign Here)
+af343f9 Add hamburger navigation drawer, music page (Legacy Talk), Maynard Eaton archive, new site sections (blogs, comics, kits, media, contact), and SEO entity improvements for Founder Glenn
+f88b290 Remove Maynard Eaton program and Dorianville items from books collection
+f8ebb44 Add Nexus TestFlight beta link to Nexus page
+53e46ae Apply book and kit cover images and fix non-square cover display
+f702883 Map book and kit covers, generate placeholders for missing covers
+f368990 Moved essay titles out of books and into essays section
+9b67c1b Moved 'America: A Nation Built by Immigrants' from Books to Essays
+cf00fbe Update book covers on Books page
+b077a4a Update book covers
+2fca9ca Add public book cover assets for books page.
+dbc0908 Add Nexus founder story blog post.
+3447ce6 Refine Nexus post opening copy.
+24b5fec Update books, move essay, update Founder Glenn title, and link covers
+7babfa2 Add cover for The Book of Glenn: Legacy Talk — The Unsent Letters
+3012726 Add cover for The 64 Laws of Black Power
+b8d3177 Sync kits to real cover assets.
+38a814d Normalize kit cover filenames and simplify mapping.
+c42ed5f Rename kit title to The Sync Bag.
+6cb7e0f Integrate Shopify storefront for books, kits, and essays.
+8aeac72 Refactor Shopify to local-first hydrated commerce.
+01199a7 Add explicit Shopify handle mapping layer.
+2f0b004 Fix Shopify handle inconsistencies for local catalog.
+b56f6be Fix Shopify mapping for kits and comics resolver flow.
+31a286e Improve Shopify hydration fallback matching.
+7e5df3a Fix post-publication Shopify kit verification and cart wiring.
+3b29a1a Update user-facing Nexus branding to Nexus HealthKit.
+73610b0 Add funnel system + analytics + /legal /royalties /nexus pages
+58546fb Add new kits and Zapier lead/checkout intent events.
+8d91e78 Upgrade Nexus product experience and harden purchase tracking.
+63b1acd Adopt Vox-style editorial layout for blog feed and posts.
+86e5a95 Rework about page into cinematic minimalist founder profile.
+d436a02 Restyle media page to mirror about page minimal layout.
+d66eae7 Add global Google Analytics tag in root layout.
+7a8da12 Add dedicated in-memory memorial page for Serena K. Hawkins.
+de8f75b Add In Memory route to primary navigation drawer.
+83f2c2f Improve hamburger drawer overflow and scrolling polish.
+b869611 Polish SEO canonical routing, analytics ownership, and UX performance.
+6f9ae3a Prevent duplicate pageviews in GTM and GA fallback paths.
+8c6a6ce Add default Open Graph image asset.
+215cc36 Create Nexus HealthKit compliance docs section and migrate route.
+119e7da Root Nexus pages under /NexusHealthKit and redirect legacy paths.
+25b012d Rebrand Nexus Health to Nexus BodyOS across site copy and metadata.
+aa1d66d Add a premium podcasts network page with three show sections.
+79e140f Swap podcast and codex cover images on network page.
+37f6bd2 Add unified RSS feeds with podcast content normalization.
+4cfd6cf Optimize About entity profile and add premium podcast cover assets.
+1d121cb Add Podcasting 2.0 namespace and channel GUID metadata.
+8274b88 Map Codex episodes to uploaded files and support per-episode MIME types.
+3087ba9 Align Codex audio keys to Cloudflare S1 directory paths.
+20de52a Add a master Founder Glenn podcast network RSS feed.
+bb2b31d Add resilient audio proxy routing for podcast playback.
+404075a Expand audio proxy key fallbacks for nested Codex folders.
+6005cce Normalize podcast artwork to Apple-compliant square assets.
+aad6aa1 Improve podcast feed validator compliance and artwork optimization.
+b88d50f Update podcast show descriptions across network feeds and pages.
+232e1b0 Add new lead Codex episode with full long-form description.
+5fedaab Refresh Codex podcast cover artwork asset.
+31197c3 Redirect founder-glenn identity paths to /about.
+044eb39 Make /founder-glenn the canonical person identity URL.
+eb5fbc3 Fix founder-glenn redirect loop by excluding base path.
+dc8540a Update Codex cover artwork to use the About Me portrait.
+70b8acd Update Codex episode 2 metadata and R2 key.
+b89832e Improve audio proxy fallback for extension mismatches.
+738d40f Switch Codex episode 2 to the converted MP3 source.
+1c0a341 Ship Codex-only podcast page and Apple-ready cover refresh.
+02c9086 Fix Codex feed ordering for Apple by publish date.
+cc8eac0 Refresh podcasts page with authored Codex-first network copy.
+c4e8806 Update default podcast owner email in RSS metadata.
+a9c90aa Add Nexus BodyOS business page and shared atmosphere background
+8973033 Nexus BodyOS: header app logo on /NexusBodyOS routes
+aec12a0 Use real Nexus BodyOS app icon (nexus-bodyos-appicon.png)
+84418c4 Nexus BodyOS business: hero spacing, CTAs, impact cards, org problem line
+db22ed8 NexusBodyOS: View App Store CTA uses same TestFlight URL as Join
+e21d9f1 NexusBodyOS business: tighter hero break, slim impact bullets, one-line org sentence
+
+--- git log --stat --reverse ROOT..HEAD ---
+commit 31fb3c24ea5d0e3610dc60637fd17b4581c5346d
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Thu Mar 5 21:34:44 2026 -0600
+
+    update analytics and GTM setup
+
+ src/app/layout.tsx | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+commit 1bf4b29b3063061501dfb56bf7ab680d42347d01
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Thu Mar 5 21:44:51 2026 -0600
+
+    update site metadata to Founder Glenn
+
+ src/app/layout.tsx | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
+
+commit fc8532c2f8fe8467c29313037796fb7873e2c86c
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Thu Mar 5 21:54:49 2026 -0600
+
+    add sitemap and robots
+
+ public/robots.txt  |  4 ++++
+ src/app/sitemap.ts | 13 +++++++++++++
+ 2 files changed, 17 insertions(+)
+
+commit 0296efa01c30555aa0f59fe0702a2c4bd10ba127
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Thu Mar 5 22:06:38 2026 -0600
+
+    update analytics and GTM setup
+    
+    Made-with: Cursor
+
+ src/app/sitemap.ts           | 13 -------------
+ src/app/sitemap.xml/route.ts | 26 ++++++++++++++++++++++++++
+ 2 files changed, 26 insertions(+), 13 deletions(-)
+
+commit 14a8aac567e559dd821215513549c4dd3bba942c
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 07:58:59 2026 -0600
+
+    metadata cleanup, books category gate, nexus icons update
+
+ public/things/sessionspace.PNG | Bin 0 -> 105351 bytes
+ public/things/splits.PNG       | Bin 0 -> 192501 bytes
+ src/app/about/page.tsx         |  54 +++++++++++++
+ src/app/blog/[slug]/page.tsx   |  49 +++++++++++-
+ src/app/blog/page.tsx          |   2 +-
+ src/app/books/[slug]/page.tsx  |  53 ++++++++++++-
+ src/app/books/books/page.tsx   |  76 ++++++++++++++++++
+ src/app/books/comics/page.tsx  |  25 ++++++
+ src/app/books/kits/page.tsx    |  25 ++++++
+ src/app/books/page.tsx         | 110 +++++++++++---------------
+ src/app/glenn/page.tsx         |   2 +-
+ src/app/layout.tsx             |  68 ++++++++++++++--
+ src/app/nexus/page.tsx         |   6 +-
+ src/app/page.tsx               |   6 ++
+ src/lib/seo.ts                 | 172 +++++++++++++++++++++++++++++++++++++++++
+ things/sessionspace.PNG        | Bin 0 -> 105351 bytes
+ things/splits.PNG              | Bin 0 -> 192501 bytes
+ 17 files changed, 565 insertions(+), 83 deletions(-)
+
+commit 317e0a8041dfcc6a39bd7da043bd4821d714e3b5
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 08:16:06 2026 -0600
+
+    moved 17 titles from books catalog to comics section
+
+ src/app/books/books/page.tsx  | 10 ++++----
+ src/app/books/comics/page.tsx | 37 +++++++++++++++++++++++-----
+ src/content/books.ts          | 56 +++++++++++++++++++++++++++++++++----------
+ 3 files changed, 81 insertions(+), 22 deletions(-)
+
+commit c0e2d21033cce8a5cd4c51ce03c4bb3483ca190f
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 08:29:51 2026 -0600
+
+    organized kits by IP (Mogul While Falling in Love + Sign Here)
+
+ src/app/books/kits/page.tsx |  42 ++++++++++++--
+ src/content/kits.ts         | 137 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 173 insertions(+), 6 deletions(-)
+
+commit af343f9781e50d1a7185930cd626d0f98eef3b25
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 10:23:38 2026 -0600
+
+    Add hamburger navigation drawer, music page (Legacy Talk), Maynard Eaton archive, new site sections (blogs, comics, kits, media, contact), and SEO entity improvements for Founder Glenn
+
+ public/things/LTcover.PNG                          | Bin 0 -> 646368 bytes
+ public/things/maynard-eaton-program.pdf            | Bin 0 -> 32660490 bytes
+ src/app/about/page.tsx                             |  94 ++++++++++++--
+ src/app/blog/page.tsx                              |   4 +-
+ src/app/blogs/page.tsx                             |   1 +
+ src/app/books/page.tsx                             |   4 +-
+ src/app/comics/page.tsx                            |   1 +
+ src/app/contact/page.tsx                           |  46 +++++++
+ src/app/glenn/page.tsx                             |  23 +++-
+ src/app/kits/page.tsx                              |   1 +
+ src/app/layout.tsx                                 |   7 +-
+ src/app/maynard-eaton/page.tsx                     | 143 +++++++++++++++++++++
+ src/app/media/page.tsx                             |  90 +++++++++++++
+ src/app/music/page.tsx                             |  45 +++++++
+ src/app/nexus/page.tsx                             |  11 +-
+ src/app/sitemap.xml/route.ts                       |  19 ++-
+ src/components/Projects.tsx                        |   6 +
+ src/components/SiteNavDrawer.tsx                   | 128 ++++++++++++++++++
+ src/content/navigation.ts                          |  19 +++
+ src/lib/seo.ts                                     |  24 +++-
+ ...n Revised Program 2 - Maynard Eaton Program.pdf | Bin 0 -> 32660490 bytes
+ 21 files changed, 639 insertions(+), 27 deletions(-)
+
+commit f88b290a2b7bb7e16f0142bdbd72d5c0a48b53cb
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 10:40:27 2026 -0600
+
+    Remove Maynard Eaton program and Dorianville items from books collection
+
+ public/things/founderGlennHEADSHOT.jpg | Bin 0 -> 298606 bytes
+ src/app/about/page.tsx                 |  58 +++++++++++++++++++--------------
+ src/app/media/page.tsx                 |  12 +++++--
+ src/content/books.ts                   |  15 ---------
+ src/content/navigation.ts              |   2 +-
+ things/founderGlennHEADSHOT.jpg        | Bin 0 -> 298606 bytes
+ 6 files changed, 44 insertions(+), 43 deletions(-)
+
+commit f8ebb44b6b9fc82f0df47e111686e5158ff72786
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 14:47:27 2026 -0600
+
+    Add Nexus TestFlight beta link to Nexus page
+
+ src/app/nexus/page.tsx | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+commit 53e46aed2a7109ba808c5b5c7618a60cce94492d
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 15:29:58 2026 -0600
+
+    Apply book and kit cover images and fix non-square cover display
+
+ public/images/placeholder-cover.svg                |   5 ++
+ src/app/books/books/page.tsx                       |  11 +----
+ src/app/books/comics/page.tsx                      |  11 +----
+ src/app/books/kits/page.tsx                        |   7 +--
+ src/app/globals.css                                |  11 +++++
+ src/components/CoverImage.tsx                      |  55 +++++++++++++++++++++
+ src/content/books.ts                               |   1 +
+ src/content/kits.ts                                |   8 ++-
+ things/Covers/10 steps to protect your bag.PNG     | Bin 0 -> 973882 bytes
+ things/Covers/7 steps to claming every check.PNG   | Bin 0 -> 982808 bytes
+ things/Covers/7 steps to finding every dolor .PNG  | Bin 0 -> 2986307 bytes
+ things/Covers/7 steps to getting paid.PNG          | Bin 0 -> 2781172 bytes
+ things/Covers/faith is fashion.PNG                 | Bin 0 -> 2902221 bytes
+ things/Covers/fortifcation .PNG                    | Bin 0 -> 599664 bytes
+ things/Covers/how to become a mougl.PNG            | Bin 0 -> 3114568 bytes
+ things/Covers/i just called to say i love you .PNG | Bin 0 -> 1453426 bytes
+ things/Covers/nation in a nation .PNG              | Bin 0 -> 2815753 bytes
+ things/Covers/red flag.PNG                         | Bin 0 -> 1621816 bytes
+ things/Covers/sign here.PNG                        | Bin 0 -> 3768968 bytes
+ things/Covers/the book of gravity.PNG              | Bin 0 -> 2941783 bytes
+ things/Covers/the book of water.PNG                | Bin 0 -> 2894892 bytes
+ things/Covers/the fan funal .PNG                   | Bin 0 -> 2416586 bytes
+ things/Covers/the kings'marige.PNG                 | Bin 0 -> 2556835 bytes
+ things/Covers/the recored deal decoder.PNG         | Bin 0 -> 2283158 bytes
+ things/Covers/the reocrd lable stater kit.PNG      | Bin 0 -> 962582 bytes
+ things/Covers/the roll out kit.PNG                 | Bin 0 -> 1803601 bytes
+ things/Covers/the sample.PNG                       | Bin 0 -> 2400157 bytes
+ things/Covers/the sync bag.PNG                     | Bin 0 -> 3098587 bytes
+ 28 files changed, 85 insertions(+), 24 deletions(-)
+
+commit f7028835620701883e072232eaffe5a4316e13fd
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 16:02:31 2026 -0600
+
+    Map book and kit covers, generate placeholders for missing covers
+
+ src/content/books.ts                               |  36 ++++++++++++++++++++-
+ src/content/kits.ts                                |  30 ++++++++++++++++-
+ .../{the fan funal .PNG => Fan Funnel Kit.PNG}     | Bin
+ ...ow to Become a Mogul While Falling in Love.PNG} | Bin
+ ...lled to Say I Love You 60 Days of Distance.PNG} | Bin
+ ...ion Inside a Nation The Empire Signs Back .PNG} | Bin
+ .../{the roll out kit.PNG => Rollout Kit.PNG}      | Bin
+ ...shion.PNG => Sacrilegious Faith Is Fashion.PNG} | Bin
+ .../{the sample.PNG => Sample Clearance Kit.PNG}   | Bin
+ ....PNG => Seven Steps to Claim Every Royalty.PNG} | Bin
+ ...r .PNG => Seven Steps to Find Every Dollar.PNG} | Bin
+ ...etting paid.PNG => Seven Steps to Get Paid.PNG} | Bin
+ ...ere.PNG => Sign Here The Blueprint Decoded.PNG} | Bin
+ ...PNG => The Book of Gravity The 120 Lessons.PNG} | Bin
+ ...er.PNG => The Book of Water & Aura Mastery.PNG} | Bin
+ ...1s Mirage 64 Squares of Sovereign Geometry.PNG" | Bin
+ .../{red flag.PNG => Universal Red Flags.PNG}      | Bin
+ 17 files changed, 64 insertions(+), 2 deletions(-)
+
+commit f368990ed284ed75189c5de29e3856ef7d4aadce
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 22:03:39 2026 -0600
+
+    Moved essay titles out of books and into essays section
+
+ public/images/placeholder-essay-cover.svg |  6 ++
+ src/app/books/[slug]/page.tsx             | 17 ++++--
+ src/app/books/essays/page.tsx             |  1 +
+ src/app/books/page.tsx                    |  9 ++-
+ src/app/essays/[slug]/page.tsx            | 99 +++++++++++++++++++++++++++++++
+ src/app/essays/page.tsx                   | 46 ++++++++++++++
+ src/app/sitemap.xml/route.ts              |  2 +
+ src/components/CoverImage.tsx             | 20 +++++--
+ src/content/books.ts                      | 47 +++++++++++----
+ src/content/navigation.ts                 |  1 +
+ 10 files changed, 227 insertions(+), 21 deletions(-)
+
+commit 9b67c1bc6f5f150fbd6e3723e66aba0be77c2660
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 22:09:31 2026 -0600
+
+    Moved 'America: A Nation Built by Immigrants' from Books to Essays
+
+ src/content/books.ts | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit cf00fbe48f56cff42384fbe3b5f968b0c1688397
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 23:44:29 2026 -0600
+
+    Update book covers on Books page
+
+ src/app/essays/page.tsx | 18 ++++++++++++++++++
+ src/content/books.ts    | 39 ++++++++++++++++-----------------------
+ 2 files changed, 34 insertions(+), 23 deletions(-)
+
+commit b077a4a49e7de706ebcb6ccc1ea22cf3a00d7508
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Fri Mar 6 23:52:28 2026 -0600
+
+    Update book covers
+    
+    Made-with: Cursor
+
+ src/content/books.ts | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+commit 2fca9cab79a653aca074f0c28c8a2f2b8b99db34
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 00:02:29 2026 -0600
+
+    Add public book cover assets for books page.
+    
+    Made-with: Cursor
+
+ .../How to Become a Mogul While Falling in Love.PNG   | Bin 0 -> 3114568 bytes
+ ...t Called to Say I Love You 60 Days of Distance.PNG | Bin 0 -> 1453426 bytes
+ .../Nation Inside a Nation The Empire Signs Back .PNG | Bin 0 -> 2815753 bytes
+ .../things/Covers/Sacrilegious Faith Is Fashion.PNG   | Bin 0 -> 2902221 bytes
+ .../things/Covers/Sign Here The Blueprint Decoded.PNG | Bin 0 -> 3768968 bytes
+ .../Covers/The Book of Gravity The 120 Lessons.PNG    | Bin 0 -> 2941783 bytes
+ .../Covers/The Book of Water & Aura Mastery.PNG       | Bin 0 -> 2894892 bytes
+ ...\231s Mirage 64 Squares of Sovereign Geometry.PNG" | Bin 0 -> 2556835 bytes
+ 8 files changed, 0 insertions(+), 0 deletions(-)
+
+commit dbc0908f2aeb954f4b1281537cf185f91eaaa1aa
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 00:33:03 2026 -0600
+
+    Add Nexus founder story blog post.
+    
+    Wire optional SEO title/description frontmatter into blog post metadata rendering.
+    
+    Made-with: Cursor
+
+ src/app/blog/[slug]/page.tsx                       |  13 +-
+ .../building-nexus-while-my-body-was-failing-me.md | 162 +++++++++++++++++++++
+ src/lib/blog.ts                                    |   6 +
+ 3 files changed, 175 insertions(+), 6 deletions(-)
+
+commit 3447ce61c93db3e5bdd6e0b3a4d1bd8075cb6071
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 07:31:28 2026 -0600
+
+    Refine Nexus post opening copy.
+    
+    Remove duplicate in-body H1 and simplify opening lines for cleaner reading on the post page.
+
+ .../blog/building-nexus-while-my-body-was-failing-me.md        | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+commit 24b5fecd9aaf2cfe0554a6a89aab51663a33c1eb
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 09:29:45 2026 -0600
+
+    Update books, move essay, update Founder Glenn title, and link covers
+    
+    Made-with: Cursor
+
+ ... Architect of Inevitability (By Elias Marlowe).png | Bin 0 -> 2142568 bytes
+ public/covers/books/Supreme Dictionary.PNG            | Bin 0 -> 216997 bytes
+ public/covers/books/The Prince.JPG                    | Bin 0 -> 232372 bytes
+ public/covers/books/The Unit.png                      | Bin 0 -> 3866948 bytes
+ src/app/books/[slug]/page.tsx                         |   5 +++++
+ src/content/books.ts                                  |  16 +++++++++-------
+ 6 files changed, 14 insertions(+), 7 deletions(-)
+
+commit 7babfa2d7b4a67735f1344637420794758f2b4eb
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 09:42:45 2026 -0600
+
+    Add cover for The Book of Glenn: Legacy Talk — The Unsent Letters
+    
+    Made-with: Cursor
+
+ public/covers/book-of-glenn-legacy-talk.jpg            | Bin 0 -> 789168 bytes
+ ...aws of Black Power \342\200\224 Founder Glenn.jpeg" | Bin 0 -> 731419 bytes
+ ... Book of Glenn Legacy Talk  The Unsent Letters.jpeg | Bin 0 -> 789168 bytes
+ src/app/books/[slug]/page.tsx                          |   2 +-
+ src/app/books/books/page.tsx                           |   2 +-
+ src/components/CoverImage.tsx                          |   5 +++--
+ src/content/books.ts                                   |   9 ++++++++-
+ 7 files changed, 13 insertions(+), 5 deletions(-)
+
+commit 3012726dbca10b6741f809862333b88a00c8a7d8
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 09:46:44 2026 -0600
+
+    Add cover for The 64 Laws of Black Power
+    
+    Made-with: Cursor
+
+ public/covers/64-laws-of-black-power.jpg | Bin 0 -> 731419 bytes
+ src/content/books.ts                     |   4 +++-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+commit b8d3177c478b84c27ec80a6a42cb6baa0edd000b
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 11:02:21 2026 -0600
+
+    Sync kits to real cover assets.
+    
+    Keep only approved kits with real cover files, remove non-matching kit entries, and make each kit card open a dedicated detail page.
+    
+    Made-with: Cursor
+
+ .../covers/kits/10 STEPS TO PROTECT YOUR BAG.jpg   | Bin 0 -> 973882 bytes
+ .../covers/kits/7 STEPS TO FIND EVERY DOLLAR.jpg   | Bin 0 -> 1109779 bytes
+ .../kits/7 steps to claim every royalty check.png  | Bin 0 -> 2669336 bytes
+ ...teps to gettin paid when they use your song.png | Bin 0 -> 2431380 bytes
+ public/covers/kits/Artist Legal Glossary.jpeg      | Bin 0 -> 316204 bytes
+ public/covers/kits/PAPERWORK PILLOWTALK.png        | Bin 0 -> 2561913 bytes
+ public/covers/kits/RED FLAGS.png                   | Bin 0 -> 1621816 bytes
+ public/covers/kits/THE FAN FUNNEL.png              | Bin 0 -> 2416586 bytes
+ public/covers/kits/THE FATHERHOOD FRAMWORK.png     | Bin 0 -> 2087852 bytes
+ public/covers/kits/THE HEART LEDGER.png            | Bin 0 -> 2072933 bytes
+ public/covers/kits/THE ROLL OUT KIT.png            | Bin 0 -> 1803601 bytes
+ public/covers/kits/THE SAMPLE CLEARANCE KIT.png    | Bin 0 -> 2400157 bytes
+ public/covers/kits/The Record Deal Deocder .png    | Bin 0 -> 2283158 bytes
+ public/covers/kits/Trust Before TOUCH.png          | Bin 0 -> 2149051 bytes
+ public/covers/kits/ceo confessions.png             | Bin 0 -> 2016643 bytes
+ public/covers/kits/emotional intelligence.png      | Bin 0 -> 2145392 bytes
+ public/covers/kits/financial fortitiude kit.png    | Bin 0 -> 2283771 bytes
+ public/covers/kits/leadership in lover.png         | Bin 0 -> 2280713 bytes
+ public/covers/kits/legacy & longevity.png          | Bin 0 -> 2771591 bytes
+ public/covers/kits/paperwork and pillow talk.png   | Bin 0 -> 2561913 bytes
+ .../kits/the artist management starter kit.png     | Bin 0 -> 2913442 bytes
+ public/covers/kits/the mougle mindset kit.png      | Bin 0 -> 1863376 bytes
+ public/covers/kits/the pretust toolkit.png         | Bin 0 -> 2570745 bytes
+ .../covers/kits/the record lable starter kit.png   | Bin 0 -> 2687342 bytes
+ public/covers/kits/the sync bag.png                | Bin 0 -> 3394366 bytes
+ src/app/books/kits/page.tsx                        |  10 +--
+ src/app/kits/[slug]/page.tsx                       |  75 +++++++++++++++++++++
+ src/content/kits.ts                                |  64 +++++++-----------
+ 28 files changed, 101 insertions(+), 48 deletions(-)
+
+commit 38a814da4b4a3c9b41bb07919106e18fdaa48ef2
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 11:04:16 2026 -0600
+
+    Normalize kit cover filenames and simplify mapping.
+    
+    Rename kit assets to clean slug-style file names, remove duplicate/unused kit images, and reduce overrides to only non-png files.
+    
+    Made-with: Cursor
+
+ ...al Glossary.jpeg => artist-legal-glossary.jpeg} | Bin
+ .../{ceo confessions.png => ceo-confessions.png}   | Bin
+ ...OUR BAG.jpg => distribution-protection-kit.jpg} | Bin
+ ...intelligence.png => emotional-intelligence.png} | Bin
+ .../{THE FAN FUNNEL.png => fan-funnel-kit.png}     | Bin
+ public/covers/kits/financial fortitiude kit.png    | Bin 2283771 -> 0 bytes
+ ....png => how-to-start-an-indie-record-label.png} | Bin
+ ...Record Deal Deocder .png => label-deal-kit.png} | Bin
+ ...ership in lover.png => leadership-and-love.png} | Bin
+ ...cy & longevity.png => legacy-and-longevity.png} | Bin
+ public/covers/kits/paperwork and pillow talk.png   | Bin 2561913 -> 0 bytes
+ ...ILLOWTALK.png => paperwork-and-pillow-talk.png} | Bin
+ .../kits/{THE ROLL OUT KIT.png => rollout-kit.png} | Bin
+ ... CLEARANCE KIT.png => sample-clearance-kit.png} | Bin
+ ....png => seven-steps-to-claim-every-royalty.png} | Bin
+ ...AR.jpg => seven-steps-to-find-every-dollar.jpg} | Bin
+ ...e your song.png => seven-steps-to-get-paid.png} | Bin
+ .../kits/the artist management starter kit.png     | Bin 2913442 -> 0 bytes
+ ...D FRAMWORK.png => the-fatherhood-framework.png} | Bin
+ .../{THE HEART LEDGER.png => the-heart-ledger.png} | Bin
+ ...e mindset kit.png => the-mogul-mindset-kit.png} | Bin
+ ...etust toolkit.png => the-pre-trust-toolkit.png} | Bin
+ .../kits/{the sync bag.png => the-signback.png}    | Bin
+ ...ust Before TOUCH.png => trust-before-touch.png} | Bin
+ .../{RED FLAGS.png => universal-red-flags.png}     | Bin
+ src/content/kits.ts                                |  25 +++------------------
+ 26 files changed, 3 insertions(+), 22 deletions(-)
+
+commit c42ed5feea5a687270bdad5d7d5c1e2d557dbd8a
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 11:20:15 2026 -0600
+
+    Rename kit title to The Sync Bag.
+    
+    Update the displayed kit title while preserving the existing slug and route for link stability.
+    
+    Made-with: Cursor
+
+ src/content/kits.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 6cb7e0fd9199c536189aee3c1fb718babceaea52
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 23:45:42 2026 -0600
+
+    Integrate Shopify storefront for books, kits, and essays.
+    
+    Wire existing catalog routes to Shopify Storefront Web Components with global cart support, preserve current site styling, and keep fallback metadata/product route behavior intact.
+    
+    Made-with: Cursor
+
+ src/app/books/[slug]/page.tsx                   |  46 ++++-
+ src/app/books/books/page.tsx                    |  46 ++---
+ src/app/books/kits/page.tsx                     |  41 ++---
+ src/app/essays/[slug]/page.tsx                  |  44 ++++-
+ src/app/essays/page.tsx                         |  25 ++-
+ src/app/globals.css                             |  32 ++++
+ src/app/kits/[slug]/page.tsx                    |  44 ++++-
+ src/app/layout.tsx                              |   3 +
+ src/components/SiteNavDrawer.tsx                |   6 +
+ src/components/shopify/ShopifyProductDetail.tsx |  88 ++++++++++
+ src/components/shopify/ShopifyProductGrid.tsx   | 108 ++++++++++++
+ src/components/shopify/ShopifyRuntime.tsx       |  86 ++++++++++
+ src/lib/shopify.ts                              | 214 ++++++++++++++++++++++++
+ src/types/shopify-web-components.d.ts           |  42 +++++
+ 14 files changed, 763 insertions(+), 62 deletions(-)
+
+commit 8aeac723e3b8bd3f233be274e7d4d98c74ea252a
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 7 23:57:05 2026 -0600
+
+    Refactor Shopify to local-first hydrated commerce.
+    
+    Restore Books/Kits/Essays to local presentation with resilient fallback behavior, and layer Shopify price/description/checkout actions on top via strict handle/title matching.
+    
+    Made-with: Cursor
+
+ src/app/books/[slug]/page.tsx             | 113 ++++++++------
+ src/app/books/books/page.tsx              |  81 ++++++++--
+ src/app/books/kits/page.tsx               |  66 ++++++--
+ src/app/essays/[slug]/page.tsx            | 111 +++++++------
+ src/app/essays/page.tsx                   |  65 ++++++--
+ src/app/kits/[slug]/page.tsx              |  96 +++++++-----
+ src/components/shopify/ShopifyRuntime.tsx |  13 +-
+ src/lib/shopify.ts                        | 250 +++++++++++++++++++++++++-----
+ 8 files changed, 579 insertions(+), 216 deletions(-)
+
+commit 01199a77ffae934cee296fb678b4829a186963f7
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 00:08:27 2026 -0600
+
+    Add explicit Shopify handle mapping layer.
+    
+    Prioritize manual per-category handle maps before handle/title fallback matching, and add development logs for per-item commerce resolution.
+    
+    Made-with: Cursor
+
+ src/content/shopify-handle-map.ts | 69 +++++++++++++++++++++++++++++++++++++
+ src/lib/shopify.ts                | 72 ++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 140 insertions(+), 1 deletion(-)
+
+commit 2f0b004d5a3846ebb4e1667c6e57d928276f6235
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 00:34:44 2026 -0600
+
+    Fix Shopify handle inconsistencies for local catalog.
+    
+    Map known mismatched book handles, provide explicit kit/comic handle mappings, and allow intended many-to-one mapped commerce matches.
+    
+    Made-with: Cursor
+
+ src/content/shopify-handle-map.ts | 97 ++++++++++++++++++++-------------------
+ src/lib/shopify.ts                |  4 +-
+ 2 files changed, 51 insertions(+), 50 deletions(-)
+
+commit b56f6bee919b692adb516b573f8588b0aa8d2310
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 00:53:21 2026 -0600
+
+    Fix Shopify mapping for kits and comics resolver flow.
+    
+    Remove parent-book kit mappings, add direct one-to-one kit handle mapping, and route comics through Shopify hydration and detail-category resolution with variant-safe cart wiring.
+    
+    Made-with: Cursor
+
+ src/app/books/[slug]/page.tsx     | 13 +++++++---
+ src/app/books/comics/page.tsx     | 52 ++++++++++++++++++++++++++++++++-------
+ src/content/shopify-handle-map.ts | 48 ++++++++++++++++++------------------
+ src/lib/shopify.ts                |  5 +++-
+ 4 files changed, 81 insertions(+), 37 deletions(-)
+
+commit 31a286ef97ba9ad02388cabe3d1a4b05fe349859
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 00:59:18 2026 -0600
+
+    Improve Shopify hydration fallback matching.
+    
+    Add strict global title fallback matching in the resolver pipeline while preserving manual-handle and exact-handle priority.
+    
+    Made-with: Cursor
+
+ src/lib/shopify.ts | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+commit 7e5df3a06091aee609b785c57348274e7979ed64
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 10:19:37 2026 -0500
+
+    Fix post-publication Shopify kit verification and cart wiring.
+    
+    Map legacy signback slug to the live sync-bag handle and use resolved variant IDs on kit detail actions so Add/Buy reliably target the correct Shopify kit product.
+    
+    Made-with: Cursor
+
+ scripts/verify-shopify-kits.mjs   | 99 +++++++++++++++++++++++++++++++++++++++
+ src/app/kits/[slug]/page.tsx      | 43 ++++++++---------
+ src/content/shopify-handle-map.ts |  2 +-
+ src/lib/shopify.ts                | 23 ++++++++-
+ 4 files changed, 142 insertions(+), 25 deletions(-)
+
+commit 3b29a1afa112e71d655ba1c9851c5f36c814cc13
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 10:32:13 2026 -0500
+
+    Update user-facing Nexus branding to Nexus HealthKit.
+    
+    Refresh visible product copy across navigation, marketing sections, app metadata, and blog SEO text while preserving technical routes, slugs, and internal identifiers.
+    
+    Made-with: Cursor
+
+ src/app/about/page.tsx                             |  4 +--
+ src/app/media/page.tsx                             |  2 +-
+ src/app/nexus/page.tsx                             | 10 +++----
+ src/components/Projects.tsx                        |  4 +--
+ src/content/apps.ts                                |  2 +-
+ .../building-nexus-while-my-body-was-failing-me.md | 34 +++++++++++-----------
+ src/content/navigation.ts                          |  2 +-
+ 7 files changed, 29 insertions(+), 29 deletions(-)
+
+commit 73610b061ac50cf03dc0faa4897a9b85e264cf1e
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 15:33:45 2026 -0500
+
+    Add funnel system + analytics + /legal /royalties /nexus pages
+
+ src/app/blog/page.tsx                              |  32 +++
+ src/app/books/books/page.tsx                       |   5 +
+ src/app/books/comics/page.tsx                      |   5 +
+ src/app/books/kits/page.tsx                        |   5 +
+ src/app/books/page.tsx                             |  35 +++
+ src/app/essays/page.tsx                            |   5 +
+ src/app/layout.tsx                                 | 113 +++-----
+ src/app/legal/page.tsx                             | 100 +++++++
+ src/app/nexus/page.tsx                             | 190 +------------
+ src/app/royalties/page.tsx                         | 143 ++++++++++
+ src/app/sitemap.xml/route.ts                       |   4 +-
+ src/components/Projects.tsx                        |  32 +++
+ src/components/analytics/AnalyticsClickTracker.tsx |  31 +++
+ src/components/analytics/FunnelProgressTracker.tsx |  39 +++
+ src/components/analytics/RouteAnalyticsTracker.tsx |  16 ++
+ src/components/analytics/ViewItemTracker.tsx       |  17 ++
+ src/components/funnel/FunnelPageTemplate.tsx       |  53 ++++
+ src/components/funnel/FunnelPrimitives.tsx         | 103 +++++++
+ src/components/funnel/FunnelSections.tsx           | 216 +++++++++++++++
+ src/components/funnel/index.ts                     |   3 +
+ src/components/funnel/types.ts                     | 138 ++++++++++
+ src/components/shopify/ShopifyProductDetail.tsx    |   7 +
+ src/components/shopify/ShopifyProductGrid.tsx      |   5 +
+ src/components/shopify/ShopifyRuntime.tsx          |  27 +-
+ src/content/funnels.ts                             | 300 +++++++++++++++++++++
+ src/lib/analytics.ts                               | 130 +++++++++
+ 26 files changed, 1492 insertions(+), 262 deletions(-)
+
+commit 58546fb0a38864f2ed008b3aa19e6566f336e562
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 17:21:37 2026 -0500
+
+    Add new kits and Zapier lead/checkout intent events.
+    
+    Expand kit catalog/funnel coverage and wire Zapier tracking for legal lead capture plus Shopify begin-checkout intent while preserving existing Shopify runtime and analytics flow.
+    
+    Made-with: Cursor
+
+ ... steps to protect your money before you die.png | Bin 0 -> 1763629 bytes
+ .../kits/the artist management starter kit.png     | Bin 0 -> 2913442 bytes
+ public/covers/kits/the indie artits legal kit.png  | Bin 0 -> 2927353 bytes
+ scripts/verify-shopify-kits.mjs                    |   3 +
+ src/app/layout.tsx                                 |   2 +
+ src/app/legal/page.tsx                             |  26 ++++---
+ src/components/funnel/FunnelPageTemplate.tsx       |   2 +-
+ src/components/funnel/FunnelSections.tsx           |  78 ++++++++++++---------
+ src/components/funnel/LegalLeadCaptureForm.tsx     |  59 ++++++++++++++++
+ src/components/funnel/types.ts                     |   5 ++
+ src/components/shopify/ShopifyRuntime.tsx          |  16 ++++-
+ src/components/zapier/ZapierDevTestTrigger.tsx     |  22 ++++++
+ src/content/funnels.ts                             |   9 ++-
+ src/content/kits.ts                                |  21 ++++++
+ src/content/shopify-handle-map.ts                  |   3 +
+ src/lib/zapier.ts                                  |  45 ++++++++++++
+ 16 files changed, 245 insertions(+), 46 deletions(-)
+
+commit 8d91e7861c76ccb0588ed38761f12b89f3e0a2c3
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 18:10:38 2026 -0500
+
+    Upgrade Nexus product experience and harden purchase tracking.
+    
+    Align non-kit product detail CTAs with the active Shopify cart flow, refresh Nexus pages with premium app-first presentation and consistent naming, and add verified Shopify paid-order webhook relaying for trusted purchase_completed Zapier events.
+    
+    Made-with: Cursor
+
+ src/app/about/page.tsx                            |   4 +-
+ src/app/api/shopify/webhooks/orders-paid/route.ts | 100 +++++++++++
+ src/app/books/[slug]/page.tsx                     |  53 +++---
+ src/app/essays/[slug]/page.tsx                    |  53 +++---
+ src/app/media/page.tsx                            |   2 +-
+ src/app/nexus/page.tsx                            | 203 +++++++++++++++++++++-
+ src/components/Projects.tsx                       |   6 +-
+ src/content/apps.ts                               |   2 +-
+ src/content/funnels.ts                            |  33 ++--
+ src/content/navigation.ts                         |   2 +-
+ src/lib/zapier.ts                                 |   3 +-
+ 11 files changed, 388 insertions(+), 73 deletions(-)
+
+commit 63b1acd79708b816bbab84943015cfe787971bc9
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 18:29:39 2026 -0500
+
+    Adopt Vox-style editorial layout for blog feed and posts.
+    
+    Made-with: Cursor
+
+ src/app/blog/[slug]/page.tsx           |  59 +++++++----------
+ src/app/blog/page.tsx                  | 115 +++++++++++++++++++++------------
+ src/app/globals.css                    |  62 ++++++++++++++++++
+ src/components/blog/ArticleBody.tsx    |  11 ++++
+ src/components/blog/ArticleHeader.tsx  |  39 +++++++++++
+ src/components/blog/ArticleHero.tsx    |  25 +++++++
+ src/components/blog/ArticleImage.tsx   |  17 +++++
+ src/components/blog/ArticleSection.tsx |  13 ++++
+ src/lib/blog.ts                        |   3 +
+ 9 files changed, 269 insertions(+), 75 deletions(-)
+
+commit 86e5a9527b77f429769724bf5a406b15f6630c0f
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 19:23:17 2026 -0500
+
+    Rework about page into cinematic minimalist founder profile.
+    
+    Adopt a black-background portfolio layout with a centered portrait and narrative biography flow, and add the about portrait PNG asset at the requested public path.
+    
+    Made-with: Cursor
+
+ public/aboutmefg.png   | Bin 0 -> 707949 bytes
+ src/app/about/page.tsx | 149 ++++++++++++++++++++++---------------------------
+ 2 files changed, 67 insertions(+), 82 deletions(-)
+
+commit d436a02d7fb2d51c7595a3e78541c194e1213841
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 20:23:57 2026 -0500
+
+    Restyle media page to mirror about page minimal layout.
+    
+    Align the Media / Press page with the same cinematic black-background structure, centered hero headshot, restrained typography, and narrative spacing used on About while preserving existing content and links.
+    
+    Made-with: Cursor
+
+ src/app/media/page.tsx | 128 ++++++++++++++++++++++++-------------------------
+ 1 file changed, 62 insertions(+), 66 deletions(-)
+
+commit d66eae7d8c5d82deb01fd35243430dba134a3cd2
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sun Mar 8 23:37:45 2026 -0500
+
+    Add global Google Analytics tag in root layout.
+    
+    Load GA measurement ID G-8Y2YH8FPG1 site-wide via next/script in app layout with afterInteractive strategy and a single gtag init block.
+    
+    Made-with: Cursor
+
+ src/app/layout.tsx | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+commit 7a8da120d9b485d9eae9b1467defc570b7a89b81
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 9 12:03:57 2026 -0500
+
+    Add dedicated in-memory memorial page for Serena K. Hawkins.
+    
+    Create a new /in-memory route with reverent longform memorial structure, matching the About page visual rhythm and wiring the memorial portrait asset for the hero presentation.
+    
+    Made-with: Cursor
+
+ public/serena.jpeg         | Bin 0 -> 279956 bytes
+ src/app/in-memory/page.tsx | 183 +++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 183 insertions(+)
+
+commit de8f75b18d83f3b5a3816919353a20d1608da5b7
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 9 12:20:29 2026 -0500
+
+    Add In Memory route to primary navigation drawer.
+    
+    Expose the new /in-memory memorial page in the shared hamburger menu nav list so it is accessible site-wide.
+    
+    Made-with: Cursor
+
+ src/content/navigation.ts | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 83f2c2ff319a80ac89d946bbbb3f92f194a8a095
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 10 13:36:04 2026 -0500
+
+    Improve hamburger drawer overflow and scrolling polish.
+    
+    Make the side navigation content scrollable when links exceed viewport height and add subtle premium scrollbar styling to preserve the site's visual integrity.
+    
+    Made-with: Cursor
+
+ src/app/globals.css              | 24 ++++++++++++++
+ src/components/SiteNavDrawer.tsx | 72 +++++++++++++++++++++-------------------
+ 2 files changed, 61 insertions(+), 35 deletions(-)
+
+commit b8696114de0bd1910682fd1d234f8b6b512ece66
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 10 16:44:53 2026 -0500
+
+    Polish SEO canonical routing, analytics ownership, and UX performance.
+    
+    Unify blog canonical behavior and sitemap outputs, enforce GTM-first analytics with clean GA fallback, improve scrolly hero progressive loading and reduced-motion handling, harden drawer accessibility focus management, and move editorial image rendering to next/image.
+    
+    Made-with: Cursor
+
+ src/app/blog/page.tsx                |   5 +-
+ src/app/blogs/page.tsx               |   6 +-
+ src/app/layout.tsx                   |  29 ++--
+ src/app/sitemap.xml/route.ts         |  55 +++++---
+ src/components/ScrollyCanvas.tsx     | 251 ++++++++++++++++++++++++++---------
+ src/components/SiteNavDrawer.tsx     |  68 +++++++++-
+ src/components/blog/ArticleImage.tsx |  21 ++-
+ src/lib/analytics.ts                 |  10 ++
+ 8 files changed, 346 insertions(+), 99 deletions(-)
+
+commit 6f9ae3ae1900c22d563491d1cc2ad5c2100d4939
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 10 16:52:44 2026 -0500
+
+    Prevent duplicate pageviews in GTM and GA fallback paths.
+    
+    Route pageview tracking through a single owner per mode by using gtag-only in GA fallback and dataLayer-only in GTM mode while preserving custom event payloads.
+    
+    Made-with: Cursor
+
+ src/lib/analytics.ts | 26 +++++++++++++++++---------
+ 1 file changed, 17 insertions(+), 9 deletions(-)
+
+commit 8c6a6ce1dae060d42c9048b9c2317f1abf6d71f3
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 10 17:59:40 2026 -0500
+
+    Add default Open Graph image asset.
+    
+    Track the public og-image.jpg file used by SEO defaults so social previews resolve consistently in production.
+    
+    Made-with: Cursor
+
+ public/og-image.jpg | Bin 0 -> 707949 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 215cc368c34f90b66cb4dce7fe052d3a80273afb
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Wed Mar 11 12:09:22 2026 -0500
+
+    Create Nexus HealthKit compliance docs section and migrate route.
+    
+    Move Nexus to /nexushealthcare with a legacy redirect, add required App Store support/compliance pages, and update internal links plus sitemap entries to the new canonical path.
+    
+    Made-with: Cursor
+
+ src/app/blog/page.tsx                         |   4 +-
+ src/app/books/page.tsx                        |   6 +-
+ src/app/media/page.tsx                        |   2 +-
+ src/app/nexus/page.tsx                        | 206 +-------------------------
+ src/app/nexushealthcare/_shared.tsx           |  91 ++++++++++++
+ src/app/nexushealthcare/about/page.tsx        |  42 ++++++
+ src/app/nexushealthcare/contact/page.tsx      |  73 +++++++++
+ src/app/nexushealthcare/delete-data/page.tsx  |  36 +++++
+ src/app/nexushealthcare/faq/page.tsx          |  58 ++++++++
+ src/app/nexushealthcare/features/page.tsx     |  36 +++++
+ src/app/nexushealthcare/page.tsx              | 182 +++++++++++++++++++++++
+ src/app/nexushealthcare/privacy/page.tsx      |  62 ++++++++
+ src/app/nexushealthcare/subscription/page.tsx |  51 +++++++
+ src/app/nexushealthcare/support/page.tsx      |  87 +++++++++++
+ src/app/nexushealthcare/terms/page.tsx        |  59 ++++++++
+ src/app/nexushealthcare/updates/page.tsx      |  71 +++++++++
+ src/app/sitemap.xml/route.ts                  |  14 +-
+ src/components/Projects.tsx                   |   6 +-
+ src/content/navigation.ts                     |   2 +-
+ 19 files changed, 873 insertions(+), 215 deletions(-)
+
+commit 119e7da38ce43aaeb6306c6ab1aa1ff7687ef02e
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Wed Mar 11 12:23:20 2026 -0500
+
+    Root Nexus pages under /NexusHealthKit and redirect legacy paths.
+    
+    Make /NexusHealthKit the canonical base for the full Nexus section, remove the homepage tag strip, and permanently redirect /nexus and /nexushealthcare traffic to the new route tree.
+    
+    Made-with: Cursor
+
+ next.config.mjs                               |  12 +-
+ src/app/NexusHealthKit/about/page.tsx         |   2 +
+ src/app/NexusHealthKit/contact/page.tsx       |   2 +
+ src/app/NexusHealthKit/delete-data/page.tsx   |   2 +
+ src/app/NexusHealthKit/faq/page.tsx           |   2 +
+ src/app/NexusHealthKit/features/page.tsx      |   2 +
+ src/app/NexusHealthKit/page.tsx               | 174 ++++++++++++++++++++++++
+ src/app/NexusHealthKit/privacy/page.tsx       |   2 +
+ src/app/NexusHealthKit/subscription/page.tsx  |   2 +
+ src/app/NexusHealthKit/support/page.tsx       |   2 +
+ src/app/NexusHealthKit/terms/page.tsx         |   2 +
+ src/app/NexusHealthKit/updates/page.tsx       |   2 +
+ src/app/blog/page.tsx                         |   4 +-
+ src/app/books/page.tsx                        |   6 +-
+ src/app/media/page.tsx                        |   2 +-
+ src/app/nexus/page.tsx                        |   2 +-
+ src/app/nexushealthcare/_shared.tsx           |  24 ++--
+ src/app/nexushealthcare/about/page.tsx        |   2 +-
+ src/app/nexushealthcare/contact/page.tsx      |   2 +-
+ src/app/nexushealthcare/delete-data/page.tsx  |   2 +-
+ src/app/nexushealthcare/faq/page.tsx          |   4 +-
+ src/app/nexushealthcare/features/page.tsx     |   2 +-
+ src/app/nexushealthcare/page.tsx              | 183 +-------------------------
+ src/app/nexushealthcare/privacy/page.tsx      |   2 +-
+ src/app/nexushealthcare/subscription/page.tsx |   2 +-
+ src/app/nexushealthcare/support/page.tsx      |   2 +-
+ src/app/nexushealthcare/terms/page.tsx        |   2 +-
+ src/app/nexushealthcare/updates/page.tsx      |   2 +-
+ src/app/sitemap.xml/route.ts                  |  24 ++--
+ src/components/Projects.tsx                   |  12 +-
+ src/content/apps.ts                           |   2 +-
+ src/content/funnels.ts                        |  24 ++--
+ src/content/navigation.ts                     |   2 +-
+ 33 files changed, 270 insertions(+), 243 deletions(-)
+
+commit 25b012d1a5c30b6ddffe39b9c3cdf2f8472d98be
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Sat Mar 14 13:55:08 2026 -0500
+
+    Rebrand Nexus Health to Nexus BodyOS across site copy and metadata.
+    
+    Migrate canonical routes from /NexusHealth to /NexusBodyOS and preserve compatibility with permanent redirects from legacy NexusHealth/NexusHealthKit URLs plus short support/legal paths.
+    
+    Made-with: Cursor
+
+ next.config.mjs                                    | 72 +++++++++++++++++++++-
+ .../{NexusHealthKit => NexusBodyOS}/about/page.tsx |  0
+ .../contact/page.tsx                               |  0
+ .../delete-data/page.tsx                           |  0
+ .../{NexusHealthKit => NexusBodyOS}/faq/page.tsx   |  0
+ .../features/page.tsx                              |  0
+ src/app/{NexusHealthKit => NexusBodyOS}/page.tsx   | 24 ++++----
+ .../privacy/page.tsx                               |  0
+ .../subscription/page.tsx                          |  0
+ .../support/page.tsx                               |  0
+ .../{NexusHealthKit => NexusBodyOS}/terms/page.tsx |  0
+ .../updates/page.tsx                               |  0
+ src/app/about/page.tsx                             |  2 +-
+ src/app/blog/page.tsx                              |  4 +-
+ src/app/books/page.tsx                             |  6 +-
+ src/app/media/page.tsx                             |  2 +-
+ src/app/nexus/page.tsx                             |  2 +-
+ src/app/nexushealthcare/_shared.tsx                | 28 ++++-----
+ src/app/nexushealthcare/about/page.tsx             | 12 ++--
+ src/app/nexushealthcare/contact/page.tsx           |  8 +--
+ src/app/nexushealthcare/delete-data/page.tsx       | 12 ++--
+ src/app/nexushealthcare/faq/page.tsx               | 14 ++---
+ src/app/nexushealthcare/features/page.tsx          |  8 +--
+ src/app/nexushealthcare/page.tsx                   |  2 +-
+ src/app/nexushealthcare/privacy/page.tsx           | 12 ++--
+ src/app/nexushealthcare/subscription/page.tsx      |  8 +--
+ src/app/nexushealthcare/support/page.tsx           | 10 +--
+ src/app/nexushealthcare/terms/page.tsx             | 16 ++---
+ src/app/nexushealthcare/updates/page.tsx           |  8 +--
+ src/app/sitemap.xml/route.ts                       | 24 ++++----
+ src/components/Projects.tsx                        | 12 ++--
+ src/content/apps.ts                                |  2 +-
+ .../building-nexus-while-my-body-was-failing-me.md | 34 +++++-----
+ src/content/funnels.ts                             | 24 ++++----
+ src/content/navigation.ts                          |  2 +-
+ 35 files changed, 209 insertions(+), 139 deletions(-)
+
+commit aa1d66d2fcc886dfe5725c49a49a146a574bb893
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 00:11:10 2026 -0500
+
+    Add a premium podcasts network page with three show sections.
+    
+    Create the new /podcasts route with branded network architecture, elevated editorial layout, and reusable show cards, then add Podcasts to primary navigation for discoverability.
+    
+    Made-with: Cursor
+
+ src/app/podcasts/page.tsx | 312 ++++++++++++++++++++++++++++++++++++++++++++++
+ src/content/navigation.ts |   1 +
+ 2 files changed, 313 insertions(+)
+
+commit 79e140f3ebefa360be250385f5eabc7beb6f5cac
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 00:27:59 2026 -0500
+
+    Swap podcast and codex cover images on network page.
+    
+    Use the previous Codex photo for The Founder Glenn Podcast and move the Glenn art to The Founder Glenn Codex card.
+    
+    Made-with: Cursor
+
+ src/app/podcasts/page.tsx | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 37f6bd27d3c6147258b94634532b7e76449d743f
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 00:54:55 2026 -0500
+
+    Add unified RSS feeds with podcast content normalization.
+    
+    Create shared podcast content and RSS utilities, generate dedicated blog and show feed endpoints, normalize episodes to R2 audio keys with centralized URL builders, and add canonical podcast episode pages plus feed discovery links.
+    
+    Made-with: Cursor
+
+ .env.example                                   |   2 +
+ src/app/layout.tsx                             |  15 ++
+ src/app/podcasts/[show]/[episode]/page.tsx     | 105 ++++++++++++++
+ src/app/podcasts/page.tsx                      | 118 +---------------
+ src/app/rss/blog.xml/route.ts                  |   8 ++
+ src/app/rss/codex.xml/route.ts                 |  16 +++
+ src/app/rss/foundation.xml/route.ts            |  16 +++
+ src/app/rss/founder-glenn-podcast.xml/route.ts |  16 +++
+ src/app/sitemap.xml/route.ts                   |  10 ++
+ src/content/podcasts.ts                        | 181 +++++++++++++++++++++++++
+ src/lib/media.ts                               |  17 +++
+ src/lib/rss.ts                                 | 127 +++++++++++++++++
+ 12 files changed, 518 insertions(+), 113 deletions(-)
+
+commit 4cfd6cff3bdf4508460e20f9154c914c3d9709bb
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 02:01:56 2026 -0500
+
+    Optimize About entity profile and add premium podcast cover assets.
+    
+    Strengthen the /about canonical identity section for entity clarity, and replace Foundation/Codex podcast artwork with the new downloaded cover images.
+    
+    Made-with: Cursor
+
+ public/podcasts/founder-glenn-codex-cover.jpeg | Bin 0 -> 218205 bytes
+ public/podcasts/the-foundation-cover.jpeg      | Bin 0 -> 198264 bytes
+ src/app/about/page.tsx                         |  74 ++++++++++++++++++++++++-
+ src/content/podcasts.ts                        |   4 +-
+ 4 files changed, 75 insertions(+), 3 deletions(-)
+
+commit 1d121cbc8f079e7ed8b2fafcc9270b758c8eeec6
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 09:34:25 2026 -0500
+
+    Add Podcasting 2.0 namespace and channel GUID metadata.
+    
+    Include the podcast namespace plus stable podcast:guid values across blog and podcast RSS feeds, and add podcast:locked on podcast feeds for standards compatibility.
+    
+    Made-with: Cursor
+
+ src/lib/rss.ts | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+commit 8274b88eac068cfc96d3d4ce63dcdc3852924b3a
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 10:00:59 2026 -0500
+
+    Map Codex episodes to uploaded files and support per-episode MIME types.
+    
+    Update podcast episode metadata to match the current Codex archive filenames and sizes, URL-encode audio keys for safe enclosure links, and allow enclosure MIME type selection per episode.
+    
+    Made-with: Cursor
+
+ src/content/podcasts.ts | 42 +++++++++++++++++++++++++++++++++++-------
+ src/lib/media.ts        |  6 +++++-
+ src/lib/rss.ts          | 16 +++++++++++++++-
+ 3 files changed, 55 insertions(+), 9 deletions(-)
+
+commit 3087ba96dfa72fdedfd940d847291b3dc2bb7430
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 10:10:42 2026 -0500
+
+    Align Codex audio keys to Cloudflare S1 directory paths.
+    
+    Update Codex episode enclosure keys to point to files directly under CODEX/LIVE/S1 so feed URLs match the current bucket layout.
+    
+    Made-with: Cursor
+
+ src/content/podcasts.ts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 20de52a1f157422b58f8f953e359c1f7f212905f
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 10:14:12 2026 -0500
+
+    Add a master Founder Glenn podcast network RSS feed.
+    
+    Create /rss/network.xml to aggregate episodes from all podcast shows into one subscription feed, then expose it via feed discovery tags and sitemap entries.
+    
+    Made-with: Cursor
+
+ src/app/layout.tsx               |  7 +++++
+ src/app/rss/network.xml/route.ts | 13 +++++++++
+ src/app/sitemap.xml/route.ts     |  1 +
+ src/lib/rss.ts                   | 63 ++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 84 insertions(+)
+
+commit bb2b31de2ee2a9492ed10053d856949a5d6ff9e3
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 10:19:16 2026 -0500
+
+    Add resilient audio proxy routing for podcast playback.
+    
+    Route enclosure and episode player URLs through a site-hosted audio proxy that retries multiple R2 base domains and codex key path variants before redirecting to a reachable object.
+    
+    Made-with: Cursor
+
+ src/app/audio/[show]/[episodeFile]/route.ts | 85 +++++++++++++++++++++++++++++
+ src/app/podcasts/[show]/[episode]/page.tsx  |  4 +-
+ src/content/podcasts.ts                     |  4 ++
+ src/lib/media.ts                            | 21 +++++++
+ src/lib/rss.ts                              |  6 +-
+ 5 files changed, 115 insertions(+), 5 deletions(-)
+
+commit 404075abe7ed9fc2ac7878677a855d1b6fe46e88
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 10:26:58 2026 -0500
+
+    Expand audio proxy key fallbacks for nested Codex folders.
+    
+    Add additional candidate key patterns so playback can resolve both single- and double-nested founder-glenn codex directory layouts in R2.
+    
+    Made-with: Cursor
+
+ src/app/audio/[show]/[episodeFile]/route.ts | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
+
+commit 6005cceeb57a6a1b2024ced8a919cb57acdf7b45
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 10:35:49 2026 -0500
+
+    Normalize podcast artwork to Apple-compliant square assets.
+    
+    Generate 3000x3000 show covers and update podcast feed image references so all podcast RSS feeds use square artwork within Apple’s required dimensions.
+    
+    Made-with: Cursor
+
+ public/podcasts/founder-glenn-codex-cover-3000.jpg   | Bin 0 -> 1062905 bytes
+ public/podcasts/founder-glenn-podcast-cover-3000.jpg | Bin 0 -> 3190943 bytes
+ public/podcasts/the-foundation-cover-3000.jpg        | Bin 0 -> 841083 bytes
+ src/content/podcasts.ts                              |   6 +++---
+ src/lib/rss.ts                                       |   2 +-
+ 5 files changed, 4 insertions(+), 4 deletions(-)
+
+commit aad6aa112e9ee47516087d8bc058b292574221e8
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 10:43:46 2026 -0500
+
+    Improve podcast feed validator compliance and artwork optimization.
+    
+    Compress 3000x3000 show artwork under 500KB, add missing Codex episode durations, and expand RSS metadata with Apple owner/author/full-description fields plus category subcategories.
+    
+    Made-with: Cursor
+
+ public/podcasts/founder-glenn-codex-cover-3000.jpg | Bin 1062905 -> 397544 bytes
+ .../podcasts/founder-glenn-podcast-cover-3000.jpg  | Bin 3190943 -> 179765 bytes
+ public/podcasts/the-foundation-cover-3000.jpg      | Bin 841083 -> 309220 bytes
+ src/content/podcasts.ts                            |   7 ++++++
+ src/lib/rss.ts                                     |  26 ++++++++++++++++++---
+ 5 files changed, 30 insertions(+), 3 deletions(-)
+
+commit b88d50ffb84ec617aa68f1c503e07192b86b5c5d
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 11:00:51 2026 -0500
+
+    Update podcast show descriptions across network feeds and pages.
+    
+    Refresh the Founder Glenn Podcast, The Foundation, and Codex channel descriptions with the new long-form positioning copy so website and RSS metadata stay aligned.
+    
+    Made-with: Cursor
+
+ src/content/podcasts.ts | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+commit 232e1b04e2faa5cf021c95b06acc56bdcdacf559
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 11:21:56 2026 -0500
+
+    Add new lead Codex episode with full long-form description.
+    
+    Insert Decoding Founder Glenn as the newest Codex entry and include the complete narrative description, media key, duration, and size metadata for feed ordering and playback.
+    
+    Made-with: Cursor
+
+ src/content/podcasts.ts | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+commit 5fedaab888c967624ac0de215db3fac3998ad26d
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 11:36:12 2026 -0500
+
+    Refresh Codex podcast cover artwork asset.
+    
+    Replace the active 3000x3000 Codex cover with the latest provided image while keeping feed-compatible dimensions and optimized file size.
+    
+    Made-with: Cursor
+
+ public/podcasts/founder-glenn-codex-cover-3000.jpg | Bin 397544 -> 399325 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 31197c3068fd6dfd03c07adc382a33fee2c25571
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 11:38:44 2026 -0500
+
+    Redirect founder-glenn identity paths to /about.
+    
+    Add permanent redirects from /founder-glenn and nested identity path variants to the canonical /about profile page.
+    
+    Made-with: Cursor
+
+ next.config.mjs | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit 044eb396c2a01f2743885a81e6fdc54476e18b3b
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 11:49:17 2026 -0500
+
+    Make /founder-glenn the canonical person identity URL.
+    
+    This removes redirect-chain ambiguity by folding /about into /founder-glenn and aligning metadata, schema, sitemap, and internal links to a single stable entity page.
+    
+    Made-with: Cursor
+
+ next.config.mjs                | 11 +++--------
+ src/app/about/page.tsx         | 21 +++++++++++----------
+ src/app/founder-glenn/page.tsx |  2 ++
+ src/app/glenn/page.tsx         |  2 +-
+ src/app/maynard-eaton/page.tsx |  2 +-
+ src/app/music/page.tsx         |  2 +-
+ src/app/sitemap.xml/route.ts   |  2 +-
+ src/components/Projects.tsx    |  2 +-
+ src/content/navigation.ts      |  2 +-
+ src/lib/seo.ts                 | 39 +++++++++++++++++++++++++++++++--------
+ 10 files changed, 53 insertions(+), 32 deletions(-)
+
+commit eb5fbc3b773a8858f7de3e9acdd7537c54793d11
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 14:16:37 2026 -0500
+
+    Fix founder-glenn redirect loop by excluding base path.
+    
+    This changes the wildcard redirect to require at least one trailing segment so /founder-glenn resolves directly instead of redirecting to itself.
+    
+    Made-with: Cursor
+
+ next.config.mjs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit dc8540a4ea4ed3a7d51861f8f6d6f8f400121291
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Mon Mar 16 17:05:17 2026 -0500
+
+    Update Codex cover artwork to use the About Me portrait.
+    
+    This aligns the Codex show image across the podcast page and network feed image fallback so artwork stays consistent in feed metadata.
+    
+    Made-with: Cursor
+
+ src/content/podcasts.ts | 4 ++--
+ src/lib/rss.ts          | 3 ++-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+commit 70b8acdbb568a9c02f9dbcdf756de16ff9dc1b9c
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 17 14:25:53 2026 -0500
+
+    Update Codex episode 2 metadata and R2 key.
+    
+    This replaces episode 2 with the new Mogul Blueprint title and full description, updates ordering timestamp, and points the enclosure key to the exact uploaded R2 filename.
+    
+    Made-with: Cursor
+
+ src/content/podcasts.ts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit b89832ed4fb5bfeb99da697c84b66ee8155a4e4d
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 17 14:38:18 2026 -0500
+
+    Improve audio proxy fallback for extension mismatches.
+    
+    This probes both extension and no-extension key variants so episode enclosures still resolve when R2 filenames and metadata differ.
+    
+    Made-with: Cursor
+
+ src/app/audio/[show]/[episodeFile]/route.ts | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+commit 738d40f4992b2fcd168fc1a916f9f68a0fad5a4b
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 17 14:59:20 2026 -0500
+
+    Switch Codex episode 2 to the converted MP3 source.
+    
+    This points the enclosure key to the new mp3 filename and updates duration/byte length to match the converted audio for feed and player reliability.
+    
+    Made-with: Cursor
+
+ src/content/podcasts.ts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 1c0a341712b4f4c910ccb3641daf2a83a0bd4c0a
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 17 16:16:43 2026 -0500
+
+    Ship Codex-only podcast page and Apple-ready cover refresh.
+    
+    This hides non-live shows on the website, upgrades the Codex artwork to a new 3000x3000 URL for Apple cache refresh, and proxies audio responses directly for more reliable playback.
+    
+    Made-with: Cursor
+
+ .../podcasts/founder-glenn-codex-cover-3000-v2.jpg | Bin 0 -> 500353 bytes
+ src/app/audio/[show]/[episodeFile]/route.ts        |  82 +++++++++++++++------
+ src/app/podcasts/page.tsx                          |  38 ++--------
+ src/content/podcasts.ts                            |   2 +-
+ 4 files changed, 65 insertions(+), 57 deletions(-)
+
+commit 02c90865f8c0d6d3f9d72e3055455b925c77eb68
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 17 16:18:38 2026 -0500
+
+    Fix Codex feed ordering for Apple by publish date.
+    
+    This adjusts episode timestamps so codex items are emitted in the intended sequence in RSS clients that sort by pubDate.
+    
+    Made-with: Cursor
+
+ src/content/podcasts.ts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit cc8eac0b69bc66a1bc102753971aeb17eb2545f9
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 17 16:37:30 2026 -0500
+
+    Refresh podcasts page with authored Codex-first network copy.
+    
+    This updates the page structure and messaging to present only the live Codex show with the finalized topics, sample episodes, listen availability, and player integration notes.
+    
+    Made-with: Cursor
+
+ src/app/podcasts/page.tsx | 190 +++++++++++++++++++++++-----------------------
+ 1 file changed, 97 insertions(+), 93 deletions(-)
+
+commit c4e8806128403656a07a29fc87d106e31bb4094e
+Author: Founder Glenn <founderglenn@Founders-MacBook-Air.local>
+Date:   Tue Mar 17 16:45:30 2026 -0500
+
+    Update default podcast owner email in RSS metadata.
+    
+    This sets the fallback iTunes owner email to Shakur.Glenn@gmail.com while preserving environment override behavior.
+    
+    Made-with: Cursor
+
+ src/lib/rss.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a9c90aa4524db2ef225b001fbc60eed34f1e4d67
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:01:41 2026 -0500
+
+    Add Nexus BodyOS business page and shared atmosphere background
+    
+    - New route /NexusBodyOS/business with assignment-focused copy
+    - Extract NexusBodyOSAtmosphere for full-page gradient glow on all Nexus pages
+    - Add Business to NEXUS_LINKS and sitemap
+    
+    Made-with: Cursor
+
+ src/app/NexusBodyOS/business/page.tsx    | 321 +++++++++++++++++++++++++++++++
+ src/app/NexusBodyOS/page.tsx             |   9 +-
+ src/app/nexushealthcare/_shared.tsx      |  10 +-
+ src/app/sitemap.xml/route.ts             |   1 +
+ src/components/NexusBodyOSAtmosphere.tsx |  17 ++
+ 5 files changed, 348 insertions(+), 10 deletions(-)
+
+commit 8973033d813ddc2d4cd77ad27b3c9e96bf8ae5b9
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:05:16 2026 -0500
+
+    Nexus BodyOS: header app logo on /NexusBodyOS routes
+    
+    - Add nexus-bodyos-app-icon.svg (gradient peak on dark tile)
+    - Fixed slot after menu button via SiteNavDrawer when path matches NexusBodyOS
+    - Point APPS nexus iconSrc at same asset for mock + listings
+    
+    Made-with: Cursor
+
+ public/images/nexus-bodyos-app-icon.svg | 14 ++++++++++++++
+ src/components/SiteNavDrawer.tsx        | 22 ++++++++++++++++++++++
+ src/content/apps.ts                     |  3 +--
+ 3 files changed, 37 insertions(+), 2 deletions(-)
+
+commit aec12a049702041893a39b399395a57ae691bdb5
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:06:45 2026 -0500
+
+    Use real Nexus BodyOS app icon (nexus-bodyos-appicon.png)
+    
+    Replace placeholder SVG with Icon-1024 from Nexus HealthKit App AppIcon asset.
+    
+    Made-with: Cursor
+
+ public/images/nexus-bodyos-app-icon.svg |  14 --------------
+ public/images/nexus-bodyos-appicon.png  | Bin 0 -> 407956 bytes
+ src/components/SiteNavDrawer.tsx        |   4 ++--
+ src/content/apps.ts                     |   2 +-
+ 4 files changed, 3 insertions(+), 17 deletions(-)
+
+commit 84418c428cfa862a9fd22b0fcc672798f3399858
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:11:37 2026 -0500
+
+    Nexus BodyOS business: hero spacing, CTAs, impact cards, org problem line
+    
+    - Split headline into block lines + margin so fragments./Nexus never runs together
+    - Explore the System → /NexusBodyOS; View Product → #integrations on this page
+    - Business impact as checklist-style cards with ✓ markers; section ids + scroll-mt
+    - Add explicit organizational cost of fragmented data paragraph
+    
+    Made-with: Cursor
+
+ src/app/NexusBodyOS/business/page.tsx | 33 ++++++++++++++++++++++-----------
+ 1 file changed, 22 insertions(+), 11 deletions(-)
+
+commit db22ed87351a14e0628a5e634965c5c5bdc031b4
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:14:17 2026 -0500
+
+    NexusBodyOS: View App Store CTA uses same TestFlight URL as Join
+    
+    Made-with: Cursor
+
+ src/app/NexusBodyOS/page.tsx | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit e21d9f1dba94c4c50d891e3a24a991bba6714bce
+Author: founder glenn <founderglenn@founders-MacBook-Air.local>
+Date:   Mon Mar 23 15:18:58 2026 -0500
+
+    NexusBodyOS business: tighter hero break, slim impact bullets, one-line org sentence
+    
+    - <br /> between headline clauses to kill fragments./Nexus wrap
+    - Business impact: disc list + emerald markers (no card chrome)
+    - Org problem: single direct sentence
+    
+    Made-with: Cursor
+
+ src/app/NexusBodyOS/business/page.tsx | 28 +++++++++++-----------------
+ 1 file changed, 11 insertions(+), 17 deletions(-)
+
+--------------------------------------------------------------------------------
+SECTION C — REPRODUCTION COMMANDS
+--------------------------------------------------------------------------------
+Since clone (replace CLONE if your reflog differs):
+  CLONE=c4e8806
+  git diff --stat "$CLONE"..HEAD
+  git diff --name-status "$CLONE"..HEAD
+  git log --stat --reverse "$CLONE"..HEAD
+
+Since repo root:
+  ROOT=$(git rev-list --max-parents=0 HEAD)
+  git diff --stat "$ROOT"..HEAD
+  git diff --name-status "$ROOT"..HEAD
+  git log --stat --reverse "$ROOT"..HEAD
+
+================================================================================
+END OF FILE
+================================================================================
