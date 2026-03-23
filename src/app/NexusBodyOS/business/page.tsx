@@ -94,8 +94,8 @@ export default function NexusBodyOSBusinessPage() {
         <div className={`relative ${container}`}>
           <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Nexus BodyOS / Business</p>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
-            Your health data lives in fragments.
-            <span className="block bg-gradient-to-r from-cyan-300 via-violet-300 to-emerald-300 bg-clip-text text-transparent">
+            <span className="block">Your health data lives in fragments.</span>
+            <span className="mt-3 block bg-gradient-to-r from-cyan-300 via-violet-300 to-emerald-300 bg-clip-text text-transparent md:mt-4">
               Nexus BodyOS turns it into decisions.
             </span>
           </h1>
@@ -112,7 +112,7 @@ export default function NexusBodyOSBusinessPage() {
               Explore the System
             </Link>
             <Link
-              href="/NexusBodyOS"
+              href="/NexusBodyOS/business#integrations"
               className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
             >
               View Product
@@ -144,6 +144,11 @@ export default function NexusBodyOSBusinessPage() {
             wearable sensors, and activity platforms. The problem is that the data is scattered across multiple apps,
             dashboards, and reports. That makes it harder to understand what is actually happening in the body and
             even harder to decide what to do next.
+          </p>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-zinc-300">
+            At an organizational level, fragmented health data also limits efficient monitoring, consistency, and
+            decision-making across a connected platform—so both users and the systems around them pay a coordination
+            tax.
           </p>
 
           <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -210,7 +215,7 @@ export default function NexusBodyOSBusinessPage() {
         </div>
       </section>
 
-      <section className={sectionWrap}>
+      <section id="integrations" className={`scroll-mt-24 ${sectionWrap}`}>
         <div className={container}>
           <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Systems It Integrates With</p>
           <h2 className="mt-3 max-w-3xl text-2xl font-semibold tracking-tight text-white md:text-3xl">
@@ -233,7 +238,7 @@ export default function NexusBodyOSBusinessPage() {
         </div>
       </section>
 
-      <section className={sectionWrap}>
+      <section id="business-impact" className={`scroll-mt-24 ${sectionWrap}`}>
         <div className={`${container} grid gap-6 md:grid-cols-2`}>
           <article className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 md:p-9">
             <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Business Impact</p>
@@ -247,16 +252,22 @@ export default function NexusBodyOSBusinessPage() {
             </p>
           </article>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <ul className="grid list-none gap-3 sm:grid-cols-2 sm:gap-4" aria-label="Business impact outcomes">
             {impacts.map((item) => (
-              <div
+              <li
                 key={item}
-                className="rounded-2xl border border-white/10 bg-black/25 p-5 text-sm leading-relaxed text-zinc-300"
+                className="flex gap-3 rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-black/20 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] sm:p-5"
               >
-                {item}
-              </div>
+                <span
+                  className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-xs font-bold text-emerald-300"
+                  aria-hidden="true"
+                >
+                  ✓
+                </span>
+                <span className="text-sm leading-relaxed text-zinc-200">{item}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
