@@ -14,6 +14,11 @@ function isActive(pathname: string, href: string): boolean {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+function isNexusBodyOSRoute(pathname: string): boolean {
+  const p = pathname.toLowerCase();
+  return p === "/nexusbodyos" || p.startsWith("/nexusbodyos/");
+}
+
 function socialLabel(url: string): string {
   if (url.includes("x.com")) return "X";
   if (url.includes("tiktok.com")) return "TikTok";
@@ -124,6 +129,23 @@ export default function SiteNavDrawer() {
           />
         </span>
       </button>
+      {isNexusBodyOSRoute(pathname) ? (
+        <Link
+          href="/NexusBodyOS"
+          className="fixed left-[4.25rem] top-4 z-[70] inline-flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-black/45 shadow-[0_0_24px_rgba(56,189,248,0.12)] backdrop-blur-md transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+          aria-label="Nexus BodyOS"
+        >
+          {/* App icon — aligned with watch/iOS BodyOS branding; keep in sync with APPS nexus iconSrc. */}
+          <img
+            src="/images/nexus-bodyos-app-icon.svg"
+            alt=""
+            width={44}
+            height={44}
+            className="h-11 w-11 object-cover"
+            decoding="async"
+          />
+        </Link>
+      ) : null}
       <ShopifyCartButton className="fixed right-4 top-4 z-[70] inline-flex h-11 items-center justify-center rounded-full border border-white/15 bg-black/45 px-4 text-xs font-semibold uppercase tracking-[0.08em] text-white backdrop-blur-md transition-colors hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40" />
 
       <div
