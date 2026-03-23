@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SHOPIFY_PUBLIC_STOREFRONT_TOKEN, SHOPIFY_STORE_DOMAIN } from "@/lib/shopify";
 import { trackAddToCart, trackBeginCheckout } from "@/lib/analytics";
 import { sendZapierEvent } from "@/lib/zapier";
@@ -13,6 +13,11 @@ type ShopifyCartElement = HTMLElement & {
   addLine: (source: Event | { variantId: string; quantity?: number }) => ShopifyCartElement;
 };
 
+type ShopifyCartDataEventDetail = {
+  totalQuantity?: number;
+  lines?: { nodes?: unknown[] };
+};
+
 declare global {
   interface Window {
     __fgOpenCart?: () => void;
@@ -20,6 +25,8 @@ declare global {
 }
 
 export function ShopifyRuntime() {
+  const [cartHasItems, setCartHasItems] = useState(false);
+
   const handleCheckoutIntent = async () => {
     trackBeginCheckout([], { context: "shopify-cart-checkout" });
 
@@ -30,6 +37,22 @@ export function ShopifyRuntime() {
       funnelSource: typeof window !== "undefined" ? window.location.pathname : undefined,
     });
   };
+
+  useEffect(() => {
+    const cartEl = document.getElementById(CART_ID);
+    if (!cartEl) return;
+
+    const onCartData = (event: Event) => {
+      const { detail } = event as CustomEvent<ShopifyCartDataEventDetail>;
+      const qty = typeof detail?.totalQuantity === "number" ? detail.totalQuantity : 0;
+      const nodes = detail?.lines?.nodes;
+      const lineCount = Array.isArray(nodes) ? nodes.length : 0;
+      setCartHasItems(qty > 0 || lineCount > 0);
+    };
+
+    cartEl.addEventListener("shopify:cartData", onCartData);
+    return () => cartEl.removeEventListener("shopify:cartData", onCartData);
+  }, []);
 
   useEffect(() => {
     const itemFromActionNode = (actionNode: HTMLElement) => {
@@ -103,19 +126,21 @@ export function ShopifyRuntime() {
         country="US"
         language="en"
       />
-      <shopify-cart id={CART_ID}>
-        <div slot="empty" className="text-sm text-zinc-300">
-          Your cart is empty.
-        </div>
-        <button
-          slot="checkout-button"
-          type="button"
-          onClick={() => {
-            void handleCheckoutIntent();
-          }}
-        >
-          Checkout
-        </button>
+      <shopify-cart id={CART_ID} className={cartHasItems ? undefined : "fg-cart-empty"}>
+        <div slot="empty" hidden aria-hidden="true" />
+        {cartHasItems ? (
+          <button
+            slot="checkout-button"
+            type="button"
+            onClick={() => {
+              void handleCheckoutIntent();
+            }}
+          >
+            Checkout
+          </button>
+        ) : (
+          <span slot="checkout-button" hidden aria-hidden="true" />
+        )}
       </shopify-cart>
     </>
   );

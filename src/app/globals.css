@@ -147,3 +147,8 @@ shopify-cart::part(secondary-button),
 shopify-cart::part(tertiary-button) {
   border-radius: 999px;
 }
+
+/* No line items: hide default empty copy + checkout (see ShopifyRuntime cartHasItems / fg-cart-empty). */
+shopify-cart.fg-cart-empty::part(primary-button) {
+  display: none !important;
+}
