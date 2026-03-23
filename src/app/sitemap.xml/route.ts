@@ -14,6 +14,7 @@ const ROUTES = [
   "/blog",
   "/glenn",
   "/NexusBodyOS",
+  "/NexusBodyOS/business",
   "/NexusBodyOS/privacy",
   "/NexusBodyOS/terms",
   "/NexusBodyOS/support",

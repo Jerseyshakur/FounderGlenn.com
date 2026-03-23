@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { NexusBodyOSAtmosphere } from "@/components/NexusBodyOSAtmosphere";
 import { buildAbsoluteUrl, resolveOgImage, seoConfig } from "@/lib/seo";
 
 export const NEXUS_BASE_PATH = "/NexusBodyOS";
@@ -8,6 +9,7 @@ export const NEXUS_BUSINESS_EMAIL = "business@founderglenn.com";
 
 export const NEXUS_LINKS = [
   { label: "Nexus BodyOS", href: "/NexusBodyOS" },
+  { label: "Business", href: "/NexusBodyOS/business" },
   { label: "Features", href: "/NexusBodyOS/features" },
   { label: "Privacy", href: "/NexusBodyOS/privacy" },
   { label: "Terms", href: "/NexusBodyOS/terms" },
@@ -58,12 +60,10 @@ type NexusPageShellProps = {
 
 export function NexusPageShell({ title, description, children }: NexusPageShellProps) {
   return (
-    <main className="min-h-screen bg-[#09090b] text-zinc-100">
-      <section className="relative overflow-hidden px-6 pb-12 pt-20 md:px-10 md:pt-24">
-        <div className="pointer-events-none absolute -top-40 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-cyan-500/15 blur-3xl" />
-        <div className="pointer-events-none absolute right-0 top-0 h-[26rem] w-[26rem] rounded-full bg-violet-500/15 blur-3xl" />
-        <div className="pointer-events-none absolute -left-32 bottom-0 h-[18rem] w-[18rem] rounded-full bg-emerald-400/10 blur-3xl" />
+    <main className="relative min-h-screen bg-[#09090b] text-zinc-100">
+      <NexusBodyOSAtmosphere />
 
+      <section className="relative px-6 pb-12 pt-20 md:px-10 md:pt-24">
         <div className="relative mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Nexus BodyOS</p>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">{title}</h1>
