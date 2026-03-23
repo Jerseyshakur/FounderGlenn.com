@@ -12,6 +12,8 @@ export const metadata = buildNexusMetadata({
 
 const nexusApp = APPS.find((app) => app.slug === "nexus");
 
+const NEXUS_TESTFLIGHT_URL = "https://testflight.apple.com/join/j1tpp54U";
+
 export default function NexusBodyOSPage() {
   return (
     <main className="relative min-h-screen bg-[#09090b] text-zinc-100">
@@ -33,7 +35,7 @@ export default function NexusBodyOSPage() {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
-              href="https://testflight.apple.com/join/j1tpp54U"
+              href={NEXUS_TESTFLIGHT_URL}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white px-6 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
@@ -41,7 +43,7 @@ export default function NexusBodyOSPage() {
               Join TestFlight
             </a>
             <a
-              href="https://apps.apple.com/"
+              href={NEXUS_TESTFLIGHT_URL}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
