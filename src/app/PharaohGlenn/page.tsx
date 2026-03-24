@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PharaohGlennAtmosphere } from "@/components/PharaohGlennAtmosphere";
 import { buildAbsoluteUrl, resolveOgImage, seoConfig } from "@/lib/seo";
 
 const PATH = "/PharaohGlenn";
-const TITLE = "Pharaoh Glenn";
+const TITLE = "Pharaoh James Glenn";
 const DESCRIPTION =
-  "Pharaoh Glenn — profile and story on Founder Glenn, alongside family projects including the Autism Texas print hoodie with Pharaoh James.";
+  "Pharaoh James Glenn — the heart of the dynasty; the Pharaoh James Foundation and legacy fashion house rooted in compassion, culture, and generational vision.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -30,103 +31,133 @@ export const metadata: Metadata = {
 
 export default function PharaohGlennPage() {
   const exploreLinks = [
-    { label: "Pharaoh James · Shop", href: "/PharaohJames" },
+    { label: "Shop · Autism Texas hoodie", href: "/PharaohJames" },
     { label: "Founder Glenn", href: "/founder-glenn" },
     { label: "Home", href: "/" },
   ] as const;
 
   return (
-    <main className="min-h-screen bg-black px-6 py-20 text-zinc-100">
-      <article className="mx-auto max-w-[900px] py-4 md:py-10">
-        <section className="mx-auto mb-10 w-full max-w-[620px]">
-          <Image
-            src="/images/pharaoh-glenn-portrait.png"
-            alt="Pharaoh Glenn portrait"
-            width={1240}
-            height={1640}
-            priority
-            className="h-auto w-full rounded-xl shadow-[0_40px_90px_rgba(255,255,255,0.08)]"
-          />
-        </section>
+    <main className="relative min-h-screen bg-[#09090b] text-zinc-100">
+      <PharaohGlennAtmosphere />
 
-        <header className="mb-10 text-center">
-          <h1 className="text-5xl font-bold tracking-tight text-white md:text-6xl">Pharaoh Glenn</h1>
-          <p className="mx-auto mt-6 max-w-[780px] text-lg leading-[1.8] text-zinc-300">
-            Pharaoh Glenn is part of the Founder Glenn family — curious, kind, and full of personality.
-            This page is his corner of the site: a simple introduction and a bridge to the projects we
-            build together.
+      <section className="relative px-6 pb-12 pt-20 md:px-10 md:pt-24">
+        <div className="relative mx-auto max-w-6xl">
+          <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Family · Founder Glenn</p>
+          <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
+            Pharaoh James Glenn
+            <span className="block bg-gradient-to-r from-amber-200 via-rose-200 to-sky-200 bg-clip-text text-transparent">
+              The Heart of the Dynasty
+            </span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-300 md:text-lg">
+            Pharaoh James Glenn is more than a name — he is a foundation, a signal, and a future being built in
+            real time.
           </p>
-        </header>
 
-        <section className="mx-auto max-w-[720px] px-0 md:px-6">
-          <div className="space-y-8 text-lg leading-[1.75] text-gray-300">
-            <section className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Entity Snapshot</p>
-              <div className="mt-4 space-y-3 text-base leading-7 text-zinc-300">
-                <p>
-                  <span className="font-semibold text-white">Known as:</span> Pharaoh Glenn
-                </p>
-                <p>
-                  <span className="font-semibold text-white">Context:</span> Family · Founder Glenn
-                </p>
-                <p>
-                  <span className="font-semibold text-white">Focus:</span> Growing up with creativity,
-                  care, and room to be exactly who he is
-                </p>
-                <p>
-                  <span className="font-semibold text-white">Official website:</span>{" "}
-                  <a
-                    href={seoConfig.person.url}
-                    className="underline underline-offset-4 hover:text-white"
-                  >
-                    founderglenn.com
-                  </a>
-                </p>
-              </div>
-            </section>
-
-            <section className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
-              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Explore</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {exploreLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-full border border-white/20 px-3 py-1.5 text-sm text-zinc-300 transition-colors hover:border-white/35 hover:text-white"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </section>
-
-            <p>
-              Every family has its own rhythm. Ours moves between books, software, music, and the
-              everyday work of showing up for each other. Pharaoh Glenn is at the center of that story
-              in the ways only a child can be — honest, surprising, and deeply human.
-            </p>
-            <p>
-              This site is mostly a record of what his father builds in public: systems for creators,
-              long-form writing, and products that carry meaning. Pharaoh Glenn&apos;s page is here so
-              friends, readers, and community can see the person behind the name when it shows up in
-              that work.
-            </p>
-            <p>
-              Alongside him, his brother Pharaoh James helps bring forward pieces like the{" "}
-              <Link href="/PharaohJames" className="text-white underline underline-offset-4 hover:text-zinc-200">
-                Autism Texas print hoodie
+          <nav aria-label="Related pages" className="mt-7 flex flex-wrap gap-2">
+            {exploreLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+              >
+                {item.label}
               </Link>
-              — apparel that celebrates neurodiversity and pride of place. Family projects like that sit
-              next to the larger catalog on Founder Glenn.
-            </p>
-            <p>
-              If you&apos;re here from somewhere we haven&apos;t met yet: welcome. The through-line is
-              simple — build with integrity, tell the truth, and leave room for the next generation to
-              inherit something better than noise.
-            </p>
+            ))}
+          </nav>
+        </div>
+      </section>
+
+      <section className="relative px-6 pb-12 md:px-10 md:pb-16">
+        <div className="relative mx-auto max-w-6xl">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,380px)_minmax(0,1fr)] lg:items-center">
+            <div className="hidden space-y-4 lg:block">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-xs uppercase tracking-[0.12em] text-zinc-500">Foundation</p>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+                  The Pharaoh James Foundation supports children with autism and their families — access, resources,
+                  and environments where they are truly seen.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-xs uppercase tracking-[0.12em] text-zinc-500">Fashion house</p>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+                  A legacy brand in development: timeless identity, cultural permanence, lineage and intention.
+                </p>
+              </div>
+            </div>
+
+            <div className="mx-auto w-full max-w-[620px]">
+              <Image
+                src="/images/pharaoh-glenn-portrait.png"
+                alt="Pharaoh Glenn portrait"
+                width={880}
+                height={1168}
+                priority
+                className="h-auto w-full rounded-xl shadow-[0_40px_90px_rgba(255,255,255,0.08)]"
+              />
+            </div>
+
+            <div className="hidden space-y-4 lg:block">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-xs uppercase tracking-[0.12em] text-zinc-500">Shop</p>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+                  The{" "}
+                  <Link href="/PharaohJames" className="text-amber-200/90 underline-offset-4 hover:text-white">
+                    Autism Texas print hoodie
+                  </Link>{" "}
+                  — family apparel alongside the Founder Glenn catalog.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <p className="text-xs uppercase tracking-[0.12em] text-zinc-500">Vision</p>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+                  Impact and legacy, compassion and power, purpose and presence — unified under one name.
+                </p>
+              </div>
+            </div>
           </div>
-        </section>
-      </article>
+        </div>
+      </section>
+
+      <section className="relative px-6 pb-20 md:px-10 md:pb-24">
+        <div className="relative mx-auto max-w-6xl">
+          <article className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 md:p-10">
+            <div className="mx-auto max-w-3xl space-y-6 text-base leading-[1.8] text-zinc-300 md:text-lg">
+              <p>
+                Named after the ancient kings of Kemet, &ldquo;Pharaoh&rdquo; represents legacy, sovereignty, and
+                divine purpose. In that same spirit, Pharaoh James stands as the heart behind the Pharaoh James
+                Foundation and the Pharaoh James clothing house — a dual movement rooted in compassion, culture, and
+                generational vision.
+              </p>
+              <p>
+                Diagnosed with autism, Pharaoh experiences the world through a lens of depth, sensitivity, and quiet
+                intelligence. His presence is not defined by limitation, but by a different kind of awareness — one
+                that has inspired an entire ecosystem dedicated to understanding, empowerment, and elevation.
+              </p>
+              <p>
+                The Pharaoh James Foundation exists to support children with autism and their families, creating
+                access, resources, and environments where they are not only supported, but truly seen. It is built on
+                the belief that every child carries a unique frequency of brilliance — and deserves a world that knows
+                how to receive it.
+              </p>
+              <p>
+                Alongside the foundation, the Pharaoh James brand is being developed as a legacy fashion house — a
+                symbol of timeless identity and cultural permanence. Inspired by the structure of global luxury
+                institutions, it represents more than clothing; it is a statement of lineage, intention, and enduring
+                value.
+              </p>
+              <p>
+                Together, these pillars form a unified vision: impact and legacy, compassion and power, purpose and
+                presence.
+              </p>
+              <p className="font-medium text-zinc-200">
+                Pharaoh James Glenn is not just the inspiration behind it all — he is the reason it exists.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
   );
 }
