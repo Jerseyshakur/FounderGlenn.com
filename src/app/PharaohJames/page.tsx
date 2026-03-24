@@ -6,9 +6,9 @@ import { PHARAOH_JAMES_HOODIE_SHOPIFY_HANDLE } from "@/content/pharaoh-james-sho
 import { buildAbsoluteUrl, resolveOgImage, seoConfig } from "@/lib/seo";
 
 const PATH = "/PharaohJames";
-const TITLE = "Pharaoh James — Autism Texas Hoodie";
+const TITLE = "Pharaoh James Glenn";
 const DESCRIPTION =
-  "Autism Texas print hoodie from Pharaoh James — premium fleece-style hoodie celebrating neurodiversity and Texas pride, available through Founder Glenn.";
+  "Pharaoh James Glenn — the heart of the dynasty, inspiring the Pharaoh James Foundation and a legacy fashion house rooted in compassion, culture, and generational vision.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -45,13 +45,13 @@ export default function PharaohJamesPage() {
   return (
     <main className="min-h-screen bg-[#121212] px-6 py-20 text-zinc-100">
       <article className="mx-auto max-w-5xl border border-white/10 bg-white/[0.02] p-8 md:p-12">
-        <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Pharaoh James · Shop</p>
+        <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Pharaoh James · About</p>
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-5xl">
-          Autism Texas Print Hoodie
+          Pharaoh James Glenn
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-zinc-400">
-          Fleece hoodie with the Autism Texas print — worn and represented by Pharaoh James. When the
-          storefront connection is live, pricing and checkout will appear here automatically.
+          The Heart of the Dynasty. Pharaoh James Glenn is more than a name; he is a foundation, a
+          signal, and a future being built in real time.
         </p>
 
         <div className="mt-10 grid gap-10 md:grid-cols-[minmax(0,400px),1fr] md:items-start">
@@ -68,25 +68,53 @@ export default function PharaohJamesPage() {
 
           <div className="space-y-6">
             <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Product</p>
+              <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Profile</p>
               <ul className="mt-4 space-y-2 text-sm leading-relaxed text-zinc-300">
                 <li>
-                  <span className="font-semibold text-white">Name:</span> Autism Texas Print Hoodie
+                  <span className="font-semibold text-white">Name:</span> Pharaoh James Glenn
                 </li>
                 <li>
-                  <span className="font-semibold text-white">Curated by:</span> Pharaoh James
+                  <span className="font-semibold text-white">Role:</span> The heart behind the Pharaoh
+                  James Foundation and clothing house
                 </li>
                 <li>
-                  <span className="font-semibold text-white">Store:</span> Founder Glenn / family catalog
+                  <span className="font-semibold text-white">Vision:</span> Impact and legacy,
+                  compassion and power, purpose and presence
                 </li>
               </ul>
             </section>
 
-            <p className="text-sm leading-relaxed text-zinc-400">
-              Online checkout for this hoodie is being connected to the store. Use{" "}
-              <span className="text-zinc-300">Inquire to purchase</span> for now and we&apos;ll route you
-              to the right link or size.
-            </p>
+            <div className="space-y-4 text-sm leading-relaxed text-zinc-400">
+              <p>
+                Named after the ancient kings of Kemet, &ldquo;Pharaoh&rdquo; represents legacy,
+                sovereignty, and divine purpose. In that same spirit, Pharaoh James stands as the heart
+                behind the Pharaoh James Foundation and the Pharaoh James clothing house, a dual
+                movement rooted in compassion, culture, and generational vision.
+              </p>
+              <p>
+                Diagnosed with autism, Pharaoh experiences the world through a lens of depth,
+                sensitivity, and quiet intelligence. His presence is not defined by limitation, but by a
+                different kind of awareness, one that has inspired an entire ecosystem dedicated to
+                understanding, empowerment, and elevation.
+              </p>
+              <p>
+                The Pharaoh James Foundation exists to support children with autism and their families,
+                creating access, resources, and environments where they are not only supported, but
+                truly seen. It is built on the belief that every child carries a unique frequency of
+                brilliance and deserves a world that knows how to receive it.
+              </p>
+              <p>
+                Alongside the foundation, the Pharaoh James brand is being developed as a legacy
+                fashion house, a symbol of timeless identity and cultural permanence. Inspired by the
+                structure of global luxury institutions, it represents more than clothing; it is a
+                statement of lineage, intention, and enduring value.
+              </p>
+              <p>
+                Together, these pillars form a unified vision: impact and legacy, compassion and power,
+                purpose and presence. Pharaoh James Glenn is not just the inspiration behind it all; he
+                is the reason it exists.
+              </p>
+            </div>
 
             <div className="flex flex-wrap gap-3">
               <Link
