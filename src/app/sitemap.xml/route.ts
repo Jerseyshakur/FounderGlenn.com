@@ -7,6 +7,8 @@ const BASE_URL = "https://founderglenn.com";
 const ROUTES = [
   "/",
   "/founder-glenn",
+  "/PharaohGlenn",
+  "/PharaohJames",
   "/in-memory",
   "/books",
   "/books/books",
