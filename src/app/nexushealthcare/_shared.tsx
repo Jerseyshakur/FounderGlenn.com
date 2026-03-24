@@ -11,6 +11,7 @@ export const NEXUS_LINKS = [
   { label: "Nexus BodyOS", href: "/NexusBodyOS" },
   { label: "Business", href: "/NexusBodyOS/business" },
   { label: "Features", href: "/NexusBodyOS/features" },
+  { label: "Discord", href: "/NexusBodyOS/discord" },
   { label: "Privacy", href: "/NexusBodyOS/privacy" },
   { label: "Terms", href: "/NexusBodyOS/terms" },
   { label: "Support", href: "/NexusBodyOS/support" },
