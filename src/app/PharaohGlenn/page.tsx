@@ -40,36 +40,34 @@ export default function PharaohGlennPage() {
     <main className="relative min-h-screen bg-[#09090b] text-zinc-100">
       <PharaohGlennAtmosphere />
 
-      <section className="relative px-6 pb-12 pt-20 md:px-10 md:pt-24">
-        <div className="relative mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Family · Founder Glenn</p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-6xl">
-            Pharaoh James Glenn
-            <span className="block bg-gradient-to-r from-amber-200 via-rose-200 to-sky-200 bg-clip-text text-transparent">
-              The Heart of the Dynasty
-            </span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-300 md:text-lg">
-            Pharaoh James Glenn is more than a name — he is a foundation, a signal, and a future being built in
-            real time.
-          </p>
+      <section className="relative px-6 pb-12 pt-20 md:px-10 md:pb-16 md:pt-24">
+        <div className="relative z-10 mx-auto flex max-w-6xl flex-col gap-10 md:gap-12">
+          <header className="max-w-4xl">
+            <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Family · Founder Glenn</p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-6xl">
+              Pharaoh James Glenn
+              <span className="block bg-gradient-to-r from-amber-200 via-rose-200 to-sky-200 bg-clip-text text-transparent">
+                The Heart of the Dynasty
+              </span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-300 md:text-lg">
+              Pharaoh James Glenn is more than a name — he is a foundation, a signal, and a future being built in
+              real time.
+            </p>
 
-          <nav aria-label="Related pages" className="mt-7 flex flex-wrap gap-2">
-            {exploreLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </section>
+            <nav aria-label="Related pages" className="mt-7 flex flex-wrap gap-2">
+              {exploreLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </header>
 
-      <section className="relative px-6 pb-12 md:px-10 md:pb-16">
-        <div className="relative mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,380px)_minmax(0,1fr)] lg:items-center">
             <div className="hidden space-y-4 lg:block">
               <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
