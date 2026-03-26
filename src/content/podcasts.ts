@@ -208,11 +208,10 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
     slug: "the-marcus-principle",
     description: "Codex episode archive: The Marcus Principle.",
     publishedAt: "2026-03-16T10:30:00.000Z",
-    audioKey:
-      "CODEX/LIVE/S1/The Marcus Principle- Identity vs Institutions-18845736.mp3",
+    audioKey: "CODEX/LIVE/S1/The_Weaponized_Literalism_of_Marcus.mp3",
     mimeType: "audio/mpeg",
-    audioBytes: 36523434,
-    duration: "00:50:43",
+    audioBytes: 50435920,
+    duration: "00:57:10",
   },
 ];
 
