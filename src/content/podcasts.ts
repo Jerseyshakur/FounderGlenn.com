@@ -116,8 +116,8 @@ export const PODCAST_SHOWS: PodcastShow[] = [
       "Project explanations",
     ],
     duration: "20-40 minutes",
-    imageSrc: "/podcasts/founder-glenn-codex-cover-3000-v3.png",
-    imageAlt: "Founder Glenn Codex cover image using Founder Glenn portrait",
+    imageSrc: "/podcasts/founder-glenn-codex-cover-3000-v4.png",
+    imageAlt: "The Founder Glenn Codex — cover art with portrait and title",
     sampleEpisodes: [
       "Episode 1 - The Echopoint Vision",
       "Episode 2 - Builder Irrelevance",
