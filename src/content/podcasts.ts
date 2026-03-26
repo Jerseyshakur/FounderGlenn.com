@@ -206,9 +206,11 @@ export const PODCAST_EPISODES: PodcastEpisode[] = [
     show: "codex",
     title: "The Marcus Principle",
     slug: "the-marcus-principle",
-    description: "Codex episode archive: The Marcus Principle.",
-    publishedAt: "2026-03-16T10:30:00.000Z",
-    audioKey: "CODEX/LIVE/S1/The_Weaponized_Literalism_of_Marcus.mp3",
+    description:
+      "The Marcus Principle — a Codex session on The Weaponized Literalism of Marcus: how literal reading, rigid interpretation, and paperwork logic get turned into weapons against people; why institutions love the letter of the law over the spirit when power is at stake; and how to recognize when language is being used to constrain identity instead of describe it. Founder Glenn walks through the tension between who you are and what systems demand you prove, and what it costs a culture when literalism replaces context, mercy, and meaning.",
+    publishedAt: "2026-03-26T20:00:00.000Z",
+    audioKey:
+      "CODEX/LIVE/S1/founder-glenn-s-the-codex-podcast-episodes/founder-glenn-s-the-codex-podcast-episodes/The_Weaponized_Literalism_of_Marcus.mp3",
     mimeType: "audio/mpeg",
     audioBytes: 50435920,
     duration: "00:57:10",

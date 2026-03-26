@@ -36,7 +36,18 @@ export function inferAudioExtension(audioKey: string, mimeType?: string): string
   return ".mp3";
 }
 
-export function buildAudioProxyUrl(showSlug: string, episodeId: string, audioKey: string, mimeType?: string): string {
+/** When `audioBytes` changes, the query changes so CDNs and podcast apps fetch the new file instead of a stale cached response at the same path. */
+export function buildAudioProxyUrl(
+  showSlug: string,
+  episodeId: string,
+  audioKey: string,
+  mimeType?: string,
+  audioBytes?: number,
+): string {
   const ext = inferAudioExtension(audioKey, mimeType);
-  return buildSiteUrl(`/audio/${showSlug}/${episodeId}${ext}`);
+  const url = buildSiteUrl(`/audio/${showSlug}/${episodeId}${ext}`);
+  if (typeof audioBytes === "number" && audioBytes > 0) {
+    return `${url}?v=${audioBytes}`;
+  }
+  return url;
 }

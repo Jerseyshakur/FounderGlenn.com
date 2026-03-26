@@ -69,7 +69,7 @@ export default function PodcastEpisodePage({ params }: PodcastEpisodePageProps) 
     notFound();
   }
 
-  const audioUrl = buildAudioProxyUrl(episode.show, episode.id, episode.audioKey, episode.mimeType);
+  const audioUrl = buildAudioProxyUrl(episode.show, episode.id, episode.audioKey, episode.mimeType, episode.audioBytes);
 
   return (
     <main className="min-h-screen bg-[#121212] px-6 py-16 text-zinc-100 md:py-20">

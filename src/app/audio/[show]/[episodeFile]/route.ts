@@ -118,7 +118,7 @@ async function handleAudioRequest(request: Request, context: { params: { show: s
     return new Response("Not found", { status: 404 });
   }
 
-  const episodeId = episodeFile.replace(/\.[^.]+$/, "");
+  const episodeId = episodeFile.replace(/\.[^.]+$/, "").split("?")[0];
   const episode = getPodcastEpisodeById(show, episodeId);
   if (!episode) {
     return new Response("Not found", { status: 404 });

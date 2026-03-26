@@ -92,7 +92,7 @@ export function buildPodcastFeedXml(
     .map((episode) => {
       const episodeUrl = buildSiteUrl(`/podcasts/${show.slug}/${episode.slug}`);
       const episodeImage = buildSiteUrl(episode.imageSrc || show.imageSrc);
-      const audioUrl = buildAudioProxyUrl(show.slug, episode.id, episode.audioKey, episode.mimeType);
+      const audioUrl = buildAudioProxyUrl(show.slug, episode.id, episode.audioKey, episode.mimeType, episode.audioBytes);
 
       return [
         "    <item>",
@@ -164,7 +164,7 @@ export function buildPodcastNetworkFeedXml(episodes: PodcastEpisode[], feedPath:
       const showTitle = show?.title || episode.show;
       const episodeUrl = buildSiteUrl(`/podcasts/${episode.show}/${episode.slug}`);
       const episodeImage = buildSiteUrl(episode.imageSrc || show?.imageSrc || "/og-image.jpg");
-      const audioUrl = buildAudioProxyUrl(episode.show, episode.id, episode.audioKey, episode.mimeType);
+      const audioUrl = buildAudioProxyUrl(episode.show, episode.id, episode.audioKey, episode.mimeType, episode.audioBytes);
 
       return [
         "    <item>",
