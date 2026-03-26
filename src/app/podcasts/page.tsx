@@ -138,7 +138,7 @@ export default function PodcastsPage() {
                       Losing Yourself
                     </li>
                     <li>Episode 3 - Prophecy vs. Paperwork</li>
-                    <li>Episode 4 - The Marcus Principle</li>
+                    <li>Episode 4 - Marcus</li>
                   </ul>
                 </div>
 

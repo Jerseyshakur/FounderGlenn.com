@@ -82,6 +82,11 @@ const nextConfig = {
         destination: "/NexusBodyOS/:path*",
         permanent: true,
       },
+      {
+        source: "/podcasts/codex/the-marcus-principle",
+        destination: "/podcasts/codex/marcus",
+        permanent: true,
+      },
     ];
   },
 };
