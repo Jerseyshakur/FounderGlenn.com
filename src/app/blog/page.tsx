@@ -1,3 +1,10 @@
+/**
+ * /blog — canonical blog/Codex listing page.
+ *
+ * This is the authoritative route. /blogs permanently redirects here.
+ * Article detail pages live at /blog/[slug].
+ * Do NOT add a permanentRedirect here — this page has the real content.
+ */
 import Link from "next/link";
 import ArticleImage from "@/components/blog/ArticleImage";
 import { getAllPostsMeta } from "@/lib/blog";
@@ -6,7 +13,8 @@ export const metadata = {
   title: "Blog",
   description: "Essays, frameworks, and build logs from Founder Glenn.",
   alternates: {
-    canonical: "/blog",
+    // Absolute canonical URL — consolidates SEO equity from /blogs → /blog
+    canonical: "https://founderglenn.com/blog",
   },
 };
 

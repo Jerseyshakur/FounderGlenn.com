@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { NAV_ITEMS } from "@/content/navigation";
+import { NAV_GROUPS } from "@/content/navigation";
 import { ShopifyCartButton } from "@/components/shopify/ShopifyRuntime";
 import { seoConfig } from "@/lib/seo";
 
@@ -172,24 +172,35 @@ export default function SiteNavDrawer() {
           <ShopifyCartButton className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-white hover:text-black" />
         </div>
         <div className="site-nav-scroll min-h-0 flex-1 overflow-y-auto pr-1">
-          <nav className="space-y-1" aria-label="Primary">
-            {NAV_ITEMS.map((item) => {
-              const active = isActive(pathname, item.href);
-
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`block rounded-lg px-3 py-2.5 text-sm tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
-                    active
-                      ? "bg-white/[0.08] text-white"
-                      : "text-zinc-300 hover:bg-white/[0.05] hover:text-white"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+          <nav aria-label="Primary">
+            {NAV_GROUPS.map((group, gi) => (
+              <div key={group.group} className={gi === 0 ? "" : "mt-5"}>
+                {/* Skip the "Home" group label — it's visually obvious */}
+                {group.group !== "Home" && (
+                  <p className="mb-1 px-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-600">
+                    {group.group}
+                  </p>
+                )}
+                <div className="space-y-0.5">
+                  {group.items.map((item) => {
+                    const active = isActive(pathname, item.href);
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`block rounded-lg px-3 py-2.5 text-sm tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+                          active
+                            ? "bg-white/[0.08] text-white"
+                            : "text-zinc-300 hover:bg-white/[0.05] hover:text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </nav>
 
           <div className="mt-6 border-t border-white/10 pt-5">

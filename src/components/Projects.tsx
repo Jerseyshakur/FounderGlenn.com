@@ -1,143 +1,171 @@
 "use client";
 
 import { motion } from "framer-motion";
-
 import Link from "next/link";
 
-const PROJECTS = [
-    {
-        id: 1,
-        title: "Books",
-        category: "Authoring the doctrine — strategy, systems, and legacy in print.",
-        link: "/books",
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
-    },
-    {
-        id: 2,
-        title: "Blogs",
-        category: "Short dispatches: ideas, frameworks, and build logs as they happen.",
-        link: "/blog",
-        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop",
-    },
-    {
-        id: 3,
-        title: "GLÉNN",
-        category: "Lifestyle brand: discipline, design, and dynasty.",
-        link: "/glenn",
-        image: "/things/Glenn.PNG",
-    },
-    {
-        id: 4,
-        title: "Nexus BodyOS",
-        category: "Recovery and readiness coaching powered by physiology + AI.",
-        link: "/NexusBodyOS",
-        image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2000&auto=format&fit=crop",
-    },
+const PATHS = [
+  {
+    id: "artists",
+    eyebrow: "Artists",
+    title: "Protect your work.\nUnderstand your rights.\nBuild ownership.",
+    description:
+      "The creator operating system — legal infrastructure, royalty recovery, and the systems independent artists actually need.",
+    cta: "Enter the Artist Infrastructure",
+    href: "/artists",
+    analyticsLabel: "Homepage Artist Path",
+    analyticsDestination: "/artists",
+  },
+  {
+    id: "nexus",
+    eyebrow: "Nexus",
+    title: "Understand your body\nlike a system.",
+    description:
+      "Recovery and readiness intelligence powered by physiology and AI. Built for founders, athletes, and high-output operators.",
+    cta: "Explore Nexus BodyOS",
+    href: "/NexusBodyOS",
+    analyticsLabel: "Homepage Nexus Path",
+    analyticsDestination: "/NexusBodyOS",
+  },
+  {
+    id: "books",
+    eyebrow: "Books",
+    title: "Frameworks for ownership,\nlove, legacy, and infrastructure.",
+    description:
+      "Books that don't just inform — they reframe. Written for creators building something that outlasts the moment.",
+    cta: "Browse the Library",
+    href: "/books/books",
+    analyticsLabel: "Homepage Books Path",
+    analyticsDestination: "/books/books",
+  },
+  {
+    id: "codex",
+    eyebrow: "Codex",
+    title: "Essays, systems,\nphilosophy, and future thinking.",
+    description:
+      "The ideological layer. Where the thinking that drives the work gets written down, refined, and published.",
+    cta: "Read the Codex",
+    href: "/essays",
+    analyticsLabel: "Homepage Codex Path",
+    analyticsDestination: "/essays",
+  },
+  {
+    id: "kits",
+    eyebrow: "Kits",
+    title: "Tactical tools for creators,\nfounders, and operators.",
+    description:
+      "Ideas operationalized. Kits convert ideology into execution — split sheets, royalty workflows, legal templates, release checklists.",
+    cta: "Browse the Kits",
+    href: "/kits",
+    analyticsLabel: "Homepage Kits Path",
+    analyticsDestination: "/kits",
+  },
 ];
 
 export default function Projects() {
-    return (
-        <section className="relative z-20 w-full bg-[#121212] py-32 px-6 lg:px-12">
-            <div className="max-w-7xl mx-auto flex flex-col items-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-center mb-24"
+  return (
+    <section className="relative z-20 w-full bg-[#121212] px-6 pb-32 pt-24 lg:px-12">
+      <div className="mx-auto max-w-7xl">
+
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-20 text-center"
+        >
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-600">
+            The Ecosystem
+          </p>
+          <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            Choose Your Path
+          </h2>
+          <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-zinc-400">
+            This isn&apos;t one site. It&apos;s one worldview expressed through five systems.
+          </p>
+        </motion.div>
+
+        {/* Path cards — 2-col grid, last card full-width when count is odd */}
+        <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.04]">
+          <div className="grid grid-cols-1 gap-px md:grid-cols-2">
+            {PATHS.map((path, index) => (
+              <motion.div
+                key={path.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.55, delay: index * 0.07, ease: "easeOut" }}
+                className={
+                  index === PATHS.length - 1 && PATHS.length % 2 !== 0
+                    ? "md:col-span-2"
+                    : ""
+                }
+              >
+                <Link
+                  href={path.href}
+                  data-analytics-cta="1"
+                  data-analytics-label={path.analyticsLabel}
+                  data-analytics-destination={path.analyticsDestination}
+                  data-analytics-context="homepage-ecosystem-gateway"
+                  className="group flex h-full flex-col bg-[#121212] p-8 transition-colors duration-300 hover:bg-zinc-900/60 md:p-10"
                 >
-                    <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
-                        The Catalog
-                    </h2>
-                    <p className="text-zinc-400 max-w-xl mx-auto text-lg leading-relaxed">
-                        Books, blogs, brand, and Nexus BodyOS — built for creators and legacy.
-                    </p>
-                    <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-                        <Link
-                            href="/legal"
-                            data-analytics-cta="1"
-                            data-analytics-label="Homepage Artist Legal"
-                            data-analytics-destination="/legal"
-                            data-analytics-context="homepage-routing"
-                            className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
-                        >
-                            Artist Legal
-                        </Link>
-                        <Link
-                            href="/royalties"
-                            data-analytics-cta="1"
-                            data-analytics-label="Homepage Royalty Recovery"
-                            data-analytics-destination="/royalties"
-                            data-analytics-context="homepage-routing"
-                            className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
-                        >
-                            Royalty Recovery
-                        </Link>
-                        <Link
-                            href="/NexusBodyOS"
-                            data-analytics-cta="1"
-                            data-analytics-label="Homepage Nexus"
-                            data-analytics-destination="/NexusBodyOS"
-                            data-analytics-context="homepage-routing"
-                            className="rounded-full border border-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-zinc-200 transition-colors hover:border-white/35 hover:text-white"
-                        >
-                            Nexus BodyOS
-                        </Link>
-                    </div>
-                    <Link
-                        href="/founder-glenn"
-                        className="mt-7 inline-flex rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black"
+                  {/* Eyebrow */}
+                  <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600 transition-colors duration-300 group-hover:text-zinc-400">
+                    {path.eyebrow}
+                  </p>
+
+                  {/* Title — whitespace-pre-line preserves intentional line breaks */}
+                  <h3 className="mb-4 whitespace-pre-line text-2xl font-bold leading-tight tracking-tight text-white md:text-3xl">
+                    {path.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mb-8 flex-1 text-sm leading-relaxed text-zinc-400 md:text-base">
+                    {path.description}
+                  </p>
+
+                  {/* CTA row */}
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-xs font-semibold uppercase tracking-[0.1em] text-zinc-300 transition-colors duration-300 group-hover:text-white">
+                      {path.cta}
+                    </span>
+                    <svg
+                      className="h-4 w-4 text-zinc-500 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
                     >
-                        About Founder Glenn
-                    </Link>
-                </motion.div>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-                    {PROJECTS.map((project, index) => (
-                        <Link key={project.id} href={project.link} className="block w-full">
-                            <motion.div
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-                                className="group relative h-[60vh] min-h-[400px] w-full overflow-hidden rounded-2xl bg-zinc-900 border border-white/5"
-                            >
-                                {/* Image */}
-                                <div
-                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 opacity-60 group-hover:opacity-80"
-                                    style={{ backgroundImage: `url(${project.image})` }}
-                                />
-
-                                {/* Overlay Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80" />
-
-                                {/* Content */}
-                                <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
-                                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-3 transition-transform duration-500 ease-out group-hover:-translate-y-2">
-                                        {project.title}
-                                    </h3>
-
-                                    <p className="text-zinc-300 text-sm md:text-base leading-relaxed max-w-sm mb-6 opacity-90 transition-transform duration-500 ease-out group-hover:-translate-y-2">
-                                        {project.category}
-                                    </p>
-
-                                    {/* Button (Glassmorphism) */}
-                                    <div className="overflow-hidden h-10">
-                                        <motion.div
-                                            className="flex items-center gap-2 transform translate-y-full opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100"
-                                        >
-                                            <span className="text-sm font-semibold tracking-wide text-white uppercase">Explore {project.title}</span>
-                                            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                            </svg>
-                                        </motion.div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </Link>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+        {/* Footer anchor */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          className="mt-12 flex justify-center"
+        >
+          <Link
+            href="/founder-glenn"
+            className="rounded-full border border-white/15 px-6 py-2.5 text-sm font-semibold text-zinc-300 transition-colors duration-300 hover:border-white/35 hover:text-white"
+          >
+            About Founder Glenn
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  );
 }
